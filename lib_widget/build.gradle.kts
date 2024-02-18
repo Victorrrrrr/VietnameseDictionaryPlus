@@ -5,10 +5,10 @@ plugins {
 
 android {
     namespace = "com.gp.lib_widget"
-    compileSdk = 33
+    compileSdk = libs.versions.compilesdk.get().toInt()
 
     defaultConfig {
-        minSdk = 24
+        minSdk = libs.versions.minsdk.get().toInt()
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
         consumerProguardFiles("consumer-rules.pro")
@@ -28,16 +28,15 @@ android {
         targetCompatibility = JavaVersion.VERSION_1_8
     }
     kotlinOptions {
-        jvmTarget = "1.8"
+        jvmTarget = libs.versions.jvmtarget.get()
     }
 }
 
 dependencies {
 
-    implementation("androidx.core:core-ktx:1.9.0")
-    implementation("androidx.appcompat:appcompat:1.6.1")
-    implementation("com.google.android.material:material:1.8.0")
-    testImplementation("junit:junit:4.13.2")
-    androidTestImplementation("androidx.test.ext:junit:1.1.5")
-    androidTestImplementation("androidx.test.espresso:espresso-core:3.5.1")
+    compileOnly(fileTree(mapOf("dir" to "libs", "include" to listOf("*.jar"))))
+    compileOnly(libs.core.ktx)
+    compileOnly(libs.appcompat)
+    compileOnly(libs.material)
+    compileOnly(libs.constraintlayout)
 }

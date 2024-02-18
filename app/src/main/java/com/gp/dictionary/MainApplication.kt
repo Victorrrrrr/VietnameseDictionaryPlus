@@ -4,13 +4,16 @@ import android.app.Activity
 import android.app.Application
 import android.content.Context
 import android.os.Bundle
+import androidx.multidex.MultiDex
+import com.gp.dictionary.task.InitARouterTask
 import com.gp.dictionary.task.InitAppManagerTask
-import com.gp.dictionary.task.InitTaskA
+import com.gp.dictionary.task.InitMmkvTask
 import com.gp.dictionary.task.InitVDHelperTask
-import com.gp.lib_framework.manager.AppFrontBack
-import com.gp.lib_framework.manager.AppFrontBackListener
-import com.gp.lib_framework.toast.TipsToast
-import com.gp.lib_framework.utils.LogUtil
+import com.gp.framework.manager.ActivityManager
+import com.gp.framework.manager.AppFrontBack
+import com.gp.framework.manager.AppFrontBackListener
+import com.gp.framework.toast.TipsToast
+import com.gp.framework.utils.LogUtil
 import com.gp.lib_starter.dispatcher.TaskDispatcher
 
 /**
@@ -23,7 +26,7 @@ class MainApplication : Application() {
 
     override fun attachBaseContext(base: Context?) {
         super.attachBaseContext(base)
-
+        MultiDex.install(base)
     }
 
     override fun onCreate() {
@@ -43,8 +46,12 @@ class MainApplication : Application() {
         // 3. 添加任务并且启动任务
         dispatcher.addTask(InitVDHelperTask(this))
             .addTask(InitAppManagerTask())
-            .addTask(InitTaskA())
+            .addTask(InitMmkvTask())
+            .addTask(InitARouterTask())
             .start()
+
+        // 4. 等待，需要等待的方法执行完才可以继续往下执行
+        dispatcher.await()
     }
 
     /**
@@ -68,7 +75,7 @@ class MainApplication : Application() {
     private fun registerActivityLifecycle() {
         registerActivityLifecycleCallbacks(object : ActivityLifecycleCallbacks{
             override fun onActivityCreated(activity: Activity, savedInstanceState: Bundle?) {
-
+                ActivityManager.push(activity)
             }
 
             override fun onActivityStarted(activity: Activity) {
@@ -92,7 +99,7 @@ class MainApplication : Application() {
             }
 
             override fun onActivityDestroyed(activity: Activity) {
-
+                ActivityManager.pop(activity)
             }
 
         })

@@ -1,18 +1,42 @@
+# 声明可以被依赖项引用的版本
 [versions]
-agp = "8.2.0-alpha10"
+# sdk版本
+targetsdk = "33"
+compilesdk = "33"
+minsdk = "24"
+versioncode = "1"
+versionname = "1.0"
+jvmtarget = "1.8"
+applicationid = "com.gp.vietnamesedictionaryplus"
+
+# 签名配置
+storepassword = "123456"
+keyalias = "vd"
+keypassword = "123456"
+
+# 依赖版本
+agp = "8.1.2"
 kotlin = "1.8.21"
 core-ktx = "1.9.0"
 junit = "4.13.2"
 androidx-test-ext-junit = "1.1.5"
 espresso-core = "3.5.1"
 appcompat = "1.6.1"
-material = "1.9.0"
-constraintlayout = "2.1.4"
+material = "1.8.0"
+constraintlayout = "2.0.4"
 lifecycle-livedata-ktx = "2.6.1"
 lifecycle-viewmodel-ktx = "2.6.1"
 navigation-fragment-ktx = "2.6.0"
 navigation-ui-ktx = "2.6.0"
 
+arouter-api = "1.5.2"
+arouter-compiler = "1.5.2"
+
+multidex = "2.0.1"
+mmkv = "1.2.15"
+
+
+# 声明坐标的别名
 [libraries]
 core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "core-ktx" }
 junit = { group = "junit", name = "junit", version.ref = "junit" }
@@ -21,14 +45,35 @@ espresso-core = { group = "androidx.test.espresso", name = "espresso-core", vers
 appcompat = { group = "androidx.appcompat", name = "appcompat", version.ref = "appcompat" }
 material = { group = "com.google.android.material", name = "material", version.ref = "material" }
 constraintlayout = { group = "androidx.constraintlayout", name = "constraintlayout", version.ref = "constraintlayout" }
+
+# 路由
+arouter-api = {group = "com.alibaba", name = "arouter-api", version.ref = "arouter-api"}
+arouter-compiler = {group = "com.alibaba", name = "arouter-compiler", version.ref = "arouter-compiler"}
+
+multidex = {group = "androidx.multidex", name = "multidex", version.ref = "multidex"}
+
+mmkv = {group = "com.tencent", name = "mmkv", version.ref = "mmkv"}
+
+#
 lifecycle-livedata-ktx = { group = "androidx.lifecycle", name = "lifecycle-livedata-ktx", version.ref = "lifecycle-livedata-ktx" }
 lifecycle-viewmodel-ktx = { group = "androidx.lifecycle", name = "lifecycle-viewmodel-ktx", version.ref = "lifecycle-viewmodel-ktx" }
 navigation-fragment-ktx = { group = "androidx.navigation", name = "navigation-fragment-ktx", version.ref = "navigation-fragment-ktx" }
 navigation-ui-ktx = { group = "androidx.navigation", name = "navigation-ui-ktx", version.ref = "navigation-ui-ktx" }
 
+# 声明插件
 [plugins]
 androidApplication = { id = "com.android.application", version.ref = "agp" }
 kotlinAndroid = { id = "org.jetbrains.kotlin.android", version.ref = "kotlin" }
 
+# 声明依赖包
 [bundles]
-androidX = { modules = ["core-ktx", "appcompat", "material", "constraintlayout", "lifecycle-livedata-ktx", "lifecycle-viewmodel-ktx", "navigation-fragment-ktx", "navigation-ui-ktx"] }
+androidX = [
+    "core-ktx",
+    "appcompat",
+    "material",
+    "constraintlayout",
+    "lifecycle-livedata-ktx",
+    "lifecycle-viewmodel-ktx",
+    "navigation-fragment-ktx",
+    "navigation-ui-ktx"
+]

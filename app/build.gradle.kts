@@ -1,20 +1,62 @@
 plugins {
     id("com.android.application")
     id("org.jetbrains.kotlin.android")
+    id("kotlin-kapt")
 }
 
 android {
     namespace = "com.gp.vietnamesedictionaryplus"
-    compileSdk = 33
+    compileSdk = libs.versions.compilesdk.get().toInt()
 
     defaultConfig {
-        applicationId = "com.gp.vietnamesedictionaryplus"
-        minSdk = 24
-        targetSdk = 33
-        versionCode = 1
-        versionName = "1.0"
+        applicationId = libs.versions.applicationid.get()
+        minSdk = libs.versions.minsdk.get().toInt()
+        targetSdk = libs.versions.targetsdk.get().toInt()
+        versionCode = libs.versions.versioncode.get().toInt()
+        versionName = libs.versions.versionname.get()
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
+
+        multiDexEnabled = true
+
+        // ARouter
+        kapt {
+            arguments {
+                arg("AROUTER_MODULE_NAME", project.getName())
+            }
+        }
+
+    }
+
+//    signingConfigs {
+//        getByName("debug") {
+//            keyAlias = "debug"
+//            keyPassword = "my debug key password"
+//            storeFile = file("/home/miles/keystore.jks")
+//            storePassword = "my keystore password"
+//        }
+//        create("release") {
+//            keyAlias = "release"
+//            keyPassword = "my release key password"
+//            storeFile = file("/home/miles/keystore.jks")
+//            storePassword = "my keystore password"
+//        }
+//    }
+
+    buildTypes {
+        release {
+            isMinifyEnabled = false
+            proguardFiles(
+                getDefaultProguardFile("proguard-android-optimize.txt"),
+                "proguard-rules.pro"
+            )
+//            signingConfig = signingConfigs.getByName("release")
+//            isDebuggable = false
+        }
+        debug {
+//            signingConfig = signingConfigs.getByName("debug")
+//            isDebuggable = true
+        }
     }
 
     buildFeatures {
@@ -22,112 +64,47 @@ android {
         dataBinding = true
     }
 
-    buildTypes {
-        release {
-            isMinifyEnabled = false
-            proguardFiles(
-                getDefaultProguardFile("proguard-android-optimize.txt"), "proguard-rules.pro"
-            )
-        }
-    }
     compileOptions {
         sourceCompatibility = JavaVersion.VERSION_1_8
         targetCompatibility = JavaVersion.VERSION_1_8
     }
+
     kotlinOptions {
-        jvmTarget = "1.8"
+        jvmTarget = libs.versions.jvmtarget.get()
     }
 }
 
 dependencies {
     implementation(fileTree(mapOf("dir" to "libs", "include" to listOf("*.jar"))))
+    implementation(libs.core.ktx)
+    implementation(libs.appcompat)
+    implementation(libs.material)
+    implementation(libs.constraintlayout)
+    testImplementation(libs.junit)
+    androidTestImplementation(libs.androidx.test.ext.junit)
+    androidTestImplementation(libs.espresso.core)
 
-    implementation("androidx.core:core-ktx:1.9.0")
-    implementation("androidx.appcompat:appcompat:1.6.1")
-    implementation("com.google.android.material:material:1.8.0")
-    implementation("androidx.constraintlayout:constraintlayout:2.1.4")
-    testImplementation("junit:junit:4.13.2")
-    androidTestImplementation("androidx.test.ext:junit:1.1.5")
-    androidTestImplementation("androidx.test.espresso:espresso-core:3.5.1")
+    // 路由
+    implementation(libs.arouter.api)
+    kapt(libs.arouter.compiler)
 
+    implementation(libs.mmkv)
 
-    implementation(
-        project(
-            ":lib_framework"
-        )
-    )
+    implementation(libs.multidex)
 
-    implementation(
-        project(
-            ":lib_starter"
-        )
-    )
-
-    implementation(
-        project(
-            ":lib_common"
-        )
-    )
-
-    implementation(
-        project(
-            ":lib_network"
-        )
-    )
-
-    implementation(
-        project(
-            ":lib_room"
-        )
-    )
-
-    implementation(
-        project(
-            ":lib_widget"
-        )
-    )
-
-    implementation(
-        project(
-            ":lib_starter"
-        )
-    )
-
-    implementation(
-        project(
-            ":mod_learn"
-        )
-    )
-
-    implementation(
-        project(
-            ":mod_login"
-        )
-    )
-
-    implementation(
-        project(
-            ":mod_main"
-        )
-    )
-
-    implementation(
-        project(
-            ":mod_recite"
-        )
-    )
-
-    implementation(
-        project(
-            ":mod_search"
-        )
-    )
-
-    implementation(
-        project(
-            ":mod_user"
-        )
-    )
+    implementation(project(":lib_framework"))
+    implementation(project(":lib_starter"))
+    implementation(project(":lib_common"))
+    implementation(project(":lib_network"))
+    implementation(project(":lib_room"))
+    implementation(project(":lib_widget"))
+    implementation(project(":lib_starter"))
+    implementation(project(":mod_learn"))
+    implementation(project(":mod_login"))
+    implementation(project(":mod_main"))
+    implementation(project(":mod_recite"))
+    implementation(project(":mod_search"))
+    implementation(project(":mod_user"))
 
 
 }

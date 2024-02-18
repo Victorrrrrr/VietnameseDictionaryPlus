@@ -1,9 +1,16 @@
 package com.gp.dictionary.task
 
 import android.app.Application
-import com.gp.lib_framework.helper.VDHelper
-import com.gp.lib_framework.manager.AppManager
+import com.alibaba.android.arouter.BuildConfig
+import com.alibaba.android.arouter.launcher.ARouter
+import com.gp.framework.helper.VDHelper
+import com.gp.framework.manager.AppManager
+import com.gp.framework.utils.LogUtil
 import com.gp.lib_starter.task.Task
+import com.gp.lib_starter.utils.DispatcherExecutor
+import com.tencent.mmkv.MMKV
+import com.tencent.mmkv.MMKVLogLevel
+import java.util.concurrent.ExecutorService
 
 /**
  * @Author: gxy
@@ -20,7 +27,7 @@ class InitVDHelperTask(val application: Application) : Task() {
     }
 
     override fun run() {
-        VDHelper.init(application, true)
+        VDHelper.init(application, BuildConfig.DEBUG)
     }
 }
 
@@ -45,9 +52,79 @@ class InitAppManagerTask() : Task() {
 }
 
 
+/**
+ * 初始化MMKV
+ */
+
+class InitMmkvTask() : Task() {
+
+    //异步线程执行的Task在被调用await的时候等待
+    override fun needWait(): Boolean {
+        return true
+    }
+
+    //依赖某些任务，在某些任务完成后才能执行
+    override fun dependsOn(): MutableList<Class<out Task>> {
+        val tasks = mutableListOf<Class<out Task?>>()
+        tasks.add(InitVDHelperTask::class.java)
+        return tasks
+    }
+
+    //指定线程池
+    override fun runOn(): ExecutorService? {
+        return DispatcherExecutor.iOExecutor
+    }
+
+    //执行任务初始化
+    override fun run() {
+        val rootDir: String = MMKV.initialize(VDHelper.getApplication())
+        MMKV.setLogLevel(
+            if (BuildConfig.DEBUG) {
+                MMKVLogLevel.LevelDebug
+            } else {
+                MMKVLogLevel.LevelError
+            }
+        )
+        LogUtil.d("mmkv root: $rootDir", tag = "MMKV")
+    }
+
+}
+
 
 /**
- * 初始化A
+ * 初始化ShareManager
+ */
+class InitARouterTask() : Task() {
+    // 异步线程执行的Task在被调用await的时候等待
+    override fun needWait(): Boolean {
+        return true
+    }
+
+    // 依赖某些任务，在某些任务完成后才能执行
+    override fun dependsOn(): List<Class<out Task>> {
+        val tasks = mutableListOf<Class<out Task?>>()
+        tasks.add(InitVDHelperTask::class.java)
+        return tasks
+    }
+
+    // 执行任务，任务真正的执行逻辑
+    override fun run() {
+        // 这两行必须写在init之前，否则这些配置在init过程中将无效
+        if (BuildConfig.DEBUG) {
+            // 开启打印日志
+            ARouter.openLog()
+            // 开启调试模式(如果在InstantRun模式下运行，必须开启调试模式！线上版本需要关闭,否则有安全风险)
+            ARouter.openDebug()
+        }
+        ARouter.init(VDHelper.getApplication())
+    }
+
+}
+
+
+
+/**
+ * 写法： 初始化A
  */
 class InitTaskA() : Task() {
 
@@ -57,7 +134,7 @@ class InitTaskA() : Task() {
 }
 
 /**
- * 初始化B
+ * 写法： 初始化B
  */
 class InitTaskB() : Task() {
 

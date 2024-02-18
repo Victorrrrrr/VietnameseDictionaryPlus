@@ -1,7 +1,7 @@
 package com.gp.lib_starter.utils
 
-import com.gp.lib_framework.helper.VDHelper
-import com.gp.lib_framework.utils.LogUtil
+import com.gp.framework.helper.VDHelper
+import com.gp.framework.utils.LogUtil
 
 /**
  * @Author: gxy
