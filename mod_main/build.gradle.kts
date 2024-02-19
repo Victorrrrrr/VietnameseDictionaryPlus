@@ -57,6 +57,10 @@ dependencies {
     compileOnly(libs.arouter.api)
     kapt(libs.arouter.compiler)
 
+    // 底部导航
+    compileOnly(libs.navigation.ui.ktx)
+    compileOnly(libs.navigation.fragment.ktx)
+
     compileOnly(project(":lib_common"))
     compileOnly(project(":lib_framework"))
     compileOnly(project(":lib_starter"))
