@@ -34,7 +34,17 @@ arouter-compiler = "1.5.2"
 
 multidex = "2.0.1"
 mmkv = "1.2.15"
+gson = "2.10.1"
 
+retrofit2 = "2.9.0"
+retrofit2-gson = "2.4.0"
+logging-interceptor = "3.11.0"
+glide = "4.15.0"
+glide-compiler = "4.15.0"
+flexbox = "3.0.0"
+
+exoplayer = "2.18.5"
+tbssdk = "44132"
 
 # 声明坐标的别名
 [libraries]
@@ -45,6 +55,21 @@ espresso-core = { group = "androidx.test.espresso", name = "espresso-core", vers
 appcompat = { group = "androidx.appcompat", name = "appcompat", version.ref = "appcompat" }
 material = { group = "com.google.android.material", name = "material", version.ref = "material" }
 constraintlayout = { group = "androidx.constraintlayout", name = "constraintlayout", version.ref = "constraintlayout" }
+gson = {group = "com.google.code.gson", name = "gson", version.ref = "gson"}
+
+# 网络请求
+retrofit2 = { group = "com.squareup.retrofit2", name = "retrofit", version.ref = "retrofit2" }
+retrofit2-gson = { group = "com.squareup.retrofit2", name = "converter-gson", version.ref = "retrofit2-gson" }
+logging-interceptor = { group = "com.squareup.okhttp3", name = "logging-interceptor", version.ref = "logging-interceptor" }
+
+glide = { group = "com.github.bumptech.glide", name = "glide", version.ref = "glide" }
+glide-compiler = { group = "com.github.bumptech.glide", name = "compiler", version.ref = "glide-compiler" }
+flexbox = { group = "com.google.android.flexbox", name = "flexbox", version.ref = "flexbox" }
+
+exoplayer = { group = "com.google.android.exoplayer", name = "exoplayer", version.ref = "exoplayer" }
+tbssdk = { group = "com.tencent.tbs", name = "tbssdk", version.ref = "tbssdk" }
+
+
 
 # 路由
 arouter-api = {group = "com.alibaba", name = "arouter-api", version.ref = "arouter-api"}
@@ -54,11 +79,14 @@ multidex = {group = "androidx.multidex", name = "multidex", version.ref = "multi
 
 mmkv = {group = "com.tencent", name = "mmkv", version.ref = "mmkv"}
 
-#
 lifecycle-livedata-ktx = { group = "androidx.lifecycle", name = "lifecycle-livedata-ktx", version.ref = "lifecycle-livedata-ktx" }
 lifecycle-viewmodel-ktx = { group = "androidx.lifecycle", name = "lifecycle-viewmodel-ktx", version.ref = "lifecycle-viewmodel-ktx" }
 navigation-fragment-ktx = { group = "androidx.navigation", name = "navigation-fragment-ktx", version.ref = "navigation-fragment-ktx" }
 navigation-ui-ktx = { group = "androidx.navigation", name = "navigation-ui-ktx", version.ref = "navigation-ui-ktx" }
+
+
+
+
 
 # 声明插件
 [plugins]

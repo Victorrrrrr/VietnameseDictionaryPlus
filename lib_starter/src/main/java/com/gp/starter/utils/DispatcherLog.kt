@@ -1,4 +1,4 @@
-package com.gp.lib_starter.utils
+package com.gp.starter.utils
 
 import com.gp.framework.helper.VDHelper
 import com.gp.framework.utils.LogUtil

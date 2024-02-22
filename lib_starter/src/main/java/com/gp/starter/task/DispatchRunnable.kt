@@ -1,11 +1,11 @@
-package com.gp.lib_starter.task
+package com.gp.starter.task
 
 import android.os.Looper
 import android.os.Process
 import androidx.core.os.TraceCompat
-import com.gp.lib_starter.TaskStat
-import com.gp.lib_starter.dispatcher.TaskDispatcher
-import com.gp.lib_starter.utils.DispatcherLog
+import com.gp.starter.TaskStat
+import com.gp.starter.dispatcher.TaskDispatcher
+import com.gp.starter.utils.DispatcherLog
 
 /**
  * @Author: gxy

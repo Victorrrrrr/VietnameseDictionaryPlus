@@ -1,10 +1,10 @@
-package com.gp.lib_starter.task
+package com.gp.starter.task
 
 import android.content.Context
-import com.gp.lib_starter.dispatcher.TaskDispatcher
+import com.gp.starter.dispatcher.TaskDispatcher
 import java.util.concurrent.CountDownLatch
 import android.os.Process
-import com.gp.lib_starter.utils.DispatcherExecutor
+import com.gp.starter.utils.DispatcherExecutor
 import java.util.concurrent.ExecutorService
 
 /**

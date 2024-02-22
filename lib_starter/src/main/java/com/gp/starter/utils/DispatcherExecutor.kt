@@ -1,4 +1,4 @@
-package com.gp.lib_starter.utils
+package com.gp.starter.utils
 
 import java.util.concurrent.*
 import java.util.concurrent.atomic.AtomicInteger

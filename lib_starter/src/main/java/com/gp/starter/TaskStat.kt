@@ -1,6 +1,6 @@
-package com.gp.lib_starter
+package com.gp.starter
 
-import com.gp.lib_starter.utils.DispatcherLog.i
+import com.gp.starter.utils.DispatcherLog.i
 import java.util.concurrent.atomic.AtomicInteger
 
 /**

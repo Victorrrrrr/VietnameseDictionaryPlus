@@ -14,7 +14,7 @@ import com.gp.framework.manager.AppFrontBack
 import com.gp.framework.manager.AppFrontBackListener
 import com.gp.framework.toast.TipsToast
 import com.gp.framework.utils.LogUtil
-import com.gp.lib_starter.dispatcher.TaskDispatcher
+import com.gp.starter.dispatcher.TaskDispatcher
 
 /**
  * @Author: gxy

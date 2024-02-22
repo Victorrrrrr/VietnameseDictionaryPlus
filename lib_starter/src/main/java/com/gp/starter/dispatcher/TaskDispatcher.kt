@@ -1,16 +1,16 @@
-package com.gp.lib_starter.dispatcher
+package com.gp.starter.dispatcher
 
 import android.app.Application
 import android.os.Looper
 import android.util.Log
 import androidx.annotation.UiThread
-import com.gp.lib_starter.TaskStat
-import com.gp.lib_starter.sort.TaskSortUtil
-import com.gp.lib_starter.task.DispatchRunnable
-import com.gp.lib_starter.task.Task
-import com.gp.lib_starter.task.TaskCallBack
-import com.gp.lib_starter.utils.DispatcherLog
-import com.gp.lib_starter.utils.StaterUtils
+import com.gp.starter.TaskStat
+import com.gp.starter.sort.TaskSortUtil
+import com.gp.starter.task.DispatchRunnable
+import com.gp.starter.task.Task
+import com.gp.starter.task.TaskCallBack
+import com.gp.starter.utils.DispatcherLog
+import com.gp.starter.utils.StaterUtils
 
 import java.util.concurrent.CountDownLatch
 import java.util.concurrent.Future

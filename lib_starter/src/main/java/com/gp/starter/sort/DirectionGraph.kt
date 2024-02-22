@@ -1,4 +1,4 @@
-package com.gp.lib_starter.sort
+package com.gp.starter.sort
 
 import java.util.LinkedList
 import java.util.Queue

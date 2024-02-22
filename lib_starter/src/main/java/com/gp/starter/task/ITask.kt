@@ -1,4 +1,4 @@
-package com.gp.lib_starter.task
+package com.gp.starter.task
 
 import android.os.Process
 import androidx.annotation.IntRange

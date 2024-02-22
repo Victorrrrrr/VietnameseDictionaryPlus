@@ -1,9 +1,9 @@
-package com.gp.lib_starter.dispatcher
+package com.gp.starter.dispatcher
 
 import android.os.Looper
 import android.os.MessageQueue
-import com.gp.lib_starter.task.DispatchRunnable
-import com.gp.lib_starter.task.Task
+import com.gp.starter.task.DispatchRunnable
+import com.gp.starter.task.Task
 import java.util.LinkedList
 import java.util.Queue
 

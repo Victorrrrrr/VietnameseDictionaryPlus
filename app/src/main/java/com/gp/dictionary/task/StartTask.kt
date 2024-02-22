@@ -6,8 +6,8 @@ import com.alibaba.android.arouter.launcher.ARouter
 import com.gp.framework.helper.VDHelper
 import com.gp.framework.manager.AppManager
 import com.gp.framework.utils.LogUtil
-import com.gp.lib_starter.task.Task
-import com.gp.lib_starter.utils.DispatcherExecutor
+import com.gp.starter.task.Task
+import com.gp.starter.utils.DispatcherExecutor
 import com.tencent.mmkv.MMKV
 import com.tencent.mmkv.MMKVLogLevel
 import java.util.concurrent.ExecutorService

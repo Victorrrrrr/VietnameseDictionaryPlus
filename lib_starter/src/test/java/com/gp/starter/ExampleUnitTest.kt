@@ -1,4 +1,4 @@
-package com.gp.lib_starter
+package com.gp.starter
 
 import org.junit.Test
 

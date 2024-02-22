@@ -38,5 +38,19 @@ dependencies {
     compileOnly(libs.core.ktx)
     compileOnly(libs.appcompat)
     compileOnly(libs.material)
-    compileOnly(libs.constraintlayout)
+
+    compileOnly(libs.retrofit2)
+    compileOnly(libs.retrofit2.gson)
+    compileOnly(libs.logging.interceptor)
+
+    compileOnly(libs.mmkv)
+
+    compileOnly(libs.gson)
+    compileOnly(libs.lifecycle.livedata.ktx)
+    compileOnly(libs.lifecycle.viewmodel.ktx)
+
+    compileOnly(project(":lib_framework"))
+    compileOnly(project(":lib_common"))
+
+
 }

@@ -1,8 +1,8 @@
-package com.gp.lib_starter.sort
+package com.gp.starter.sort
 
 import android.util.ArraySet
-import com.gp.lib_starter.task.Task
-import com.gp.lib_starter.utils.DispatcherLog
+import com.gp.starter.task.Task
+import com.gp.starter.utils.DispatcherLog
 
 /**
  * @Author: gxy
