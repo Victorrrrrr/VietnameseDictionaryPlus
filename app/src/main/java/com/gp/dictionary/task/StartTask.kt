@@ -18,8 +18,6 @@ import java.util.concurrent.ExecutorService
  * @Date: 2024/1/28:23:37.
  * @Desrciption: 需要被初始化的启动任务
  */
-
-
 class InitVDHelperTask(val application: Application) : Task() {
 
     override fun needWait(): Boolean {

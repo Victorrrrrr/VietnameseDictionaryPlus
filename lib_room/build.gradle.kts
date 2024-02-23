@@ -1,6 +1,7 @@
 plugins {
     id("com.android.library")
     id("org.jetbrains.kotlin.android")
+    id("kotlin-kapt")
 }
 
 android {
@@ -38,5 +39,15 @@ dependencies {
     compileOnly(libs.core.ktx)
     compileOnly(libs.appcompat)
     compileOnly(libs.material)
-    compileOnly(libs.constraintlayout)
+
+    compileOnly(libs.room)
+    kapt(libs.room.compiler)
+
+    compileOnly(libs.gson)
+    compileOnly(libs.lifecycle.livedata.ktx)
+    compileOnly(libs.lifecycle.viewmodel.ktx)
+
+    compileOnly(project(":lib_framework"))
+    compileOnly(project(":lib_common"))
+
 }
