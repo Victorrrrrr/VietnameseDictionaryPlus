@@ -43,5 +43,6 @@ dependencies {
     compileOnly(libs.appcompat)
     compileOnly(libs.material)
     compileOnly(libs.constraintlayout)
-
+    compileOnly(libs.lifecycle.viewmodel.ktx)
+    compileOnly(libs.gson)
 }

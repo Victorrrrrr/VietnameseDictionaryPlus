@@ -8,7 +8,7 @@ import java.util.Vector
  * @Author: gxy
  * @Email: yyguanxiongyao@163.com
  * @Date: 2024/2/14:16:40.
- * @Desrciption: 描述
+ * @Desrciption: 有向无环图的拓扑排序算法
  */
 class DirectionGraph(
     private val mVertexCount: Int // 顶点数
