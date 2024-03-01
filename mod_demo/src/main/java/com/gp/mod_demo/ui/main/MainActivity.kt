@@ -1,25 +1,28 @@
-package com.xhs.mod_demo.ui.main
+package com.gp.mod_demo.ui.main
 
 
 import android.os.Bundle
+import androidx.core.view.get
 import androidx.fragment.app.Fragment
 import androidx.viewpager2.adapter.FragmentStateAdapter
-import com.gp.framework.base.BaseBindindActivity
+import androidx.viewpager2.widget.ViewPager2.OnPageChangeCallback
+import com.gp.framework.base.BaseBindingActivity
 import com.gp.framework.utils.LogUtil
-import com.xhs.mod_demo.R
-import com.xhs.mod_demo.databinding.ActivityMainBinding
-import com.xhs.mod_demo.ui.main.fragment.HomeFragment
-import com.xhs.mod_demo.ui.main.fragment.LearnFragment
-import com.xhs.mod_demo.ui.main.fragment.MeFragment
+import com.gp.mod_demo.R
+import com.gp.mod_demo.databinding.ActivityMainBinding
+import com.gp.mod_demo.ui.main.fragment.HomeFragment
+import com.gp.mod_demo.ui.main.fragment.LearnFragment
+import com.gp.mod_demo.ui.main.fragment.MeFragment
 
 
-class MainActivity : BaseBindindActivity<ActivityMainBinding>({
+class MainActivity : BaseBindingActivity<ActivityMainBinding>({
     ActivityMainBinding.inflate(it)
 }) {
     companion object {
         private const val TAG = "MainActivity"
     }
 
+    private var onPageChangeCallback : OnPageChangeCallback? = null
     override fun initView(savedInstanceState: Bundle?) {
         binding.navView.setOnItemSelectedListener {
             LogUtil.d(message = "initView : $it", tag = TAG)
@@ -31,14 +34,16 @@ class MainActivity : BaseBindindActivity<ActivityMainBinding>({
             true
         }
 
+
+
         initViewPager()
     }
 
-    private fun switchFragment(position: Int) = binding.mainViewPager.setCurrentItem(position, true)
+    private fun switchFragment(position: Int) = binding.mainViewPager.setCurrentItem(position, false)
 
     private fun initViewPager() {
-        // 不禁止用户滑动Viewpager事件
-        binding.mainViewPager.isUserInputEnabled = false
+        // 是否允许用户滑动Viewpager事件
+        binding.mainViewPager.isUserInputEnabled = true
         // viewpager左和右单边预加载的页面的数量
         binding.mainViewPager.offscreenPageLimit = 2
         //
@@ -51,8 +56,21 @@ class MainActivity : BaseBindindActivity<ActivityMainBinding>({
                 2 -> MeFragment()
                 else -> HomeFragment()
             }
-
         }
+
+        onPageChangeCallback = object : OnPageChangeCallback() {
+            override fun onPageSelected(position: Int) {
+                super.onPageSelected(position)
+                binding.navView.menu[position].isChecked = true
+            }
+        }
+
+        binding.mainViewPager.registerOnPageChangeCallback(onPageChangeCallback!!)
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        binding.mainViewPager.unregisterOnPageChangeCallback(onPageChangeCallback!!)
     }
 
 }

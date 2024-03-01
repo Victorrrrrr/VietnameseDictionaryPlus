@@ -39,9 +39,12 @@ dependencies {
     compileOnly(libs.appcompat)
     compileOnly(libs.material)
 
-    compileOnly(libs.retrofit2)
-    compileOnly(libs.retrofit2.gson)
-    compileOnly(libs.logging.interceptor)
+//    compileOnly(libs.retrofit2)
+//    compileOnly(libs.retrofit2.gson)
+//    compileOnly(libs.logging.interceptor)
+    compileOnly("com.squareup.retrofit2:retrofit:2.9.0")
+    compileOnly("com.squareup.retrofit2:converter-gson:2.4.0")
+    compileOnly("com.squareup.okhttp3:logging-interceptor:3.11.0")
 
     compileOnly(libs.mmkv)
 

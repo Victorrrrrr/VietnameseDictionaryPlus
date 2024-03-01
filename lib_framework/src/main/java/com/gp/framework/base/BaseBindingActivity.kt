@@ -4,7 +4,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import androidx.viewbinding.ViewBinding
 
-abstract class BaseBindindActivity<VB : ViewBinding>(
+abstract class BaseBindingActivity<VB : ViewBinding>(
     val block: (LayoutInflater) -> VB
 ) : BaseActivity() {
 
@@ -23,7 +23,5 @@ abstract class BaseBindindActivity<VB : ViewBinding>(
         super.onDestroy()
         _binding = null
     }
-
-    override fun getLayoutResId(): Int = 0
 
 }

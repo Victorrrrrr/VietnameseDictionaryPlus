@@ -3,8 +3,7 @@ package com.gp.network.manager
 import android.util.Log
 import com.gp.framework.helper.VDHelper
 import com.gp.framework.utils.NetworkUtil
-import com.gp.network.api.ApiService
-import com.gp.network.constant.BASE_URL
+import com.gp.network.constant.TEST_BASE_URL
 import com.gp.network.error.ERROR
 import com.gp.network.error.NoNetWorkException
 import com.gp.network.interceptor.HeaderInterceptor
@@ -15,7 +14,6 @@ import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 import java.util.concurrent.TimeUnit
-import kotlin.math.log
 
 object HttpManager {
     private val mRetrofit: Retrofit
@@ -23,7 +21,7 @@ object HttpManager {
     init {
         mRetrofit = Retrofit.Builder()
             .client(initOkHttpClient())
-            .baseUrl(BASE_URL)
+            .baseUrl(TEST_BASE_URL)
             .addConverterFactory(GsonConverterFactory.create())
             .build()
     }

@@ -1,4 +1,4 @@
-package com.xhs.mod_demo
+package com.gp.mod_demo
 
 import org.junit.Test
 

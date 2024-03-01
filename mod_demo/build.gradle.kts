@@ -5,7 +5,7 @@ plugins {
 }
 
 android {
-    namespace = "com.xhs.mod_demo"
+    namespace = "com.gp.mod_demo"
     compileSdk = libs.versions.compilesdk.get().toInt()
 
     defaultConfig {
@@ -20,9 +20,9 @@ android {
         multiDexEnabled = true
     }
 
+
     buildFeatures {
         viewBinding = true
-        dataBinding = true
     }
 
     buildTypes {
@@ -39,7 +39,14 @@ android {
         targetCompatibility = JavaVersion.VERSION_1_8
     }
     kotlinOptions {
-        libs.versions.jvmtarget.get()
+        jvmTarget = libs.versions.jvmtarget.get()
+    }
+
+    // ARouter
+    kapt {
+        arguments {
+            arg("AROUTER_MODULE_NAME", project.getName())
+        }
     }
 }
 
@@ -50,6 +57,8 @@ dependencies {
     implementation(libs.appcompat)
     implementation(libs.material)
     implementation(libs.constraintlayout)
+    implementation(libs.lifecycle.viewmodel.ktx)
+    implementation(libs.lifecycle.livedata.ktx)
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.test.ext.junit)
     androidTestImplementation(libs.espresso.core)

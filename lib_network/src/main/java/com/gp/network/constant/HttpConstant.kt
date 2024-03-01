@@ -7,6 +7,8 @@ package com.gp.network.constant
 /**
  * Base_Url
  */
+const val TEST_BASE_URL = "https://www.wanandroid.com"
+
 const val BASE_URL = ""
 
 const val KEY_TOKEN = "token"

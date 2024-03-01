@@ -1,4 +1,4 @@
-package com.xhs.mod_demo.model.bean
+package com.gp.mod_demo.model.bean
 
 data class Banner(
     var desc: String,

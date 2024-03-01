@@ -8,6 +8,9 @@
       <entry key="mod_demo">
         <State />
       </entry>
+      <entry key="requestArticle()">
+        <State />
+      </entry>
     </value>
   </component>
 </project>

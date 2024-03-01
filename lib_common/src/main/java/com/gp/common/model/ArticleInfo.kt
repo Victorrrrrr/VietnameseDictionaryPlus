@@ -1,4 +1,5 @@
-package com.xhs.mod_demo.model.bean
+package com.gp.common.model
+
 
 data class Article(
     var curPage: Int,
