@@ -3,7 +3,7 @@ package com.gp.network.manager
 import android.util.Log
 import com.gp.framework.helper.VDHelper
 import com.gp.framework.utils.NetworkUtil
-import com.gp.network.constant.TEST_BASE_URL
+import com.gp.network.constant.BASE_URL
 import com.gp.network.error.ERROR
 import com.gp.network.error.NoNetWorkException
 import com.gp.network.interceptor.HeaderInterceptor
@@ -21,7 +21,7 @@ object HttpManager {
     init {
         mRetrofit = Retrofit.Builder()
             .client(initOkHttpClient())
-            .baseUrl(TEST_BASE_URL)
+            .baseUrl(BASE_URL)
             .addConverterFactory(GsonConverterFactory.create())
             .build()
     }

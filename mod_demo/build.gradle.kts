@@ -17,7 +17,8 @@ android {
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
 
-        multiDexEnabled = true
+        // dex突破65535的限制
+//        multiDexEnabled = true
     }
 
 

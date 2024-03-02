@@ -25,7 +25,9 @@ android {
                 arg("AROUTER_MODULE_NAME", project.getName())
             }
         }
-
+    }
+    dexOptions {
+        javaMaxHeapSize = "4g"
     }
 
 //    signingConfigs {
@@ -87,6 +89,21 @@ dependencies {
     // 路由
     implementation(libs.arouter.api)
     kapt(libs.arouter.compiler)
+
+    implementation(libs.lifecycle.livedata.ktx)
+    implementation(libs.lifecycle.viewmodel.ktx)
+
+    implementation(libs.retrofit2)
+    implementation(libs.retrofit2.gson)
+    implementation(libs.logging.interceptor)
+    implementation(libs.navigation.fragment.ktx)
+    implementation(libs.navigation.ui.ktx)
+
+//    implementation(libs.glide)
+//    implementation(libs.glide.compiler)
+    implementation(libs.flexbox)
+
+    implementation(libs.room)
 
     implementation(libs.mmkv)
 

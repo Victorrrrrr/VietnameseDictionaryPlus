@@ -1,7 +1,9 @@
 package com.gp.framework.base
 
 import android.os.Bundle
+import android.view.LayoutInflater
 import android.view.View
+import android.view.ViewGroup
 import androidx.annotation.StringRes
 import androidx.fragment.app.Fragment
 import com.gp.framework.R
@@ -22,6 +24,9 @@ abstract class BaseFragment : Fragment() {
         super.onCreate(savedInstanceState)
     }
 
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
+        return getContentView(inflater, container)
+    }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -56,19 +61,19 @@ abstract class BaseFragment : Fragment() {
         LogUtil.w("onFragmentVisible-${TAG}-isVisibleToUser:$isVisibleToUser")
     }
 
-//    /**
-//     * 设置布局View
-//     */
-//    open fun getContentView(inflater: LayoutInflater, container: ViewGroup?): View {
-//        return inflater.inflate(getLayoutResId(), null)
-//    }
+    /**
+     * 设置布局View
+     */
+    open fun getContentView(inflater: LayoutInflater, container: ViewGroup?): View {
+        return inflater.inflate(getLayoutResId(), null)
+    }
 
     /**
      * 初始化视图
      * @return Int 布局id
      * 仅用于不继承BaseDataBindFragment类的传递布局文件
      */
-//    abstract fun getLayoutResId(): Int
+    abstract fun getLayoutResId(): Int
 
     /**
      * 初始化布局

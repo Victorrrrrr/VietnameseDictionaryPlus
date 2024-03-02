@@ -73,4 +73,8 @@ class MainActivity : BaseBindingActivity<ActivityMainBinding>({
         binding.mainViewPager.unregisterOnPageChangeCallback(onPageChangeCallback!!)
     }
 
+    override fun getLayoutResId(): Int {
+        return R.layout.activity_main
+    }
+
 }
