@@ -1,5 +1,7 @@
 package com.gp.network.repository
 
+import com.gp.framework.base.BaseData
+import com.gp.framework.base.ReqState
 import com.gp.network.error.ApiException
 import com.gp.network.response.BaseResponse
 import kotlinx.coroutines.Dispatchers
@@ -21,6 +23,28 @@ open class BaseRepository {
             throw ApiException(response.errorCode, response.errorMsg)
         }
         return response.data
+    }
+
+
+    suspend fun <T> requestAuthResponse(requestCall: suspend () -> T?) : T? {
+        val response = withContext(Dispatchers.IO) {
+            withTimeout(10 * 1000) {
+                requestCall()
+            }
+        } ?: return null
+
+        return response
+    }
+
+    suspend fun <T : Any> executeRequest(block: suspend () -> BaseData<T>) : BaseData<T> {
+        val baseData = block.invoke()
+        if (baseData.code == 0) {
+            // 成功
+            baseData.state = ReqState.Success
+        } else {
+            baseData.state = ReqState.Error
+        }
+        return baseData
     }
 
 }

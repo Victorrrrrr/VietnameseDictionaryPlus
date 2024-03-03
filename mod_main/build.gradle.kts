@@ -22,6 +22,11 @@ android {
         }
     }
 
+    buildFeatures {
+        dataBinding = true
+        viewBinding = true
+    }
+
     buildTypes {
         release {
             isMinifyEnabled = false
@@ -44,14 +49,18 @@ dependencies {
 
     compileOnly(fileTree(mapOf("dir" to "libs", "include" to listOf("*.jar"))))
     compileOnly(libs.core.ktx)
-    compileOnly(libs.appcompat)
-//    implementation(libs.appcompat)
     compileOnly(libs.material)
+    compileOnly(libs.appcompat)
+
     compileOnly(libs.constraintlayout)
+//    implementation(libs.appcompat)
 //    implementation(libs.constraintlayout)
     testCompileOnly(libs.junit)
     androidTestCompileOnly(libs.androidx.test.ext.junit)
     androidTestCompileOnly(libs.espresso.core)
+
+    compileOnly(libs.lifecycle.livedata.ktx)
+    compileOnly(libs.lifecycle.viewmodel.ktx)
 
     // 路由
     compileOnly(libs.arouter.api)

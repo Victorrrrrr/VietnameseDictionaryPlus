@@ -47,6 +47,7 @@ dependencies {
     compileOnly(libs.appcompat)
     compileOnly(libs.material)
     compileOnly(libs.constraintlayout)
+    compileOnly(libs.gson)
 
     compileOnly(libs.arouter.api)
     kapt(libs.arouter.compiler)

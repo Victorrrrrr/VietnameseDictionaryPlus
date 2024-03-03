@@ -17,6 +17,9 @@ import java.util.concurrent.ExecutorService
  * @Email: yyguanxiongyao@163.com
  * @Date: 2024/1/28:23:37.
  * @Desrciption: 需要被初始化的启动任务
+ *                                     /> InitMmkvTask
+ * 当前的有向无环图大致为： InitVDHelperTask -> InitAppManagerTask
+ *                                     \> InitARouterTask
  */
 class InitVDHelperTask(val application: Application) : Task() {
 
