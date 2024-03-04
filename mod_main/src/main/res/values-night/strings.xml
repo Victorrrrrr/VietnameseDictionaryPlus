@@ -1,0 +1,5 @@
+<resources>
+
+    <string name="splash_time">跳过 %ss</string>
+    <string name="search_tint_string">输入需要查询的单词</string>
+</resources>

@@ -1,12 +1,5 @@
-<resources xmlns:tools="http://schemas.android.com/tools">
-    <!-- Base application theme. -->
-    <style name="Base.Theme.VietnameseDictionaryPlus" parent="Theme.Material3.DayNight.NoActionBar">
-        <!-- Customize your light theme here. -->
-         <item name="colorPrimary">@color/vd_theme_color</item>
-
-    </style>
-
-    <style name="Theme.VietnameseDictionaryPlus" parent="Base.Theme.VietnameseDictionaryPlus" />
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
 
     <style name="SplashAppTheme" parent="Theme.MaterialComponents.DayNight.NoActionBar">
         <item name="android:windowBackground">@drawable/splash_page</item>
@@ -26,13 +19,13 @@
         <item name="windowNoTitle">true</item>
 
         <item name="android:windowFullscreen">true</item>
-    </style>
 
+        <item name="android:windowLayoutInDisplayCutoutMode">shortEdges</item>
+    </style>
 
     <style name="MainActivityTheme" parent="Theme.MaterialComponents.DayNight.NoActionBar">
         <item name="android:windowBackground">@drawable/splash_page</item>
         <item name="android:windowNoTitle">true</item>
         <item name="statusBarBackground">@color/grey_bg</item>
     </style>
-
 </resources>
