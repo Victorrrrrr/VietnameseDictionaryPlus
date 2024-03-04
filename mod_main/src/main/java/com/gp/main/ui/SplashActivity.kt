@@ -1,17 +1,33 @@
 package com.gp.main.ui
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import androidx.lifecycle.lifecycleScope
 import com.gp.common.provider.MainServiceProvider
+import com.gp.framework.base.BaseDataBindActivity
+import com.gp.framework.ext.countDownCoroutines
+import com.gp.framework.ext.onClick
+import com.gp.lib_framework.utils.StatusBarSettingHelper
 import com.gp.main.R
+import com.gp.main.databinding.ActivitySplashBinding
 
-class SplashActivity : AppCompatActivity() {
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_splash)
+class SplashActivity : BaseDataBindActivity<ActivitySplashBinding>() {
+    override fun initView(savedInstanceState: Bundle?) {
+        // 设置隐藏导航栏
+        StatusBarSettingHelper.setStatusBarTranslucent(this)
 
-        MainServiceProvider.toMain(this)
-        finish()
+        mBinding.tvSkip.onClick {
+            MainServiceProvider.toMain(this)
+            finish()
+        }
+
+        countDownCoroutines(2, lifecycleScope, onTick = {
+            // 跳过按钮显示文字
+            mBinding.tvSkip.text = getString(R.string.splash_time, it.plus(1).toString())
+        }) {
+            MainServiceProvider.toMain(this)
+            finish()
+        }
 
     }
+
 }

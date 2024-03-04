@@ -49,12 +49,12 @@ dependencies {
 
     compileOnly(fileTree(mapOf("dir" to "libs", "include" to listOf("*.jar"))))
     compileOnly(libs.core.ktx)
-    compileOnly(libs.material)
-    compileOnly(libs.appcompat)
-
-    compileOnly(libs.constraintlayout)
-//    implementation(libs.appcompat)
-//    implementation(libs.constraintlayout)
+//    compileOnly(libs.material)
+//    compileOnly(libs.appcompat)
+//    compileOnly(libs.constraintlayout)
+    implementation(libs.material)
+    implementation(libs.appcompat)
+    implementation(libs.constraintlayout)
     testCompileOnly(libs.junit)
     androidTestCompileOnly(libs.androidx.test.ext.junit)
     androidTestCompileOnly(libs.espresso.core)
@@ -75,5 +75,6 @@ dependencies {
     compileOnly(project(":lib_starter"))
     compileOnly(project(":lib_network"))
     compileOnly(project(":lib_room"))
+    compileOnly(project(":lib_widget"))
 
 }

@@ -1,4 +1,4 @@
-package com.gp.main.ui
+package com.gp.main.ui.main
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.liveData

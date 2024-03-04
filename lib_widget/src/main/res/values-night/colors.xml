@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <color name="grey_bg">#F8F8F8</color>
+    <color name="bnv_bg">#BBBBBB</color>
+    <color name="bnv_icon_normal">#BBBBBB</color>
+    <color name="bnv_icon_selected">#F98377</color>
+
+    <color name="vd_theme_color">#F98377</color>
+
+    <color name="search_bar_bg_color">#f0f3f5</color>
+    <color name="search_text_tint_color">#9A9A9A</color>
+
+</resources>
