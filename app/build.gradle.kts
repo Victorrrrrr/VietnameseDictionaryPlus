@@ -115,6 +115,7 @@ dependencies {
     implementation(project(":lib_network"))
     implementation(project(":lib_room"))
     implementation(project(":lib_widget"))
+    implementation(project(":lib_glide"))
     implementation(project(":lib_starter"))
     implementation(project(":mod_learn"))
     implementation(project(":mod_login"))

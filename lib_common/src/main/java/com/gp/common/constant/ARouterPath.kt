@@ -63,3 +63,9 @@ const val MAIN_ACTIVITY_HOME = "/main/activity/home"
  * 主页模块-主页
  */
 const val MAIN_SERVICE_HOME = "/main/service/home"
+
+
+/**
+ * 主页模块-搜索
+ */
+const val SEARCH_SERVICE_SEARCH = "/search/service/search"

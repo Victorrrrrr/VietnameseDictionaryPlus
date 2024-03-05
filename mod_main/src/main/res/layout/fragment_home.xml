@@ -13,40 +13,41 @@
         android:orientation="vertical"
         tools:context=".ui.home.HomeFragment">
 
+        <!--   渐变背景控件    -->
         <LinearLayout
+            android:id="@+id/ll_layer_top"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:background="@drawable/shape_home_top_bg">
+            android:background="@drawable/shape_home_top_bg"
+            android:orientation="vertical">
 
             <!--   搜索栏    -->
             <RelativeLayout
                 android:id="@+id/et_search"
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
-                android:background="@drawable/shape_search_bar_bg"
+                android:layout_marginStart="@dimen/dp_25"
                 android:layout_marginTop="@dimen/dp_35"
-                android:layout_marginStart="@dimen/dp_20"
-                android:layout_marginEnd="@dimen/dp_20">
+                android:layout_marginEnd="@dimen/dp_25"
+                android:background="@drawable/shape_search_bar_bg">
 
                 <ImageView
                     android:id="@+id/iv_search"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:src="@drawable/icon_search"
                     android:layout_centerVertical="true"
-                    android:layout_marginStart="@dimen/dp_10"/>
+                    android:layout_marginStart="@dimen/dp_10"
+                    android:src="@drawable/icon_search" />
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_toEndOf="@id/iv_search"
-                    android:layout_marginStart="@dimen/dp_10"
-                    android:text="@string/search_tint_string"
                     android:layout_centerVertical="true"
-                    android:textSize="16sp"
+                    android:layout_marginStart="@dimen/dp_10"
+                    android:layout_toEndOf="@id/iv_search"
+                    android:text="@string/search_tint_string"
                     android:textColor="@color/search_text_tint_color"
-                    />
+                    android:textSize="16sp" />
 
                 <!-- TODO: 拍照搜词按钮点击事件 -->
                 <ImageView
@@ -54,21 +55,22 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_alignParentEnd="true"
-                    android:layout_marginEnd="@dimen/dp_10"
                     android:layout_centerVertical="true"
-                    android:src="@drawable/icon_take_photo"/>
+                    android:layout_marginEnd="@dimen/dp_10"
+                    android:src="@drawable/icon_take_photo" />
 
             </RelativeLayout>
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:background="@drawable/shape_saying_bg"
-                android:layout_marginHorizontal="@dimen/dp_15"
-                android:layout_marginTop="@dimen/dp_20"
-                android:layout_marginBottom="@dimen/dp_20"
+                android:layout_marginHorizontal="@dimen/dp_20"
+                android:layout_marginTop="@dimen/dp_30"
+                android:layout_marginBottom="@dimen/dp_15"
+                android:background="@drawable/shape_white_rectangle_bg"
                 android:paddingHorizontal="@dimen/dp_10"
-                android:paddingVertical="@dimen/dp_20">
+                android:paddingTop="@dimen/dp_20"
+                android:paddingBottom="@dimen/dp_25">
 
                 <ImageView
                     android:id="@+id/iv_saying_title_icon"
@@ -76,56 +78,141 @@
                     android:layout_height="wrap_content"
                     android:layout_centerHorizontal="true"
                     android:src="@mipmap/icon_saying_title"
-                    app:layout_constraintTop_toTopOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintEnd_toStartOf="@id/tv_saying_title_text"
                     app:layout_constraintHorizontal_chainStyle="packed"
-                    app:layout_constraintEnd_toStartOf="@id/tv_saying_title_text"/>
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
 
 
                 <TextView
                     android:id="@+id/tv_saying_title_text"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_marginStart="10dp"
                     android:text="@string/saying_title_string"
                     android:textSize="@dimen/sp_16"
-                    android:layout_marginStart="10dp"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintTop_toTopOf="@id/iv_saying_title_icon"
                     app:layout_constraintBottom_toBottomOf="@id/iv_saying_title_icon"
-                    app:layout_constraintStart_toEndOf="@id/iv_saying_title_icon"/>
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toEndOf="@id/iv_saying_title_icon"
+                    app:layout_constraintTop_toTopOf="@id/iv_saying_title_icon" />
 
                 <TextView
                     android:id="@+id/tv_vietnamese_saying"
                     android:layout_width="@dimen/dp_250"
                     android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/dp_10"
                     android:gravity="center"
                     android:text="Người ta có thể bị hủy diệt, nhưng không thể bị đánh bại."
                     android:textSize="@dimen/sp_16"
-                    android:layout_marginTop="@dimen/dp_10"
-                    app:layout_constraintTop_toBottomOf="@id/tv_saying_title_text"
+                    app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent"/>
+                    app:layout_constraintTop_toBottomOf="@id/tv_saying_title_text" />
 
                 <TextView
                     android:id="@+id/tv_chinese_saying"
                     android:layout_width="@dimen/dp_250"
                     android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/dp_10"
                     android:gravity="center"
                     android:text="一个人可以被毁灭，但不能被打败"
                     android:textSize="@dimen/sp_14"
-                    app:layout_constraintTop_toBottomOf="@id/tv_vietnamese_saying"
-                    app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
-                    android:layout_marginTop="@dimen/dp_10"/>
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/tv_vietnamese_saying" />
 
 
             </androidx.constraintlayout.widget.ConstraintLayout>
 
-
-
-
-
         </LinearLayout>
+
+        <TextView
+            android:id="@+id/btn_to_recite"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/shape_home_theme_color_bg"
+            android:layout_marginHorizontal="@dimen/dp_25"
+            android:text="@string/home_btn_recite_string"
+            android:textSize="18sp"
+            android:textColor="@color/white"
+            android:paddingVertical="@dimen/dp_10"
+            android:layout_marginTop="10dp"
+            android:gravity="center"/>
+
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/home_words_title"
+            android:textColor="@color/black"
+            android:textSize="@dimen/sp_19"
+            android:layout_marginTop="@dimen/dp_20"
+            android:layout_marginStart="@dimen/dp_20"/>
+
+        <!-- 随机词条布局 -->
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/shape_home_theme_color_bg"
+            android:paddingHorizontal="@dimen/dp_10"
+            android:paddingVertical="@dimen/dp_20"
+            android:layout_marginHorizontal="@dimen/dp_20"
+            android:layout_marginVertical="@dimen/dp_20">
+
+
+            <TextView
+                android:id="@+id/tv_vietnamese_word"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="越南语越南语"
+                android:textColor="@color/white"
+                android:textSize="@dimen/sp_16"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"/>
+
+            <ImageView
+                android:id="@+id/iv_refresh_word"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/icon_refresh"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                android:background="@drawable/shape_refresh_btn_bg"/>
+
+
+            <TextView
+                android:id="@+id/tv_vietnamese_trans_chinese"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="释义：吧啦啦啦快递费是否建立快速达到减肥了"
+                android:textSize="@dimen/sp_14"
+                android:textColor="@color/white"
+                android:maxLines="3"
+                android:ellipsize="end"
+                app:layout_constraintTop_toBottomOf="@id/tv_vietnamese_word"
+                android:layout_marginTop="@dimen/dp_5"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"/>
+
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/home_daily_title"
+            android:textColor="@color/black"
+            android:textSize="@dimen/sp_19"
+            android:layout_marginTop="@dimen/dp_10"
+            android:layout_marginStart="@dimen/dp_20"/>
+
+        <!-- 适配每日素材  -->
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rv_daily_news"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/dp_10" />
+
 
     </LinearLayout>
 </layout>

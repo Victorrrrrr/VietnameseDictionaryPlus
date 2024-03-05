@@ -9,4 +9,7 @@
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="search_tint_string">输入需要查询的单词</string>
     <string name="saying_title_string">每日精选名言</string>
+    <string name="home_words_title">随机词条</string>
+    <string name="home_btn_recite_string">开始学习越南语词语！</string>
+    <string name="home_daily_title">每日精选</string>
 </resources>

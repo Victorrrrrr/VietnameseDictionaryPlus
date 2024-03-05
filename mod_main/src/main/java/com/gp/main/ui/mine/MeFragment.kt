@@ -1,7 +1,13 @@
 package com.gp.main.ui.mine
 
-import androidx.fragment.app.Fragment
+import android.os.Bundle
+import android.view.View
+import com.gp.framework.base.BaseMvvmFragment
+import com.gp.main.databinding.FragmentMeBinding
 
-class MeFragment : Fragment() {
+class MeFragment : BaseMvvmFragment<FragmentMeBinding, MeViewModel>() {
+    override fun initView(view: View, savedInstanceState: Bundle?) {
+
+    }
 
 }

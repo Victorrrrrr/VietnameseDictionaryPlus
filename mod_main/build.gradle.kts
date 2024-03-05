@@ -55,12 +55,14 @@ dependencies {
     implementation(libs.material)
     implementation(libs.appcompat)
     implementation(libs.constraintlayout)
+
     testCompileOnly(libs.junit)
     androidTestCompileOnly(libs.androidx.test.ext.junit)
     androidTestCompileOnly(libs.espresso.core)
 
     compileOnly(libs.lifecycle.livedata.ktx)
     compileOnly(libs.lifecycle.viewmodel.ktx)
+
 
     // 路由
     compileOnly(libs.arouter.api)
@@ -76,5 +78,6 @@ dependencies {
     compileOnly(project(":lib_network"))
     compileOnly(project(":lib_room"))
     compileOnly(project(":lib_widget"))
+    compileOnly(project(":lib_glide"))
 
 }

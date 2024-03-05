@@ -11,4 +11,7 @@
     <color name="search_bar_bg_color">#f0f3f5</color>
     <color name="search_text_tint_color">#9A9A9A</color>
 
+    <color name="vd_dark_theme_color">#F76554</color>
+
+    <color name="switch_track_color">#F76554</color>
 </resources>

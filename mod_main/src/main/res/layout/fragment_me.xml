@@ -1,14 +1,440 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".ui.mine.MeFragment">
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
+    <data>
+
+    </data>
+
+    <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment" />
+        android:background="@color/grey_bg"
+        android:scrollbars="none"
+        tools:context=".ui.mine.MeFragment">
 
-</FrameLayout>
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <View
+                android:id="@+id/v_top_bg"
+                android:layout_width="match_parent"
+                android:layout_height="200dp"
+                android:background="@drawable/shape_me_top_bg"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <!-- 把这个换成头像+名字的布局-->
+            <ImageView
+                android:id="@+id/iv_head_img"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/default_head"
+                app:layout_constraintBottom_toBottomOf="@id/v_top_bg"
+                app:layout_constraintStart_toStartOf="@id/ll_word_count"
+                app:layout_constraintTop_toTopOf="@id/v_top_bg" />
+
+            <TextView
+                android:id="@+id/tv_user_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/dp_10"
+                android:gravity="center"
+                android:text="用户12138"
+                android:textColor="@color/white"
+                android:textSize="@dimen/sp_18"
+                android:textStyle="bold"
+                app:layout_constraintBottom_toBottomOf="@id/iv_head_img"
+                app:layout_constraintStart_toEndOf="@id/iv_head_img"
+                app:layout_constraintTop_toTopOf="@id/iv_head_img" />
+
+            <LinearLayout
+                android:id="@+id/ll_word_count"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="@dimen/dp_20"
+                android:background="@drawable/shape_white_rectangle_bg"
+                android:orientation="horizontal"
+                app:layout_constraintBottom_toBottomOf="@id/v_top_bg"
+                app:layout_constraintTop_toBottomOf="@id/v_top_bg">
+
+
+                <ImageView
+                    android:id="@+id/iv_word_sum"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginStart="@dimen/dp_15"
+                    android:src="@mipmap/ic_word_sum" />
+
+
+                <TextView
+                    android:id="@+id/tv_word_num_sum"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginVertical="@dimen/dp_25"
+                    android:layout_marginStart="@dimen/dp_15"
+                    android:layout_marginEnd="@dimen/dp_20"
+                    android:text="累计学习了 %ss 个单词！！！"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/sp_18"
+                    android:textStyle="bold" />
+
+            </LinearLayout>
+
+            <View
+                android:id="@+id/v_middle_bg"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:background="@drawable/shape_white_rectangle_bg"
+                app:layout_constraintStart_toStartOf="@id/rl_search_word_history"
+                app:layout_constraintEnd_toEndOf="@id/rl_search_word_history"
+                app:layout_constraintTop_toTopOf="@id/rl_search_word_history"
+                app:layout_constraintBottom_toBottomOf="@id/rl_book_word"/>
+
+
+            <RelativeLayout
+                android:id="@+id/rl_search_word_history"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="@dimen/dp_20"
+                android:layout_marginTop="@dimen/dp_20"
+                android:foreground="?attr/selectableItemBackground"
+                android:paddingHorizontal="@dimen/dp_20"
+                android:paddingTop="@dimen/dp_10"
+                android:paddingBottom="@dimen/dp_15"
+                app:layout_constraintTop_toBottomOf="@id/ll_word_count">
+
+                <TextView
+                    android:id="@+id/tv_setting_history_title"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="查词记录"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/sp_16"
+                    android:textStyle="bold" />
+
+
+                <TextView
+                    android:id="@+id/tv_setting_history_second_title"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/tv_setting_history_title"
+                    android:layout_marginTop="@dimen/dp_2.5"
+                    android:text="看过的词忘了看这里"
+                    android:textColor="@color/search_text_tint_color" />
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentEnd="true"
+                    android:layout_centerVertical="true"
+                    android:src="@drawable/ic_right_to" />
+
+
+            </RelativeLayout>
+
+            <View
+                android:layout_width="0dp"
+                android:layout_height="@dimen/dp_1.5"
+                app:layout_constraintTop_toBottomOf="@id/rl_search_word_history"
+                app:layout_constraintStart_toStartOf="@id/rl_search_word_history"
+                app:layout_constraintEnd_toEndOf="@id/rl_search_word_history"
+                android:background="@color/line_grey_color" />
+
+            <RelativeLayout
+                android:id="@+id/rl_fav_word"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="@dimen/dp_20"
+                android:foreground="?attr/selectableItemBackground"
+                android:paddingHorizontal="@dimen/dp_20"
+                android:paddingTop="@dimen/dp_10"
+                android:paddingBottom="@dimen/dp_15"
+                app:layout_constraintTop_toBottomOf="@id/rl_search_word_history">
+
+                <TextView
+                    android:id="@+id/tv_setting_fav_title"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="收藏夹"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/sp_16"
+                    android:textStyle="bold" />
+
+
+                <TextView
+                    android:id="@+id/tv_setting_fav_second_title"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/tv_setting_fav_title"
+                    android:layout_marginTop="@dimen/dp_2.5"
+                    android:text="精选越南语单词，Mark起来"
+                    android:textColor="@color/search_text_tint_color" />
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentEnd="true"
+                    android:layout_centerVertical="true"
+                    android:src="@drawable/ic_right_to" />
+
+            </RelativeLayout>
+
+
+            <View
+                android:layout_width="0dp"
+                android:layout_height="@dimen/dp_1.5"
+                app:layout_constraintTop_toBottomOf="@id/rl_fav_word"
+                app:layout_constraintStart_toStartOf="@id/rl_fav_word"
+                app:layout_constraintEnd_toEndOf="@id/rl_fav_word"
+                android:background="@color/line_grey_color" />
+
+
+            <RelativeLayout
+                android:id="@+id/rl_notification_word"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="@dimen/dp_20"
+                android:foreground="?attr/selectableItemBackground"
+                android:paddingHorizontal="@dimen/dp_20"
+                android:paddingTop="@dimen/dp_10"
+                android:paddingBottom="@dimen/dp_15"
+                app:layout_constraintTop_toBottomOf="@id/rl_fav_word">
+
+                <TextView
+                    android:id="@+id/tv_setting_notification_title"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="通知栏单词"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/sp_16"
+                    android:textStyle="bold" />
+
+
+                <TextView
+                    android:id="@+id/tv_setting_notification_second_title"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/tv_setting_notification_title"
+                    android:layout_marginTop="@dimen/dp_2.5"
+                    android:text="在通知栏上显示单词搜索，可随地搜词"
+                    android:textColor="@color/search_text_tint_color" />
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentEnd="true"
+                    android:layout_centerVertical="true"
+                    android:src="@drawable/ic_right_to" />
+
+            </RelativeLayout>
+
+
+            <View
+                android:layout_width="0dp"
+                android:layout_height="@dimen/dp_1.5"
+                app:layout_constraintTop_toBottomOf="@id/rl_notification_word"
+                app:layout_constraintStart_toStartOf="@id/rl_notification_word"
+                app:layout_constraintEnd_toEndOf="@id/rl_notification_word"
+                android:background="@color/line_grey_color" />
+
+            <RelativeLayout
+                android:id="@+id/rl_book_word"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="@dimen/dp_20"
+                android:foreground="?attr/selectableItemBackground"
+                android:paddingHorizontal="@dimen/dp_20"
+                android:paddingTop="@dimen/dp_10"
+                android:paddingBottom="@dimen/dp_15"
+                app:layout_constraintTop_toBottomOf="@id/rl_notification_word">
+
+                <TextView
+                    android:id="@+id/tv_setting_book_title"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="词书设置"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/sp_16"
+                    android:textStyle="bold" />
+
+
+                <TextView
+                    android:id="@+id/tv_setting_book_second_title"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/tv_setting_book_title"
+                    android:layout_marginTop="@dimen/dp_2.5"
+                    android:text="单词量不够，修改词书设置"
+                    android:textColor="@color/search_text_tint_color" />
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentEnd="true"
+                    android:layout_centerVertical="true"
+                    android:src="@drawable/ic_right_to" />
+
+            </RelativeLayout>
+
+
+            <View
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:background="@drawable/shape_white_rectangle_bg"
+                app:layout_constraintStart_toStartOf="@id/rl_dark_mode"
+                app:layout_constraintEnd_toEndOf="@id/rl_dark_mode"
+                app:layout_constraintTop_toTopOf="@id/rl_dark_mode"
+                app:layout_constraintBottom_toBottomOf="@id/rl_about"/>
+
+            <RelativeLayout
+                android:id="@+id/rl_dark_mode"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="@dimen/dp_20"
+                android:foreground="?attr/selectableItemBackground"
+                android:paddingStart="@dimen/dp_20"
+                android:paddingEnd="@dimen/dp_10"
+                android:paddingTop="@dimen/dp_10"
+                android:paddingBottom="@dimen/dp_15"
+                android:layout_marginTop="@dimen/dp_20"
+                app:layout_constraintTop_toBottomOf="@id/v_middle_bg">
+
+                <TextView
+                    android:id="@+id/tv_setting_dark_mode_title"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="夜间模式"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/sp_16"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/tv_setting_dark_mode_second_title"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/tv_setting_dark_mode_title"
+                    android:layout_marginTop="@dimen/dp_2.5"
+                    android:text="妈妈再也不用担心我晚上学习"
+                    android:textColor="@color/search_text_tint_color" />
+
+                <Switch
+                    android:id="@+id/switch_dark_mode_open"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentEnd="true"
+                    android:layout_centerVertical="true"
+                    android:thumb="@drawable/selector_switch_thumb"
+                    android:track="@drawable/selector_switch_track"
+                    android:checked="true" />
+
+            </RelativeLayout>
+
+
+            <View
+                android:layout_width="0dp"
+                android:layout_height="@dimen/dp_1.5"
+                app:layout_constraintTop_toBottomOf="@id/rl_dark_mode"
+                app:layout_constraintStart_toStartOf="@id/rl_dark_mode"
+                app:layout_constraintEnd_toEndOf="@id/rl_dark_mode"
+                android:background="@color/line_grey_color" />
+
+
+            <RelativeLayout
+                android:id="@+id/rl_change_language"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="@dimen/dp_20"
+                android:foreground="?attr/selectableItemBackground"
+                android:paddingHorizontal="@dimen/dp_20"
+                android:paddingTop="@dimen/dp_10"
+                android:paddingBottom="@dimen/dp_15"
+                app:layout_constraintTop_toBottomOf="@id/rl_dark_mode">
+
+                <TextView
+                    android:id="@+id/tv_setting_change_language_title"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="切换语言"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/sp_16"
+                    android:textStyle="bold" />
+
+
+                <TextView
+                    android:id="@+id/tv_setting_change_language_second_title"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/tv_setting_change_language_title"
+                    android:layout_marginTop="@dimen/dp_2.5"
+                    android:text="切换语言，成为国际化挨批批"
+                    android:textColor="@color/search_text_tint_color" />
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentEnd="true"
+                    android:layout_centerVertical="true"
+                    android:src="@drawable/ic_right_to" />
+
+            </RelativeLayout>
+
+
+            <View
+                android:layout_width="0dp"
+                android:layout_height="@dimen/dp_1.5"
+                app:layout_constraintTop_toBottomOf="@id/rl_change_language"
+                app:layout_constraintStart_toStartOf="@id/rl_change_language"
+                app:layout_constraintEnd_toEndOf="@id/rl_change_language"
+                android:background="@color/line_grey_color" />
+
+            <RelativeLayout
+                android:id="@+id/rl_about"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="@dimen/dp_20"
+                android:layout_marginTop="@dimen/dp_20"
+                android:foreground="?attr/selectableItemBackground"
+                android:paddingHorizontal="@dimen/dp_20"
+                android:layout_marginBottom="@dimen/dp_20"
+                android:paddingBottom="@dimen/dp_15"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/rl_change_language">
+
+                <TextView
+                    android:id="@+id/tv_about_title"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="关于"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/sp_16"
+                    android:textStyle="bold" />
+
+
+                <TextView
+                    android:id="@+id/tv_about_second_title"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/tv_about_title"
+                    android:layout_marginTop="@dimen/dp_2.5"
+                    android:text="本软件得一些小说明"
+                    android:textColor="@color/search_text_tint_color" />
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentEnd="true"
+                    android:layout_centerVertical="true"
+                    android:src="@drawable/ic_right_to" />
+
+            </RelativeLayout>
+
+
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </ScrollView>
+</layout>

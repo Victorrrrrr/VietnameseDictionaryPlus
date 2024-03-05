@@ -1,11 +1,12 @@
 package com.gp.main.ui.home
 
 import android.os.Bundle
-import android.view.LayoutInflater
 import android.view.View
-import android.view.ViewGroup
+import android.view.animation.Animation
+import android.view.animation.RotateAnimation
+import com.gp.common.provider.SearchServiceProvider
 import com.gp.framework.base.BaseMvvmFragment
-import com.gp.main.R
+import com.gp.framework.ext.onClick
 import com.gp.main.databinding.FragmentHomeBinding
 
 
@@ -15,18 +16,6 @@ class HomeFragment : BaseMvvmFragment<FragmentHomeBinding, HomeViewModel>() {
         const val GRANT_TYPE = "password"
         const val USERNAME = "wzf"
         const val PASSWORD = "123456"
-    }
-
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-    }
-
-    override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_home, container, false)
     }
 
 
@@ -42,6 +31,23 @@ class HomeFragment : BaseMvvmFragment<FragmentHomeBinding, HomeViewModel>() {
 //        ).observe(this) {
 //            Log.d("1112", "result : ${it}")
 //        }
+
+        val animation = RotateAnimation(
+            0.0f, 360F,
+            Animation.RELATIVE_TO_SELF, 0.5f,
+            Animation.RELATIVE_TO_SELF, 0.5f)
+        animation.duration = 1000
+        animation.repeatCount = Animation.INFINITE
+        mBinding?.ivRefreshWord?.onClick {
+            mBinding?.ivRefreshWord?.startAnimation(animation)
+            animation.repeatCount=0
+
+            // TODO: 请求刷新单词
+        }
+
+        mBinding?.etSearch?.onClick {
+            SearchServiceProvider.toSearch(it.context)
+        }
 
     }
 

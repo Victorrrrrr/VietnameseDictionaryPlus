@@ -1,14 +1,179 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".ui.learn.LearnFragment">
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
+    <data>
+
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment" />
+        android:background="@color/grey_bg"
+        tools:context=".ui.learn.LearnFragment">
 
-</FrameLayout>
+        <TextView
+            android:id="@+id/tv_learn_tools"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="学习工具"
+            android:textColor="@color/black"
+            android:textSize="@dimen/sp_20"
+            android:layout_marginTop="@dimen/dp_38"
+            app:layout_constraintStart_toStartOf="@id/rl_voice_trans_btn"
+            app:layout_constraintTop_toTopOf="parent"/>
+
+
+        <RelativeLayout
+            android:id="@+id/rl_voice_trans_btn"
+            android:layout_width="@dimen/dp_150"
+            android:layout_height="@dimen/dp_150"
+            android:background="@drawable/shape_white_rectangle_bg"
+            android:layout_marginTop="@dimen/dp_15"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toStartOf="@id/rl_word_collection"
+            app:layout_constraintTop_toBottomOf="@id/tv_learn_tools">
+
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="语音取词"
+                android:textColor="@color/black"
+                android:textSize="@dimen/sp_14"
+                android:layout_marginStart="@dimen/dp_20"
+                android:layout_marginTop="@dimen/dp_20"
+                />
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/voice_translation"
+                android:layout_alignParentBottom="true"
+                android:layout_alignParentEnd="true"/>
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/rl_word_collection"
+            android:layout_width="@dimen/dp_150"
+            android:layout_height="@dimen/dp_150"
+            android:background="@drawable/shape_white_rectangle_bg"
+            android:layout_marginTop="@dimen/dp_15"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tv_learn_tools"
+            app:layout_constraintStart_toEndOf="@id/rl_voice_trans_btn">
+
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="单词夹"
+                android:textColor="@color/black"
+                android:textSize="@dimen/sp_14"
+                android:layout_marginStart="@dimen/dp_20"
+                android:layout_marginTop="@dimen/dp_20"
+                />
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/word_collection"
+                android:layout_alignParentBottom="true"
+                android:layout_alignParentEnd="true"/>
+
+        </RelativeLayout>
+
+
+        <TextView
+            android:id="@+id/tv_review_word"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="复习词语"
+            android:textColor="@color/black"
+            android:textSize="@dimen/sp_20"
+            android:layout_marginTop="@dimen/dp_30"
+            app:layout_constraintStart_toStartOf="@id/rl_voice_trans_btn"
+            app:layout_constraintTop_toBottomOf="@id/rl_voice_trans_btn"/>
+
+
+        <RelativeLayout
+            android:id="@+id/rl_words_matching"
+            android:layout_width="@dimen/dp_150"
+            android:layout_height="@dimen/dp_150"
+            android:background="@drawable/shape_white_rectangle_bg"
+            android:layout_marginTop="@dimen/dp_15"
+            app:layout_constraintStart_toStartOf="@id/tv_review_word"
+            app:layout_constraintTop_toBottomOf="@id/tv_review_word">
+
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="多词匹配"
+                android:textColor="@color/black"
+                android:textSize="@dimen/sp_14"
+                android:layout_marginStart="@dimen/dp_20"
+                android:layout_marginTop="@dimen/dp_20"
+                />
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/word_matching"
+                android:layout_alignParentBottom="true"
+                android:layout_alignParentEnd="true"/>
+
+        </RelativeLayout>
+
+
+        <TextView
+            android:id="@+id/tv_game"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="趣味游戏"
+            android:textColor="@color/black"
+            android:textSize="@dimen/sp_20"
+            android:layout_marginTop="@dimen/dp_30"
+            app:layout_constraintStart_toStartOf="@id/rl_voice_trans_btn"
+            app:layout_constraintTop_toBottomOf="@id/rl_words_matching"/>
+
+
+        <RelativeLayout
+            android:id="@+id/rl_chasing_game"
+            android:layout_width="0dp"
+            android:layout_height="@dimen/dp_130"
+            android:background="@drawable/shape_home_theme_color_bg"
+            android:layout_marginTop="@dimen/dp_15"
+            app:layout_constraintTop_toBottomOf="@id/tv_game"
+            app:layout_constraintStart_toStartOf="@id/rl_voice_trans_btn"
+            app:layout_constraintEnd_toEndOf="@id/rl_word_collection">
+
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="猫追老鼠"
+                android:textColor="@color/black"
+                android:textSize="@dimen/sp_16"
+                android:textStyle="bold"
+                android:layout_alignParentEnd="true"
+                android:layout_alignParentTop="true"
+                android:layout_marginTop="@dimen/dp_30"
+                android:layout_marginEnd="@dimen/dp_25"
+                />
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/chasing_game_icon"
+                android:layout_alignParentStart="true"
+                android:layout_alignParentTop="true"
+                android:layout_alignParentBottom="true"
+                android:layout_marginStart="@dimen/dp_15"/>
+
+        </RelativeLayout>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>
