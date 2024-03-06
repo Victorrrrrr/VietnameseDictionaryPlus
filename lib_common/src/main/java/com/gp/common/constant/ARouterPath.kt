@@ -33,6 +33,11 @@ const val LOGIN_ACTIVITY_POLICY = "/login/activity/policy"
  */
 const val MAIN_ACTIVITY_HOME = "/main/activity/home"
 
+/**
+ * 搜索模块
+ */
+const val SEARCH_ACTIVITY_SEARCH = "/search/activity/search"
+
 
 /**
  * 学习界面
@@ -66,6 +71,6 @@ const val MAIN_SERVICE_HOME = "/main/service/home"
 
 
 /**
- * 主页模块-搜索
+ * 搜索模块-搜索
  */
 const val SEARCH_SERVICE_SEARCH = "/search/service/search"
