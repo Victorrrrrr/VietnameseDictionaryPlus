@@ -12,11 +12,68 @@
         android:layout_height="match_parent"
         tools:context="com.gp.search.SearchActivity">
 
-        <TextView
+        <!--   搜索栏    -->
+        <RelativeLayout
+            android:id="@+id/rl_et_search"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:text="搜索页"
-            android:gravity="center" />
+            android:layout_height="50dp"
+            android:layout_marginStart="@dimen/dp_25"
+            android:layout_marginTop="@dimen/dp_35"
+            android:layout_marginEnd="@dimen/dp_70"
+            android:background="@drawable/shape_search_bar_bg"
+            android:focusable="true"
+            android:focusableInTouchMode="true"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            >
+
+            <ImageView
+                android:id="@+id/iv_search"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginStart="@dimen/dp_10"
+                android:src="@drawable/icon_search" />
+
+            <EditText
+                android:id="@+id/et_search_text_edit"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/dp_40"
+                android:layout_centerVertical="true"
+                android:layout_marginStart="@dimen/dp_10"
+                android:background="@color/search_bar_bg_color"
+                android:layout_toEndOf="@id/iv_search"
+                android:hint="@string/search_tint_string"
+                android:maxLines="1"
+                android:inputType="text"
+                android:imeOptions="actionSearch"
+                android:textColorHint="@color/search_text_tint_color"
+                android:textColor="@color/black"
+                android:textSize="16sp" />
+
+        </RelativeLayout>
+
+        <TextView
+            android:id="@+id/btn_cancel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="@dimen/dp_5"
+            app:layout_constraintStart_toEndOf="@id/rl_et_search"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@id/rl_et_search"
+            app:layout_constraintBottom_toBottomOf="@id/rl_et_search"
+            android:text="@string/cancel"
+            android:textColor="@color/black"
+            android:textSize="@dimen/sp_16"/>
+
+        <!-- 搜索出来的越南词语列表 -->
+
+
+
+
+
+
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

@@ -15,3 +15,5 @@ const val KEY_TOKEN = "token"
 
 const val KEY_AUTHORIZATION = "Authorization"
 
+const val KEY_WORD = "word"
+

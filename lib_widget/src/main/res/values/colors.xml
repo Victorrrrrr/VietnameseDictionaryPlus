@@ -13,8 +13,8 @@
 
     <color name="vd_dark_theme_color">#F76554</color>
 
-
+    <color name="switch_track_color">#F76554</color>
     <color name="line_grey_color">#EFEFEF</color>
 
-    <color name="switch_track_color">#F76554</color>
+    <color name="light_theme_color">#FEEDEB</color>
 </resources>

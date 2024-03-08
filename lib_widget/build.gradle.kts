@@ -39,4 +39,6 @@ dependencies {
     compileOnly(libs.appcompat)
     compileOnly(libs.material)
     compileOnly(libs.constraintlayout)
+
+    compileOnly(project(":lib_framework"))
 }

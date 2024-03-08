@@ -22,6 +22,7 @@ abstract class BaseActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        preCreate()
         setContentLayout()
         initView(savedInstanceState)
         initData()
@@ -54,6 +55,13 @@ abstract class BaseActivity : AppCompatActivity() {
      * 初始化数据
      */
     open fun initData() {
+
+    }
+
+    /**
+     * setContentView之前的操作
+     */
+    open fun preCreate() {
 
     }
 

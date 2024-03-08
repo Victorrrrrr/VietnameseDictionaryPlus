@@ -134,7 +134,7 @@
             android:text="@string/home_btn_recite_string"
             android:textSize="18sp"
             android:textColor="@color/white"
-            android:paddingVertical="@dimen/dp_10"
+            android:paddingVertical="@dimen/dp_12"
             android:layout_marginTop="10dp"
             android:gravity="center"/>
 
