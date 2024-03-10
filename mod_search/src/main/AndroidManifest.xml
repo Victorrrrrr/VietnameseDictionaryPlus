@@ -1,13 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
-<manifest xmlns:android="http://schemas.android.com/apk/res/android" >
+<manifest xmlns:android="http://schemas.android.com/apk/res/android">
 
     <application>
+        <activity
+            android:name="com.gp.search.WordPageActivity"
+            android:exported="false" />
         <activity
             android:name="com.gp.search.SearchActivity"
             android:launchMode="singleTop"
             android:screenOrientation="portrait"
-            android:windowSoftInputMode="adjustPan"
-            android:theme="@style/SearchActivityTheme" />
+            android:theme="@style/SearchActivityTheme"
+            android:windowSoftInputMode="adjustPan" />
     </application>
 
 </manifest>

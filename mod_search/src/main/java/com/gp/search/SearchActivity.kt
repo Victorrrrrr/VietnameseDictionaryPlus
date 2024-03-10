@@ -21,7 +21,6 @@ class SearchActivity : BaseMvvmActivity<ActivitySearchBinding, SearchViewModel>(
 
         showEditTextInput()
         initEvent()
-
     }
 
     private fun initEvent() {

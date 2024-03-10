@@ -11,6 +11,16 @@ interface ISearchService : IProvider {
      * @param context
      * @param index
      */
-    fun toSearch(context: Context, index: Int)
+    fun toSearch(context: Context)
+
+
+    /**
+     * 跳转到单词页面
+     *
+     * @param context
+     * @param index
+     * @param word
+     */
+    fun toWordPage(context: Context, word: String)
 
 }

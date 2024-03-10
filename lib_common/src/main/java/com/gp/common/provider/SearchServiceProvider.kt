@@ -21,8 +21,14 @@ object SearchServiceProvider {
      * @param context
      * @param index
      */
-    fun toSearch(context: Context, index: Int = 0) {
-        searchService.toSearch(context, index)
+    fun toSearch(context: Context) {
+        searchService.toSearch(context)
     }
+
+
+    fun toWordPage(context: Context, word: String) {
+        searchService.toWordPage(context, word)
+    }
+
 
 }

@@ -9,12 +9,22 @@
 
     <application>
         <activity
+            android:name=".ui.daily.scenic.DailyScenicActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ui.daily.poem.DailyPoemActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ui.daily.person.DailyPersonActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ui.daily.music.DailyMusicActivity"
+            android:exported="false" />
+        <activity
             android:name=".ui.word.WordDetailActivity"
             android:launchMode="singleTop"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="adjustPan" />
-
-
     </application>
 
 </manifest>

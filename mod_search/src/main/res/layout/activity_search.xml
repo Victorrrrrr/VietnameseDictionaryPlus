@@ -74,6 +74,28 @@
 
 
 
+        <!-- 无搜索结果 -->
+        <ImageView
+            android:id="@+id/iv_no_result"
+            android:layout_width="@dimen/dp_300"
+            android:layout_height="@dimen/dp_300"
+            android:src="@drawable/searching_no_result"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/rl_et_search"
+            app:layout_constraintBottom_toBottomOf="parent" />
+
+        <TextView
+            android:id="@+id/tv_no_result"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/search_no_result"
+            android:textColor="@color/black"
+            android:textSize="@dimen/sp_16"
+            app:layout_constraintStart_toStartOf="@id/iv_no_result"
+            app:layout_constraintEnd_toEndOf="@id/iv_no_result"
+            app:layout_constraintTop_toBottomOf="@id/iv_no_result" />
+
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

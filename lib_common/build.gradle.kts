@@ -51,4 +51,6 @@ dependencies {
 
     compileOnly(libs.arouter.api)
     kapt(libs.arouter.compiler)
+
+    compileOnly(libs.mmkv)
 }

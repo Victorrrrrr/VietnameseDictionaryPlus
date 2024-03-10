@@ -6,5 +6,19 @@ package com.gp.common.constant
  */
 const val HTTP_TOKEN_INFO = "http_token_info"
 
+/**
+ * token请求参数
+ */
+const val GRANT_TYPE = "client_credentials"
+const val CLIENT_ID = "dict_client"
+const val CLIENT_SECRET = "dict_secret"
 
 
+/**
+ * 用户信息键
+ */
+const val USER_ACCOUNT = "account"
+const val USER_EMAIL = "email"
+const val USER_GENDER = "gender"
+const val USER_USERNAME = "username"
+const val USER_AVATAR = "avatar"

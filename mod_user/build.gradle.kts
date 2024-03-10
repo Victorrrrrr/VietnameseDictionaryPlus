@@ -1,6 +1,7 @@
 plugins {
     id("com.android.library")
     id("org.jetbrains.kotlin.android")
+    id("kotlin-kapt")
 }
 
 android {
@@ -12,6 +13,13 @@ android {
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
         consumerProguardFiles("consumer-rules.pro")
+
+        // ARouter
+        kapt {
+            arguments {
+                arg("AROUTER_MODULE_NAME", project.getName())
+            }
+        }
     }
 
     buildTypes {
@@ -22,6 +30,10 @@ android {
                 "proguard-rules.pro"
             )
         }
+    }
+    buildFeatures {
+        dataBinding = true
+        viewBinding = true
     }
     compileOptions {
         sourceCompatibility = JavaVersion.VERSION_1_8
@@ -42,4 +54,20 @@ dependencies {
     testCompileOnly(libs.junit)
     androidTestCompileOnly(libs.androidx.test.ext.junit)
     androidTestCompileOnly(libs.espresso.core)
+
+    compileOnly(libs.lifecycle.livedata.ktx)
+    compileOnly(libs.lifecycle.viewmodel.ktx)
+
+    // 路由
+    compileOnly(libs.arouter.api)
+    kapt(libs.arouter.compiler)
+
+    compileOnly(project(":lib_common"))
+    compileOnly(project(":lib_framework"))
+    compileOnly(project(":lib_starter"))
+    compileOnly(project(":lib_network"))
+    compileOnly(project(":lib_room"))
+    compileOnly(project(":lib_widget"))
+    compileOnly(project(":lib_glide"))
+
 }

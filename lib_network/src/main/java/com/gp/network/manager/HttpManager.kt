@@ -7,6 +7,7 @@ import com.gp.network.constant.BASE_URL
 import com.gp.network.error.ERROR
 import com.gp.network.error.NoNetWorkException
 import com.gp.network.interceptor.HeaderInterceptor
+import com.gp.network.interceptor.TokenExpireInterceptor
 import okhttp3.Interceptor
 import okhttp3.OkHttpClient
 import okhttp3.Response
@@ -46,7 +47,9 @@ object HttpManager {
 
         // 添加参数拦截器
         val interceptor = mutableListOf<Interceptor>()
+
         build.addInterceptor(HeaderInterceptor())
+        build.addInterceptor(TokenExpireInterceptor())
 
         // 日志拦截器
         val logInterceptor = HttpLoggingInterceptor { message : String ->

@@ -47,8 +47,8 @@
                 />
 
             <ImageView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="@dimen/dp_100"
+                android:layout_height="@dimen/dp_100"
                 android:src="@drawable/voice_translation"
                 android:layout_alignParentBottom="true"
                 android:layout_alignParentEnd="true"/>
@@ -77,9 +77,9 @@
                 />
 
             <ImageView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:src="@drawable/word_collection"
+                android:layout_width="@dimen/dp_100"
+                android:layout_height="@dimen/dp_100"
+                android:src="@drawable/words_collection"
                 android:layout_alignParentBottom="true"
                 android:layout_alignParentEnd="true"/>
 
@@ -119,9 +119,9 @@
                 />
 
             <ImageView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:src="@drawable/word_matching"
+                android:layout_width="@dimen/dp_100"
+                android:layout_height="@dimen/dp_100"
+                android:src="@drawable/words_matching"
                 android:layout_alignParentBottom="true"
                 android:layout_alignParentEnd="true"/>
 
@@ -165,13 +165,16 @@
                 />
 
             <ImageView
-                android:layout_width="wrap_content"
+                android:layout_width="@dimen/dp_200"
                 android:layout_height="wrap_content"
                 android:src="@drawable/chasing_game_icon"
                 android:layout_alignParentStart="true"
                 android:layout_alignParentTop="true"
                 android:layout_alignParentBottom="true"
-                android:layout_marginStart="@dimen/dp_15"/>
+                android:paddingTop="@dimen/dp_12"
+                android:layout_marginStart="@dimen/dp_20"
+                android:layout_marginTop="@dimen/dp_5"
+                />
 
         </RelativeLayout>
 
