@@ -1,7 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
-<manifest xmlns:android="http://schemas.android.com/apk/res/android">
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
 
     <application>
+        <activity
+            android:name="com.gp.learn.game.GameActivity"
+            android:exported="false" />
         <activity
             android:name="com.gp.learn.tool.voice_trans.VoiceTransActivity"
             android:exported="false" />
@@ -13,7 +17,9 @@
             android:exported="false" />
         <activity
             android:name="com.gp.learn.game.LoadGameActivity"
-            android:exported="false" />
+            android:configChanges="orientation|keyboardHidden|screenSize"
+            android:screenOrientation="landscape"
+            android:theme="@style/AppFullScreen" />
     </application>
 
 </manifest>

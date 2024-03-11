@@ -48,12 +48,15 @@ dependencies {
 
     compileOnly(fileTree(mapOf("dir" to "libs", "include" to listOf("*.jar"))))
     compileOnly(libs.core.ktx)
-    compileOnly(libs.appcompat)
+    api (libs.appcompat)
     compileOnly(libs.material)
     compileOnly(libs.constraintlayout)
     testCompileOnly(libs.junit)
     androidTestCompileOnly(libs.androidx.test.ext.junit)
     androidTestCompileOnly(libs.espresso.core)
+
+    compileOnly(libs.lifecycle.livedata.ktx)
+    compileOnly(libs.lifecycle.viewmodel.ktx)
 
     // 路由
     compileOnly(libs.arouter.api)

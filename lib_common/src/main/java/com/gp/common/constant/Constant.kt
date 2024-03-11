@@ -22,3 +22,10 @@ const val USER_EMAIL = "email"
 const val USER_GENDER = "gender"
 const val USER_USERNAME = "username"
 const val USER_AVATAR = "avatar"
+
+
+// 有道英音发音
+const val YOU_DAO_VOICE_EN = "https://dict.youdao.com/dictvoice?type=1&audio="
+
+// 有道美音发音
+const val YOU_DAO_VOICE_USA = "https://dict.youdao.com/dictvoice?type=0&audio="
