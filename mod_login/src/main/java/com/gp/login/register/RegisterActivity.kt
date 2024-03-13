@@ -1,6 +1,5 @@
 package com.gp.login.register
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import com.alibaba.android.arouter.facade.annotation.Route
 import com.gp.common.constant.LOGIN_ACTIVITY_REGISTER
@@ -9,9 +8,7 @@ import com.gp.framework.ext.onClick
 import com.gp.framework.toast.TipsToast
 import com.gp.framework.utils.getStringFromResource
 import com.gp.login.login.LoginViewModel
-import com.gp.mod_login.R
 import com.gp.mod_login.databinding.ActivityRegisterBinding
-import com.gp.network.manager.TokenManager
 
 
 @Route(path = LOGIN_ACTIVITY_REGISTER)
@@ -21,6 +18,11 @@ class RegisterActivity : BaseMvvmActivity<ActivityRegisterBinding, LoginViewMode
     }
 
     private fun initEvent() {
+        mBinding.toolbarRegister.setNavigationOnClickListener {
+            onBackPressed()
+        }
+
+        // 注册按钮逻辑
         mBinding.btnRegister.onClick {
             if (!mBinding.cbAgree.isChecked) {
                 TipsToast.showTips(getStringFromResource(com.gp.lib_widget.R.string.agree_privacy_tip))
