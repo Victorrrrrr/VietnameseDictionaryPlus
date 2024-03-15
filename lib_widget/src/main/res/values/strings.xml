@@ -43,4 +43,7 @@
     <string name="login_agree_text">我已阅读并同意 隐私政策</string>
     <string name="hint_register_email">请输入邮箱</string>
     <string name="agree_privacy_tip">"请先查看并同意隐私协议"</string>
+    <string name="suggest_title">单词反馈</string>
+    <string name="text_finish">完成</string>
+    <string name="exit_twice_tip">再按一次退出app</string>
 </resources>

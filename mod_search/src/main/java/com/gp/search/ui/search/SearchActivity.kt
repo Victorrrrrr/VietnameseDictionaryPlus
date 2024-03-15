@@ -1,4 +1,4 @@
-package com.gp.search
+package com.gp.search.ui.search
 
 import android.os.Bundle
 import com.alibaba.android.arouter.facade.annotation.Route

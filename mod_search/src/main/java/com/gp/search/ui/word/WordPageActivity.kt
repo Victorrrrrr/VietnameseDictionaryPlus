@@ -1,12 +1,11 @@
-package com.gp.search
+package com.gp.search.ui.word
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import com.alibaba.android.arouter.facade.annotation.Route
 import com.gp.common.constant.SEARCH_ACTIVITY_WORD
 import com.gp.framework.base.BaseMvvmActivity
+import com.gp.framework.ext.onClick
 import com.gp.framework.toast.TipsToast
-import com.gp.mod_search.R
 import com.gp.mod_search.databinding.ActivityWordPageBinding
 import com.gp.network.constant.KEY_WORD
 
@@ -15,5 +14,20 @@ class WordPageActivity : BaseMvvmActivity<ActivityWordPageBinding, WordPageViewM
 
     override fun initView(savedInstanceState: Bundle?) {
         TipsToast.showTips(intent.getStringExtra(KEY_WORD))
+
+        initEvent()
+
+
+    }
+
+    private fun initEvent() {
+        mBinding.ivBack.onClick {
+            onBackPressed()
+        }
+
+        mBinding.ivSuggest.onClick {
+
+        }
+
     }
 }

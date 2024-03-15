@@ -3,12 +3,11 @@ package com.gp.search.service
 import android.content.Context
 import android.content.Intent
 import com.alibaba.android.arouter.facade.annotation.Route
-import com.gp.common.constant.KEY_INDEX
 import com.gp.common.constant.SEARCH_SERVICE_SEARCH
 import com.gp.common.service.ISearchService
 import com.gp.network.constant.KEY_WORD
-import com.gp.search.SearchActivity
-import com.gp.search.WordPageActivity
+import com.gp.search.ui.search.SearchActivity
+import com.gp.search.ui.word.WordPageActivity
 
 @Route(path = SEARCH_SERVICE_SEARCH)
 class SearchService : ISearchService{

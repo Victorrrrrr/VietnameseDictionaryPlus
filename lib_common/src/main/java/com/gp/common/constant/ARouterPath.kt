@@ -70,6 +70,8 @@ const val SEARCH_ACTIVITY_SEARCH = "/search/activity/search"
 
 const val SEARCH_ACTIVITY_WORD = "/search/activity/word"
 
+const val SEARCH_ACTIVITY_SUGGEST = "/search/activity/suggest"
+
 
 /**
  * 背单词界面

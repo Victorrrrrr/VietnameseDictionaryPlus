@@ -1,4 +1,4 @@
-package com.gp.search
+package com.gp.search.ui.search
 
 import com.gp.network.viewmodel.BaseViewModel
 

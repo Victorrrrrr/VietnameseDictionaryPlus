@@ -20,11 +20,7 @@
         <activity
             android:name=".ui.daily.music.DailyMusicActivity"
             android:exported="false" />
-        <activity
-            android:name=".ui.word.WordDetailActivity"
-            android:launchMode="singleTop"
-            android:screenOrientation="portrait"
-            android:windowSoftInputMode="adjustPan" />
+
     </application>
 
 </manifest>

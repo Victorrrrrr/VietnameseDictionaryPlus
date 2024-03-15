@@ -11,7 +11,9 @@ import com.alibaba.android.arouter.facade.annotation.Route
 import com.gp.common.constant.KEY_INDEX
 import com.gp.common.constant.MAIN_ACTIVITY_HOME
 import com.gp.framework.base.BaseDataBindActivity
+import com.gp.framework.toast.TipsToast
 import com.gp.framework.utils.LogUtil
+import com.gp.framework.utils.getStringFromResource
 import com.gp.lib_framework.utils.StatusBarSettingHelper
 import com.gp.main.R
 import com.gp.main.databinding.ActivityMainBinding
@@ -85,6 +87,22 @@ class MainActivity : BaseDataBindActivity<ActivityMainBinding>() {
 
     override fun getLayoutResId(): Int {
         return R.layout.activity_main
+    }
+
+
+    private var lastPressedTime : Long = 0L
+
+
+    /**
+     * 防返回误触，设置二次退出
+     */
+    override fun onBackPressed() {
+        if(System.currentTimeMillis() - lastPressedTime < 2000) {
+            super.onBackPressed()
+        } else {
+            TipsToast.showTips(getStringFromResource(com.gp.lib_widget.R.string.exit_twice_tip))
+            lastPressedTime = System.currentTimeMillis()
+        }
     }
 
 }
