@@ -30,6 +30,9 @@ object UserInfoManager {
         return mmkv.decodeString(USER_USERNAME, "") ?: ""
     }
 
+
+
+
     fun clearAll() {
         val userInfo = UserInfo()
         saveUserInfo(userInfo)

@@ -13,7 +13,7 @@ class LoginRepository: BaseRepository() {
         }
     }
 
-    // TODO return type
+
     suspend fun register(userInfo: UserInfo) : Void? {
         return requestResponse {
             ApiManager.api.appAuthRegister(userInfo)

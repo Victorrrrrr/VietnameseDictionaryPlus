@@ -20,20 +20,8 @@ class HomeFragment : BaseMvvmFragment<FragmentHomeBinding, HomeViewModel>() {
 
 
     override fun initView(view: View, savedInstanceState: Bundle?) {
-//        mViewModel.getHomeInfoList(0).observe(this) {
-//            Log.d("1112", "result : ${it}")
-//        }
-
-//        mViewModel.sendAuthRequest(
-//            GRANT_TYPE,
-//            USERNAME,
-//            PASSWORD
-//        ).observe(this) {
-//            Log.d("1112", "result : ${it}")
-//        }
 
         initEvent()
-
 
     }
 

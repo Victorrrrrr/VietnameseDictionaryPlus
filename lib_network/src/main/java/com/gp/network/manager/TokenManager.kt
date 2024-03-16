@@ -1,6 +1,8 @@
 package com.gp.network.manager
 
 import com.gp.common.constant.HTTP_TOKEN_INFO
+import com.gp.framework.utils.LogUtil
+import com.gp.framework.utils.XLogger
 import com.tencent.mmkv.MMKV
 
 
@@ -14,6 +16,7 @@ object TokenManager {
      */
     fun saveToken(token: String) {
         val mmkv = MMKV.defaultMMKV()
+        LogUtil.d(token, tag = "token")
         mmkv.encode(HTTP_TOKEN_INFO, token)
     }
 

@@ -9,19 +9,12 @@ import com.gp.network.response.BaseResponse
 
 class MainRepository : BaseRepository() {
 
-
-//    suspend fun getHomeInfoList(page: Int): ArticleList? {
-//        return requestResponse {
-//            ApiManager.api.getHomeList(page,20)
-//        }
-//    }
-
-
     suspend fun authClient(grantType : String, clientId : String, clientSecret : String) : AuthClientBean? {
         return requestAuthResponse {
             ApiManager.api.appAuthClient(grantType, clientId, clientSecret)
         }
     }
+
 
 
 

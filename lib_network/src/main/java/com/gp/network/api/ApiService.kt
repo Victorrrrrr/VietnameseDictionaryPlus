@@ -71,4 +71,7 @@ interface ApiService {
     ) : BaseResponse<Void>
 
 
+    @GET("app-dict/daily")
+    suspend fun getDailyHomeData() : BaseResponse<Void>
+
 }

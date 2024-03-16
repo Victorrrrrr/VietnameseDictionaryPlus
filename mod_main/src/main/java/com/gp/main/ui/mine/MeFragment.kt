@@ -3,11 +3,15 @@ package com.gp.main.ui.mine
 import android.content.Context
 import android.os.Bundle
 import android.view.View
+import com.gp.common.manager.UserInfoManager
 import com.gp.common.provider.LoginServiceProvider
 import com.gp.common.provider.UserServiceProvider
 import com.gp.framework.base.BaseMvvmFragment
 import com.gp.framework.ext.onClick
+import com.gp.framework.utils.getStringFromResource
+import com.gp.main.R
 import com.gp.main.databinding.FragmentMeBinding
+import com.gp.network.manager.TokenManager
 
 class MeFragment : BaseMvvmFragment<FragmentMeBinding, MeViewModel>() {
     override fun initView(view: View, savedInstanceState: Bundle?) {
@@ -15,6 +19,14 @@ class MeFragment : BaseMvvmFragment<FragmentMeBinding, MeViewModel>() {
         initEvent()
 
 
+    }
+
+
+    override fun onResume() {
+        super.onResume()
+        if(UserInfoManager.getUserName().isNotEmpty()) {
+            mBinding?.tvUserName?.text = UserInfoManager.getUserName()
+        }
     }
 
     private fun initEvent() {
@@ -54,6 +66,13 @@ class MeFragment : BaseMvvmFragment<FragmentMeBinding, MeViewModel>() {
         mBinding?.rlDarkMode?.onClick {
             // 切换switch
 
+        }
+
+        // 退出登录按钮
+        mBinding?.ivLogout?.onClick {
+            UserInfoManager.clearAll()
+            TokenManager.clearToken()
+            mBinding?.tvUserName?.text = getStringFromResource(com.gp.lib_widget.R.string.me_login_tip_text)
         }
 
     }

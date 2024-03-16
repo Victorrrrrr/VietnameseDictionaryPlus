@@ -36,9 +36,11 @@ class RegisterActivity : BaseMvvmActivity<ActivityRegisterBinding, LoginViewMode
             val allNotEmpty = username.isNotEmpty() && pwd.isNotEmpty() && email.isNotEmpty()
 
             if(allNotEmpty) {
-                mViewModel.sendRegisterRequest(username, pwd, email).observe(this) {
-                    // TODO 返回登陆页 刷新数据等操作
-
+                showLoading("注册中，请稍后")
+                mViewModel.sendRegisterRequest(username, pwd, email)?.observe(this) {
+                    dismissLoading()
+                    TipsToast.showTips("注册成功")
+                    finish()
                 }
             } else {
                 TipsToast.showTips("请完整填写以上信息，保证格式正确")

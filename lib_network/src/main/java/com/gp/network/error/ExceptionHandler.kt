@@ -26,6 +26,7 @@ object ExceptionHandler {
             ex = ApiException(ERROR.NETWORK_ERROR, e)
         } else if (e is HttpException) {
             ex = when (e.code()) {
+                ERROR.BAD_REQUEST.code -> ApiException(ERROR.BAD_REQUEST, e)
                 ERROR.UNAUTHORIZED.code -> ApiException(ERROR.UNAUTHORIZED, e)
                 ERROR.FORBIDDEN.code -> ApiException(ERROR.FORBIDDEN, e)
                 ERROR.NOT_FOUND.code -> ApiException(ERROR.NOT_FOUND, e)

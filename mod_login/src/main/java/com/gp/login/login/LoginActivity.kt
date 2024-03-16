@@ -5,6 +5,8 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import com.alibaba.android.arouter.facade.annotation.Route
 import com.gp.common.constant.LOGIN_ACTIVITY_LOGIN
+import com.gp.common.manager.UserInfoManager
+import com.gp.common.model.UserInfo
 import com.gp.framework.base.BaseMvvmActivity
 import com.gp.framework.ext.onClick
 import com.gp.framework.toast.TipsToast
@@ -42,11 +44,16 @@ class LoginActivity : BaseMvvmActivity<ActivityLoginBinding, LoginViewModel>() {
             val username = mBinding.etUsername.text.toString()
             val pwd = mBinding.etPwd.text.toString()
 
-            if(username.isNotEmpty() && pwd.isNotEmpty()) {
+            if (username.isNotEmpty() && pwd.isNotEmpty()) {
+                showLoading("登录中，请稍后")
                 mViewModel.sendAuthRequestPassword(username, pwd)
                     .observe(this) {
-                        TokenManager.saveToken(it.accessToken)
-                        // TODO 返回主页刷新数据等操作
+                        dismissLoading()
+                        it?.let {
+                            TokenManager.saveToken(it.accessToken)
+                            UserInfoManager.saveUserInfo(UserInfo(account = username, username = username))
+                            finish()
+                        }
                     }
             } else {
                 TipsToast.showTips("请完整填写以上信息，保证格式正确")
