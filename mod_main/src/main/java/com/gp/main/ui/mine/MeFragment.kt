@@ -7,7 +7,10 @@ import com.gp.common.manager.UserInfoManager
 import com.gp.common.provider.LoginServiceProvider
 import com.gp.common.provider.UserServiceProvider
 import com.gp.framework.base.BaseMvvmFragment
+import com.gp.framework.ext.gone
+import com.gp.framework.ext.invisible
 import com.gp.framework.ext.onClick
+import com.gp.framework.ext.visible
 import com.gp.framework.utils.getStringFromResource
 import com.gp.main.R
 import com.gp.main.databinding.FragmentMeBinding
@@ -26,6 +29,7 @@ class MeFragment : BaseMvvmFragment<FragmentMeBinding, MeViewModel>() {
         super.onResume()
         if(UserInfoManager.getUserName().isNotEmpty()) {
             mBinding?.tvUserName?.text = UserInfoManager.getUserName()
+            mBinding?.ivLogout?.visible()
         }
     }
 
@@ -73,6 +77,7 @@ class MeFragment : BaseMvvmFragment<FragmentMeBinding, MeViewModel>() {
             UserInfoManager.clearAll()
             TokenManager.clearToken()
             mBinding?.tvUserName?.text = getStringFromResource(com.gp.lib_widget.R.string.me_login_tip_text)
+            it.gone()
         }
 
     }

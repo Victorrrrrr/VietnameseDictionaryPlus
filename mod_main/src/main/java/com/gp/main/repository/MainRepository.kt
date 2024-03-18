@@ -2,6 +2,7 @@ package com.gp.main.repository
 
 import com.gp.common.model.AuthClientBean
 import com.gp.common.model.AuthPasswordBean
+import com.gp.common.model.DailyHomeBean
 import com.gp.common.model.UserInfo
 import com.gp.network.manager.ApiManager
 import com.gp.network.repository.BaseRepository
@@ -16,6 +17,12 @@ class MainRepository : BaseRepository() {
     }
 
 
+
+    suspend fun getHomeDailyData() : DailyHomeBean? {
+        return requestResponse {
+            ApiManager.api.getDailyHomeData()
+        }
+    }
 
 
 

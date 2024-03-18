@@ -14,17 +14,25 @@ import com.gp.main.databinding.FragmentHomeBinding
 import com.gp.main.ui.daily.music.DailyMusicActivity
 import com.gp.main.ui.daily.person.DailyPersonActivity
 import com.gp.main.ui.daily.scenic.DailyScenicActivity
+import com.gp.main.ui.main.MainViewModel
 
 
-class HomeFragment : BaseMvvmFragment<FragmentHomeBinding, HomeViewModel>() {
+class HomeFragment : BaseMvvmFragment<FragmentHomeBinding, MainViewModel>() {
+
 
 
     override fun initView(view: View, savedInstanceState: Bundle?) {
 
         initEvent()
-
     }
 
+
+
+    override fun initData() {
+        mViewModel.getHomeDailyData().observe(this) {
+            mBinding?.sayingBean = it.sentence
+        }
+    }
 
 
     private fun initEvent() {

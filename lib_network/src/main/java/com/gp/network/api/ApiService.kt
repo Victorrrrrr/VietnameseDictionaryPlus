@@ -4,6 +4,7 @@ import com.gp.common.model.Article
 import com.gp.common.model.ArticleList
 import com.gp.common.model.AuthClientBean
 import com.gp.common.model.AuthPasswordBean
+import com.gp.common.model.DailyHomeBean
 import com.gp.common.model.UserInfo
 import com.gp.framework.base.BaseData
 import com.gp.network.response.BaseResponse
@@ -72,6 +73,8 @@ interface ApiService {
 
 
     @GET("app-dict/daily")
-    suspend fun getDailyHomeData() : BaseResponse<Void>
+    suspend fun getDailyHomeData() : BaseResponse<DailyHomeBean>
+
+
 
 }

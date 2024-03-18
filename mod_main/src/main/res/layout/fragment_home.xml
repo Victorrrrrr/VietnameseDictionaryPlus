@@ -4,6 +4,9 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
+        <variable
+            name="sayingBean"
+            type="com.gp.common.model.Sentence" />
 
     </data>
 
@@ -110,7 +113,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginTop="@dimen/dp_10"
                         android:gravity="center"
-                        android:text="Người ta có thể bị hủy diệt, nhưng không thể bị đánh bại."
+                        android:text="@{sayingBean.sentenceVi}"
                         android:textSize="@dimen/sp_16"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
@@ -122,7 +125,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginTop="@dimen/dp_10"
                         android:gravity="center"
-                        android:text="一个人可以被毁灭，但不能被打败"
+                        android:text="@{sayingBean.sentenceZh}"
                         android:textSize="@dimen/sp_14"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
@@ -182,8 +185,8 @@
 
                 <ImageView
                     android:id="@+id/iv_refresh_word"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_width="@dimen/dp_28"
+                    android:layout_height="@dimen/dp_28"
                     android:background="@drawable/shape_refresh_btn_bg"
                     android:src="@drawable/icon_refresh"
                     app:layout_constraintEnd_toEndOf="parent"
