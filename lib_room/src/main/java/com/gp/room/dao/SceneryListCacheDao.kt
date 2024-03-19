@@ -1,11 +1,14 @@
 package com.gp.room.dao
 
+import androidx.lifecycle.LiveData
 import androidx.room.Dao
 import androidx.room.Insert
 import androidx.room.OnConflictStrategy
 import androidx.room.Query
 import androidx.room.Update
+import com.gp.common.constant.TABLE_PERSON_LIST
 import com.gp.common.constant.TABLE_SCENERY_LIST
+import com.gp.room.entity.PersonInfo
 import com.gp.room.entity.SceneryInfo
 
 @Dao
@@ -42,6 +45,10 @@ interface SceneryListCacheDao {
      */
     @Query("SELECT * FROM $TABLE_SCENERY_LIST")
     fun queryAll() : MutableList<SceneryInfo>?
+
+
+    @Query("SELECT * FROM $TABLE_SCENERY_LIST")
+    fun queryAllLiveData(): LiveData<List<SceneryInfo>>
 
 
     /**

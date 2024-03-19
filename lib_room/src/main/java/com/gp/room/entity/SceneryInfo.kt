@@ -13,7 +13,7 @@ import kotlinx.android.parcel.Parcelize
 @Entity(tableName = TABLE_SCENERY_LIST)
 data class SceneryInfo(
     @PrimaryKey(autoGenerate = false)
-    var id : Long = 0,
+    var id : Int = 0,
 
     @ColumnInfo(name = "nameVi", defaultValue = "")
     var nameVi : String?,

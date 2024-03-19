@@ -17,6 +17,7 @@
     <color name="line_grey_color">#EFEFEF</color>
 
     <color name="light_theme_color">#FEEDEB</color>
+    <color name="light_trans_theme_color">#D3FEEDEB</color>
     
     <color name="light_orange">#F7EDE1</color>
 

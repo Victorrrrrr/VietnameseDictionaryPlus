@@ -75,6 +75,8 @@ dependencies {
     compileOnly(libs.glide)
     kapt(libs.glide.compiler)
 
+    compileOnly(libs.mmkv)
+
     compileOnly(project(":lib_common"))
     compileOnly(project(":lib_framework"))
     compileOnly(project(":lib_starter"))

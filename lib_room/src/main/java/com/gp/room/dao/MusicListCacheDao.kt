@@ -1,5 +1,6 @@
 package com.gp.room.dao
 
+import androidx.lifecycle.LiveData
 import androidx.room.Dao
 import androidx.room.Insert
 import androidx.room.OnConflictStrategy
@@ -44,6 +45,10 @@ interface MusicListCacheDao {
      */
     @Query("SELECT * FROM $TABLE_MUSIC_LIST")
     fun queryAll() : MutableList<MusicInfo>?
+
+
+    @Query("SELECT * FROM $TABLE_MUSIC_LIST")
+    fun queryAllLiveData(): LiveData<List<MusicInfo>>
 
 
     /**

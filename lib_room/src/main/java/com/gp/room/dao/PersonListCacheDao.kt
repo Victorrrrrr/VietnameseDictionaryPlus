@@ -1,5 +1,6 @@
 package com.gp.room.dao
 
+import androidx.lifecycle.LiveData
 import androidx.room.Dao
 import androidx.room.Insert
 import androidx.room.OnConflictStrategy
@@ -41,6 +42,15 @@ interface PersonListCacheDao {
      */
     @Query("SELECT * FROM $TABLE_PERSON_LIST")
     fun queryAll() : MutableList<PersonInfo>?
+
+    /**
+     * 通过LiveData以观察者的形式获取数据库数据，可以避免不必要的NPE，
+     * 可以监听数据库表中的数据的变化，也可以和RXJava的Observer使用
+     * 一旦发生了insert，update，delete，room会自动读取表中最新的数据，发送给UI层，刷新页面
+     * 不要使用MutableLiveData和suspend 会报错
+     */
+    @Query("SELECT * FROM $TABLE_PERSON_LIST")
+    fun queryAllLiveData(): LiveData<List<PersonInfo>>
 
 
     /**

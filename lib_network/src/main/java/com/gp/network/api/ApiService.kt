@@ -5,6 +5,10 @@ import com.gp.common.model.ArticleList
 import com.gp.common.model.AuthClientBean
 import com.gp.common.model.AuthPasswordBean
 import com.gp.common.model.DailyHomeBean
+import com.gp.common.model.MusicBean
+import com.gp.common.model.PersonBean
+import com.gp.common.model.PersonDaily
+import com.gp.common.model.SceneryBean
 import com.gp.common.model.UserInfo
 import com.gp.common.model.WordRandomBean
 import com.gp.framework.base.BaseData
@@ -79,5 +83,16 @@ interface ApiService {
 
     @GET("app-dict/word/random")
     suspend fun getWordRandom() : BaseResponse<WordRandomBean>
+
+    @GET("app-dict/daily/character")
+    suspend fun getPersonDaily() : BaseResponse<PersonBean>
+
+
+    @GET("app-dict/daily/scenery")
+    suspend fun getSceneryDaily() : BaseResponse<SceneryBean>
+
+
+    @GET("app-dict/daily/music")
+    suspend fun getMusicDaily() : BaseResponse<MusicBean>
 
 }

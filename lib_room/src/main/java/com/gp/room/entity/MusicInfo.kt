@@ -13,7 +13,7 @@ import kotlinx.android.parcel.Parcelize
 @Entity(tableName = TABLE_MUSIC_LIST)
 data class MusicInfo(
     @PrimaryKey(autoGenerate = false)
-    var id : Long = 0,
+    var id : Int = 0,
 
     @ColumnInfo(name = "url", defaultValue = "")
     var soundUrl : String?,
