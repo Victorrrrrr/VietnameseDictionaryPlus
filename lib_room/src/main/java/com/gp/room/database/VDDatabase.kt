@@ -4,12 +4,20 @@ import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
 import com.gp.framework.helper.VDHelper
+import com.gp.room.dao.MusicListCacheDao
+import com.gp.room.dao.PersonListCacheDao
+import com.gp.room.dao.SceneryListCacheDao
+import com.gp.room.entity.MusicInfo
+import com.gp.room.entity.PersonInfo
+import com.gp.room.entity.SceneryInfo
 
-//@Database(entities = [], version = 1, exportSchema = false )
+@Database(entities = [PersonInfo::class, SceneryInfo::class, MusicInfo::class], version = 1, exportSchema = false )
 abstract class VDDatabase : RoomDatabase() {
 
     // 抽象方法或者抽象类标记
-
+    abstract fun personListDao() : PersonListCacheDao
+    abstract fun sceneryListDao() : SceneryListCacheDao
+    abstract fun musicListDao() : MusicListCacheDao
 
     companion object {
         private var dataBase: VDDatabase? = null

@@ -22,9 +22,11 @@ android {
 
     }
 
-    buildFeatures{
+    buildFeatures {
         dataBinding = true
     }
+
+
 
     buildTypes {
         release {
@@ -52,6 +54,9 @@ dependencies {
     compileOnly(libs.material)
     compileOnly(libs.constraintlayout)
     compileOnly(libs.gson)
+
+    compileOnly(libs.lifecycle.viewmodel.ktx)
+    compileOnly(libs.lifecycle.livedata.ktx)
 
     compileOnly(libs.arouter.api)
     kapt(libs.arouter.compiler)

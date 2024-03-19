@@ -92,6 +92,7 @@ dependencies {
 
     implementation(libs.lifecycle.livedata.ktx)
     implementation(libs.lifecycle.viewmodel.ktx)
+    implementation(libs.lifecycle.common)
 
     implementation(libs.retrofit2)
     implementation(libs.retrofit2.gson)

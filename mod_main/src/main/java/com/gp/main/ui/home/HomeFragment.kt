@@ -60,13 +60,16 @@ class HomeFragment : BaseMvvmFragment<FragmentHomeBinding, MainViewModel>() {
             mBinding?.ivRefreshWord?.startAnimation(animation)
             animation.repeatCount=0
 
+            // 刷新单词循环套路
             if(index < 10) {
                 mBinding?.wordbean = randomList?.get(index++)
             } else {
                 index = 0
                 mViewModel.getWordRandom().observe(this) {
                     mBinding?.wordbean = it[index++]
-                    randomList = it
+
+                    randomList?.clear()
+                    randomList?.addAll(it)
                 }
             }
 

@@ -22,7 +22,8 @@
             android:exported="false" />
         <activity
             android:name=".ui.daily.person.DailyPersonActivity"
-            android:exported="false" />
+            android:exported="true"
+             />
         <activity
             android:name=".ui.daily.music.DailyMusicActivity"
             android:exported="false" />

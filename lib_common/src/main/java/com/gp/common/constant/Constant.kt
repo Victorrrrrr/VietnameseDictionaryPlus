@@ -29,3 +29,13 @@ const val YOU_DAO_VOICE_EN = "https://dict.youdao.com/dictvoice?type=1&audio="
 
 // 有道美音发音
 const val YOU_DAO_VOICE_USA = "https://dict.youdao.com/dictvoice?type=0&audio="
+
+
+
+
+// Room数据库表名
+const val TABLE_PERSON_LIST = "table_person_list"
+
+const val TABLE_SCENERY_LIST = "table_scenery_list"
+
+const val TABLE_MUSIC_LIST = "table_music_list"
