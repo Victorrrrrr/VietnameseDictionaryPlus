@@ -1,4 +1,4 @@
 <resources>
-
+    <string name="word_meaning">释义: %1$s</string>
 
 </resources>

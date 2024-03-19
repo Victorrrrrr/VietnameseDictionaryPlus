@@ -1,4 +1,4 @@
 <resources>
 
-    <string name="title_daily_person">每日人物</string>
+    <string name="word_meaning">释义: %1$s</string>
 </resources>

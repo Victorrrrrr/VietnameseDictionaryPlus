@@ -12,5 +12,9 @@
         android:layout_height="match_parent"
         tools:context=".ui.daily.music.DailyMusicActivity">
 
+
+
+
+
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

@@ -72,6 +72,9 @@ dependencies {
     compileOnly(libs.navigation.ui.ktx)
     compileOnly(libs.navigation.fragment.ktx)
 
+    compileOnly(libs.glide)
+    kapt(libs.glide.compiler)
+
     compileOnly(project(":lib_common"))
     compileOnly(project(":lib_framework"))
     compileOnly(project(":lib_starter"))

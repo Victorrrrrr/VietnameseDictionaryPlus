@@ -9,6 +9,12 @@
 
     <application>
         <activity
+            android:name=".ui.daily.scenic.ScenicDetailActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ui.daily.person.PersonDetailActivity"
+            android:exported="false" />
+        <activity
             android:name=".ui.daily.scenic.DailyScenicActivity"
             android:exported="false" />
         <activity
@@ -20,7 +26,6 @@
         <activity
             android:name=".ui.daily.music.DailyMusicActivity"
             android:exported="false" />
-
     </application>
 
 </manifest>

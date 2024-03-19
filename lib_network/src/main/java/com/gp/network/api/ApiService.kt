@@ -6,6 +6,7 @@ import com.gp.common.model.AuthClientBean
 import com.gp.common.model.AuthPasswordBean
 import com.gp.common.model.DailyHomeBean
 import com.gp.common.model.UserInfo
+import com.gp.common.model.WordRandomBean
 import com.gp.framework.base.BaseData
 import com.gp.network.response.BaseResponse
 import retrofit2.http.Body
@@ -76,5 +77,7 @@ interface ApiService {
     suspend fun getDailyHomeData() : BaseResponse<DailyHomeBean>
 
 
+    @GET("app-dict/word/random")
+    suspend fun getWordRandom() : BaseResponse<WordRandomBean>
 
 }

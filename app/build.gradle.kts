@@ -109,6 +109,9 @@ dependencies {
 
     implementation(libs.multidex)
 
+    implementation(libs.glide)
+    kapt(libs.glide.compiler)
+
     implementation(project(":lib_framework"))
     implementation(project(":lib_starter"))
     implementation(project(":lib_common"))

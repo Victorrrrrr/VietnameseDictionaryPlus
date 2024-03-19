@@ -6,6 +6,7 @@ import com.gp.common.model.AuthClientBean
 
 import com.gp.common.model.AuthPasswordBean
 import com.gp.common.model.DailyHomeBean
+import com.gp.common.model.WordRandomBean
 import com.gp.framework.toast.TipsToast
 import com.gp.main.repository.MainRepository
 import com.gp.network.viewmodel.BaseViewModel
@@ -26,6 +27,21 @@ class MainViewModel : BaseViewModel() {
             }
         }
     }
+
+
+    fun getWordRandom() : LiveData<WordRandomBean> {
+        return liveData {
+            val response = safeApiCall(errorBlock = {code, errorMsg ->
+                TipsToast.showTips(errorMsg)
+            }) {
+                mainRepo.getWordRandom()
+            }
+            response?.let {
+                emit(it)
+            }
+        }
+    }
+
 
     fun sendAuthRequestClient(grantType : String = "client_credentials",
                         clientId : String,

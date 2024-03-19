@@ -8,6 +8,23 @@
             name="sayingBean"
             type="com.gp.common.model.Sentence" />
 
+        <variable
+            name="person"
+            type="com.gp.common.model.Character" />
+
+        <variable
+            name="scenery"
+            type="com.gp.common.model.Scenery" />
+
+        <variable
+            name="music"
+            type="com.gp.common.model.Music" />
+
+        <variable
+            name="wordbean"
+            type="com.gp.common.model.WordRandomBeanItem" />
+
+
     </data>
 
     <ScrollView
@@ -177,7 +194,7 @@
                     android:id="@+id/tv_vietnamese_word"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="越南语越南语"
+                    android:text="@{wordbean.wordVi}"
                     android:textColor="@color/white"
                     android:textSize="@dimen/sp_16"
                     app:layout_constraintStart_toStartOf="parent"
@@ -200,7 +217,7 @@
                     android:layout_marginTop="@dimen/dp_10"
                     android:ellipsize="end"
                     android:maxLines="3"
-                    android:text="释义：吧啦啦啦快递费是否建立快速达到减肥了吧啦啦啦快递费是否建立快速达到减肥了吧啦啦啦快递费是否建立快速达到减肥了"
+                    android:text="@{@string/word_meaning(wordbean.wordZh)}"
                     android:textColor="@color/white"
                     android:textSize="@dimen/sp_14"
                     app:layout_constraintBottom_toBottomOf="parent"
@@ -241,6 +258,7 @@
                     android:layout_width="@dimen/dp_120"
                     android:layout_height="@dimen/dp_120"
                     android:layout_marginStart="@dimen/dp_10"
+                    android:scaleType="centerCrop"
                     android:src="@drawable/daily_person_default"
                     app:layout_constraintEnd_toStartOf="@id/iv_daily_scenic"
                     app:layout_constraintHorizontal_chainStyle="spread"
@@ -250,12 +268,13 @@
 
                 <TextView
                     android:id="@+id/tv_daily_person"
-                    android:layout_width="wrap_content"
+                    android:layout_width="@dimen/dp_120"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/dp_2"
                     android:text="@string/title_daily_person"
                     android:textColor="@color/black"
                     android:textSize="@dimen/sp_14"
+                    android:maxLines="2"
                     app:layout_constraintStart_toStartOf="@id/iv_daily_person"
                     app:layout_constraintTop_toBottomOf="@id/iv_daily_person" />
 
@@ -263,6 +282,7 @@
                     android:id="@+id/iv_daily_scenic"
                     android:layout_width="@dimen/dp_120"
                     android:layout_height="@dimen/dp_120"
+                    android:scaleType="centerCrop"
                     android:src="@drawable/daily_scenic_default"
                     app:layout_constraintEnd_toStartOf="@id/iv_daily_music"
                     app:layout_constraintHorizontal_chainStyle="spread"
@@ -271,10 +291,11 @@
 
                 <TextView
                     android:id="@+id/tv_daily_scenic"
-                    android:layout_width="wrap_content"
+                    android:layout_width="@dimen/dp_120"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/dp_2"
                     android:text="@string/title_daily_scenic"
+                    android:maxLines="2"
                     android:textColor="@color/black"
                     android:textSize="@dimen/sp_14"
                     app:layout_constraintStart_toStartOf="@id/iv_daily_scenic"
@@ -285,6 +306,7 @@
                     android:id="@+id/iv_daily_music"
                     android:layout_width="@dimen/dp_120"
                     android:layout_height="@dimen/dp_120"
+                    android:scaleType="centerCrop"
                     android:src="@drawable/daily_music_default"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintHorizontal_chainStyle="spread"
@@ -293,7 +315,7 @@
 
                 <TextView
                     android:id="@+id/tv_daily_music"
-                    android:layout_width="wrap_content"
+                    android:layout_width="@dimen/dp_120"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/dp_2"
                     android:text="@string/title_daily_music"

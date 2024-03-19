@@ -49,4 +49,7 @@
     <string name="tv_suggest_title">单词反馈</string>
 
     <string name="tip_feedback">感谢您的反馈，后续会进行改善</string>
+    <string name="name_cn">中文名：</string>
+    <string name="see_more_text">查看更多</string>
+
 </resources>

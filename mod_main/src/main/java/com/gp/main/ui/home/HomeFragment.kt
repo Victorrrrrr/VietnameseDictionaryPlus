@@ -5,11 +5,13 @@ import android.os.Bundle
 import android.view.View
 import android.view.animation.Animation
 import android.view.animation.RotateAnimation
+import com.gp.common.model.WordRandomBeanItem
 import com.gp.common.provider.ReciteServiceProvider
 import com.gp.common.provider.SearchServiceProvider
 import com.gp.framework.base.BaseMvvmFragment
 import com.gp.framework.ext.onClick
 import com.gp.framework.toast.TipsToast
+import com.gp.glide.setUrl
 import com.gp.main.databinding.FragmentHomeBinding
 import com.gp.main.ui.daily.music.DailyMusicActivity
 import com.gp.main.ui.daily.person.DailyPersonActivity
@@ -19,10 +21,10 @@ import com.gp.main.ui.main.MainViewModel
 
 class HomeFragment : BaseMvvmFragment<FragmentHomeBinding, MainViewModel>() {
 
-
+    private var randomList : ArrayList<WordRandomBeanItem>? = null
+    private var index : Int = 0
 
     override fun initView(view: View, savedInstanceState: Bundle?) {
-
         initEvent()
     }
 
@@ -31,7 +33,19 @@ class HomeFragment : BaseMvvmFragment<FragmentHomeBinding, MainViewModel>() {
     override fun initData() {
         mViewModel.getHomeDailyData().observe(this) {
             mBinding?.sayingBean = it.sentence
+
+            mBinding?.ivDailyScenic?.setUrl(it.scenery.img)
+            mBinding?.ivDailyPerson?.setUrl(it.character.pic)
+
+            mBinding?.tvDailyPerson?.append(" - ${it.character.nameZh} ")
+            mBinding?.tvDailyScenic?.append(" - ${it.scenery.nameZh} ")
         }
+
+        mViewModel.getWordRandom().observe(this) {
+            mBinding?.wordbean = it[index++]
+            randomList = it
+        }
+
     }
 
 
@@ -46,7 +60,15 @@ class HomeFragment : BaseMvvmFragment<FragmentHomeBinding, MainViewModel>() {
             mBinding?.ivRefreshWord?.startAnimation(animation)
             animation.repeatCount=0
 
-            // TODO: 请求刷新单词
+            if(index < 10) {
+                mBinding?.wordbean = randomList?.get(index++)
+            } else {
+                index = 0
+                mViewModel.getWordRandom().observe(this) {
+                    mBinding?.wordbean = it[index++]
+                    randomList = it
+                }
+            }
 
         }
 
