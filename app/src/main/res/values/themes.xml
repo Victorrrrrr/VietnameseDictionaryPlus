@@ -3,6 +3,7 @@
     <style name="Base.Theme.VietnameseDictionaryPlus" parent="Theme.Material3.DayNight.NoActionBar">
         <!-- Customize your light theme here. -->
          <item name="colorPrimary">@color/vd_theme_color</item>
+         <item name="colorAccent">@color/vd_dark_theme_color</item>
 
     </style>
 

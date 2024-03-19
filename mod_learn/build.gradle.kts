@@ -58,6 +58,8 @@ dependencies {
     compileOnly(libs.lifecycle.livedata.ktx)
     compileOnly(libs.lifecycle.viewmodel.ktx)
 
+    compileOnly(libs.circleimageview)
+
     // 路由
     compileOnly(libs.arouter.api)
     kapt(libs.arouter.compiler)
