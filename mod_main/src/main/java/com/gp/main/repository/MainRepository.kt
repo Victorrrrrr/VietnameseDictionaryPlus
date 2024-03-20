@@ -38,6 +38,7 @@ class MainRepository : BaseRepository() {
         val musicBean = requestResponse {
             ApiManager.api.getMusicDaily()
         }
+        LogUtil.d(tag = "111", message = "${musicBean}")
         val musicList = ArrayList<MusicDaily?>()
         musicBean?.let {
             musicList.add(it.daily)

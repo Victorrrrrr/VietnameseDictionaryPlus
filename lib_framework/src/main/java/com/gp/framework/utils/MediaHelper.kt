@@ -1,35 +1,58 @@
-package com.gp.learn.utils
+package com.gp.framework.utils
 
 import android.content.res.AssetFileDescriptor
 import android.media.MediaPlayer
 import com.gp.framework.helper.VDHelper
-import com.gp.common.constant.YOU_DAO_VOICE_EN
-import com.gp.common.constant.YOU_DAO_VOICE_USA
 
 
 object MediaHelper {
     var mediaPlayer: MediaPlayer? = null
 
     private const val TAG = "MediaHelper"
-//    fun play(wordVoiceUrl: String) {
-//        if (mediaPlayer != null) {
-//            releasePlayer()
-//            mediaPlayer = MediaPlayer()
-//        } else mediaPlayer = MediaPlayer()
-//        try {
-//            mediaPlayer!!.setDataSource(wordVoiceUrl)
-//            mediaPlayer!!.prepareAsync()
-//            mediaPlayer!!.setOnPreparedListener { mediaPlayer!!.start() }
-//            mediaPlayer!!.setOnCompletionListener {
-//                if (mediaPlayer != null) {
-//                    mediaPlayer!!.release()
-//                    mediaPlayer = null
-//                }
-//            }
-//        } catch (e: Exception) {
-//            e.printStackTrace()
-//        }
-//    }
+    fun play(wordVoiceUrl: String) {
+        if (mediaPlayer != null) {
+            releasePlayer()
+            mediaPlayer = MediaPlayer()
+        } else mediaPlayer = MediaPlayer()
+        try {
+            mediaPlayer!!.setDataSource(wordVoiceUrl)
+            mediaPlayer!!.prepareAsync()
+            mediaPlayer!!.setOnPreparedListener { mediaPlayer!!.start() }
+            mediaPlayer!!.setOnCompletionListener {
+                if (mediaPlayer != null) {
+                    mediaPlayer!!.release()
+                    mediaPlayer = null
+                }
+            }
+        } catch (e: Exception) {
+            e.printStackTrace()
+        }
+    }
+
+
+    fun pause() {
+        mediaPlayer?.pause()
+    }
+
+    fun toContinue() {
+        mediaPlayer?.start()
+    }
+
+
+    fun getDuration() : String {
+        val millSecond =  mediaPlayer?.duration
+        val minute = millSecond?.div(1000*60) ?: 0
+        val second = millSecond?.rem((1000*60)) ?: 0
+        var minuteStr = ""
+        var secondStr = ""
+        if(minute < 10) {
+            minuteStr = "0${minute}"
+        }
+        if(second < 10) {
+            secondStr = "0${second}"
+        }
+        return "$minuteStr : $secondStr"
+    }
 
 
     fun playInternetSource(address: String?) {

@@ -4,6 +4,9 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
+        <variable
+            name="word"
+            type="com.gp.common.model.WordBeanItem" />
 
     </data>
 
@@ -31,7 +34,7 @@
             android:ellipsize="end"
             android:textSize="@dimen/sp_26"
             android:textColor="@color/vd_dark_theme_color"
-            android:text="Chi"
+            android:text="@{word.wordVi}"
             android:textStyle="bold"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
@@ -44,7 +47,7 @@
             android:id="@+id/tv_word_explain"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="N;Nc;Np 姊妹，您好吧啦吧吧啦不说分手的分手上发送到发送到发送到发送到发史蒂夫所得税法上"
+            android:text='@{word.pos  + "  " + word.wordZh}'
             android:textColor="@color/black"
             android:textStyle="bold"
             android:maxLines="3"

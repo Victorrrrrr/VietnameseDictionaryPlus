@@ -61,6 +61,9 @@ dependencies {
     compileOnly(libs.arouter.api)
     kapt(libs.arouter.compiler)
 
+    compileOnly(libs.lifecycle.livedata.ktx)
+    compileOnly(libs.lifecycle.viewmodel.ktx)
+
     compileOnly(project(":lib_framework"))
     compileOnly(project(":lib_network"))
     compileOnly(project(":lib_common"))

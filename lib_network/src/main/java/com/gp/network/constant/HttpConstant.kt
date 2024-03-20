@@ -15,5 +15,5 @@ const val KEY_TOKEN = "token"
 
 const val KEY_AUTHORIZATION = "Authorization"
 
-const val KEY_WORD = "word"
+const val KEY_ID = "id"
 

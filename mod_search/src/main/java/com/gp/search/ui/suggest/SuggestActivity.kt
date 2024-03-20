@@ -9,9 +9,10 @@ import com.gp.common.constant.SUGGEST_TYPE
 import com.gp.framework.base.BaseMvvmActivity
 import com.gp.framework.toast.TipsToast
 import com.gp.mod_search.databinding.ActivitySuggestBinding
+import com.gp.search.ui.search.SearchViewModel
 
 @Route(path = SEARCH_ACTIVITY_SUGGEST)
-class SuggestActivity : BaseMvvmActivity<ActivitySuggestBinding, WordPageViewModel>() {
+class SuggestActivity : BaseMvvmActivity<ActivitySuggestBinding, SearchViewModel>() {
 
     companion object {
 

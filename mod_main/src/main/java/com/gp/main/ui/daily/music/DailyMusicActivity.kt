@@ -3,11 +3,17 @@ package com.gp.main.ui.daily.music
 import android.os.Bundle
 import android.text.TextUtils
 import android.view.MotionEvent
+import android.view.View
+import android.view.View.OnScrollChangeListener
+import android.widget.MediaController.MediaPlayerControl
 import android.widget.SeekBar
 import androidx.fragment.app.Fragment
 import com.gp.common.model.MusicDaily
+import com.gp.common.model.PersonDaily
 import com.gp.framework.base.BaseMvvmActivity
 import com.gp.framework.ext.onClick
+import com.gp.framework.toast.TipsToast
+import com.gp.framework.utils.MediaHelper
 import com.gp.lib_framework.utils.StatusBarSettingHelper
 import com.gp.main.R
 import com.gp.main.databinding.ActivityDailyMusicBinding
@@ -27,7 +33,6 @@ class DailyMusicActivity : BaseMvvmActivity<ActivityDailyMusicBinding, DailyView
 
     private var playStatus = PLAY_STATUS_NORMAL
 
-    private var mCurrentModeIndex = 0
 
     // 专辑封面 Fragment
     private val mCoverFragment by lazy { MusicCoverFragment() }
@@ -46,9 +51,10 @@ class DailyMusicActivity : BaseMvvmActivity<ActivityDailyMusicBinding, DailyView
 
     // 当前播放歌曲的引用
     private var mCurrentPlay: MusicDaily? = null
-    // 播放列表 view
-//    private var mListPopup: PlayListPopup? = null
+    // 播放列表
+    private var musicList: MutableList<MusicDaily>? = null
 
+    private var playIndex : Int = 0
 
     override fun initView(savedInstanceState: Bundle?) {
         StatusBarSettingHelper.setStatusBarTranslucent(this)
@@ -58,22 +64,68 @@ class DailyMusicActivity : BaseMvvmActivity<ActivityDailyMusicBinding, DailyView
         mCurrentView = mCoverFragment
         showCover = true
 
-        // 当前播放歌曲信息
-//        mCurrentPlay = GlobalMusicData.getCurrentPlay()
-//        if (mCurrentPlay == null) finish()
-
-
-//        val mode = FSharedPrefsUtils.getInt(Constant.OPTION_TABLE,
-//            Constant.OPTION_PLAY_MODE, Constant.PLAY_MODE_LIST_RECYCLE)
-//        mCurrentModeIndex = mPlayMode.indexOf(mode)
-
-//        mIvPlayMode.setImageResource(mPlayModeIcon[mCurrentModeIndex])
 
         bindView()
         // 初始化监听事件
         initListener()
-//        EventBus.getDefault().register(this)
 
+    }
+
+    override fun initData() {
+        mViewModel.getMusicDailyData().observe(this) {
+            musicList = mutableListOf()
+            it?.forEach {m ->
+                musicList?.add(m!!)
+            }
+            playMusic()
+        }
+    }
+
+    private fun playMusic() {
+        mCurrentPlay = musicList?.get(playIndex)
+        MediaHelper.playInternetSource(mCurrentPlay?.url)
+        playStatus = PLAY_STATUS_PLAYING
+        mBinding.mTvMusicTitle.text = mCurrentPlay?.name
+        mBinding.mTvArtist.text = "未知歌手"
+        mBinding.mIvPlay.setImageResource(R.mipmap.ic_pause_main)
+
+        val bundle = Bundle()
+        bundle.putString("lyric", mCurrentPlay?.lyric)
+        mLrcFragment.arguments = bundle
+
+        mCoverFragment.startAnim()
+    }
+
+
+    private fun playPrevious() {
+        if(playIndex - 1 >= 0) {
+            playIndex--
+        } else {
+            playIndex = musicList?.size?.minus(1) ?: 0
+        }
+        playMusic()
+    }
+
+    private fun playNext() {
+        if(playIndex + 1 < (musicList?.size ?: 0)) {
+            playIndex++
+        } else {
+            playIndex = 0
+        }
+
+        playMusic()
+    }
+
+    private fun pause() {
+        playStatus = PLAY_STATUS_PAUSE
+        MediaHelper.pause()
+        mCoverFragment.pause()
+    }
+
+    private fun toContinue() {
+        playStatus = PLAY_STATUS_PLAYING
+        MediaHelper.toContinue()
+        mCoverFragment.startAnim()
     }
 
 
@@ -82,31 +134,27 @@ class DailyMusicActivity : BaseMvvmActivity<ActivityDailyMusicBinding, DailyView
      */
     private fun initListener() {
         // 播放/暂停
-//        mBinding.mIvPlay.setOnClickListener {
-//            when (mCurrentPlay?.playStatus) {
-//                PLAY_STATUS_PLAYING -> {
-////                    EventBus.getDefault().post(PlayActionEvent(MusicPlayAction.PAUSE, -1))
-//                }
-//
-//                PLAY_STATUS_PAUSE -> {
-////                    EventBus.getDefault().post(PlayActionEvent(MusicPlayAction.RESUME, -1))
-//                }
-//
-//                PLAY_STATUS_NORMAL -> {
-////                    EventBus.getDefault().post(PlayActionEvent(MusicPlayAction.PLAY, -1))
-//                }
-//            }
-//        }
+        mBinding.mIvPlay.onClick {
+            if(playStatus == PLAY_STATUS_PAUSE) {
+                mBinding.mIvPlay.setImageResource(R.mipmap.ic_pause_main)
+                toContinue()
+            } else if (playStatus == PLAY_STATUS_PLAYING) {
+                mBinding.mIvPlay.setImageResource(R.mipmap.ic_play_w)
+                pause()
+            }
+        }
 
 
-//        // 下一曲
-//        mIvNext.setOnClickListener {
-//            EventBus.getDefault().post(PlayActionEvent(MusicPlayAction.NEXT, -1))
-//        }
-//        // 上一曲
-//        mIvPre.setOnClickListener {
-//            EventBus.getDefault().post(PlayActionEvent(MusicPlayAction.PRE, -1))
-//        }
+        // 上一首/下一首
+        mBinding.mIvPre.onClick {
+            playPrevious()
+        }
+
+        mBinding.mIvNext.onClick {
+            playNext()
+        }
+
+
         // 进度条拖动事件
         mBinding.mProcessBar.setOnSeekBarChangeListener(object : SeekBar.OnSeekBarChangeListener {
             override fun onStartTrackingTouch(seekBar: SeekBar?) {
@@ -116,7 +164,8 @@ class DailyMusicActivity : BaseMvvmActivity<ActivityDailyMusicBinding, DailyView
             override fun onStopTrackingTouch(seekBar: SeekBar?) {
                 isSeeking = false
                 // 拖动结束时，发送进度更新指令
-//                EventBus.getDefault().post(PlayActionEvent(MusicPlayAction.SEEK, mProcessBar.progress))
+
+
             }
 
             override fun onProgressChanged(seekBar: SeekBar?, progress: Int, fromUser: Boolean) {
@@ -125,39 +174,12 @@ class DailyMusicActivity : BaseMvvmActivity<ActivityDailyMusicBinding, DailyView
             }
 
         })
-//        // 打开播放列表
-//        mIvList.setOnClickListener {
-//            if (mListPopup == null) {
-//                mListPopup = PlayListPopup(this)
-//                mListPopup?.isOutsideTouchable = true
-//                mListPopup?.animationStyle = R.style.MyPopupStyle
-//                mListPopup?.setOnDismissListener {
-//                    PopupShowUtils.lightOn(this)
-//                }
-//            }
-//            val location = IntArray(2)
-//            it.getLocationOnScreen(location)
-//            PopupShowUtils.lightOff(this)
-//            mListPopup?.showAtLocation(it, Gravity.START or Gravity.BOTTOM,
-//                0, -location[1])
-//        }
+
 
         // 返回前一页页面
         mBinding.mIvBack.onClick {
             finish()
         }
-
-
-//        mBinding.mIvPlayMode.onClick {
-//            mCurrentModeIndex = (mCurrentModeIndex + 1) % mPlayMode.size
-//            mIvPlayMode.setImageResource(mPlayModeIcon[mCurrentModeIndex])
-//            FSharedPrefsUtils.putInt(Constant.OPTION_TABLE,
-//                Constant.OPTION_PLAY_MODE, mPlayMode[mCurrentModeIndex])
-//            EventBus.getDefault().post(PlayModeChangeEvent(mPlayMode[mCurrentModeIndex]))
-
-//            if (mListPopup == null) return@setOnClickListener
-//            mListPopup?.updatePlayModeByEvent(mPlayMode[mCurrentModeIndex])
-//        }
 
 
         mBinding.mCoverLrcView.setOnTouchListener { _, event ->
@@ -169,85 +191,6 @@ class DailyMusicActivity : BaseMvvmActivity<ActivityDailyMusicBinding, DailyView
     }
 
 
-//    /**
-//     * 监听歌曲切换事件
-//     */
-//    @Subscribe
-//    fun onPlayMusicChange(event: PlayMusicChangeEvent) {
-//        mCurrentPlay = GlobalMusicData.getCurrentPlay()
-//        if (mCurrentPlay == null) {
-//            finish()
-//            return
-//        }
-//        bindView()
-//    }
-
-//    /**
-//     * 监听播放状态改变事件
-//     */
-//    @Subscribe
-//    fun onPlayStatusChange(event: PlayStatusChangeEvent) {
-//        mCurrentPlay?.playStatus = event.status
-//        if (mCurrentPlay?.playStatus == Constant.PLAY_STATUS_PLAYING) {
-//            mIvPlay.setImageResource(R.mipmap.ic_pause_main)
-//        } else {
-//            mIvPlay.setImageResource(R.mipmap.song_play)
-//        }
-//    }
-
-    //    /**
-//     * 监听播放进度更新事件
-//     */
-//    @Subscribe
-//    fun onProcessChange(event: PlayProcessChangeEvent) {
-//        if (isSeeking) return
-//        mBinding.mProcessBar.progress = event.process
-//        mBinding.mTvCurrentTime.text = ConvertUtils.getTimeWithProcess(event.process)
-//    }
-
-//    /**
-//     * 监听播放列表更新事件
-//     */
-//    @Subscribe
-//    fun onPlayListChange(event: PlayListChangeEvent) {
-//        if (mListPopup == null) return
-//        mListPopup?.loadPlayList()
-//    }
-//
-//    /**
-//     * 监听播放模式更新事件
-//     */
-//    @Subscribe
-//    fun updatePlayModeByEvent(event: PlayModeChangeEvent) {
-//        val index = mPlayMode.indexOf(event.mode)
-//        if (index == mCurrentModeIndex) return
-//        mCurrentModeIndex = mPlayMode.indexOf(event.mode)
-//        mIvPlayMode?.setImageResource(mPlayModeIcon[mCurrentModeIndex])
-//
-//        if (mListPopup == null) return
-//        mListPopup?.updatePlayModeByEvent(event.mode)
-//    }
-//
-//    /**
-//     * 监听网络歌曲缓冲事件
-//     */
-//    @Subscribe
-//    fun bufferUpdateEvent(event: PlayBufferUpdateEvent) {
-//        val buffer = event.percent * 1.0 / 100.0 * mProcessBar.max
-//        mProcessBar.secondaryProgress = buffer.toInt()
-//    }
-//
-//
-//    @Subscribe
-//    fun onOnlineDownloadEvent(event: OnlineDownloadEvent) {
-//        if (event.type == Constant.DOWLOAD_TYPE_PIC) {
-//            if (event.code == 0) {
-//                setBackWithBitmap(1, event.path!!)
-//            } else {
-//                Log.e("NowPlayActivity", event.message)
-//            }
-//        }
-//    }
 
     /**
      * 绑定当前播放歌曲数据，更新界面
@@ -266,33 +209,12 @@ class DailyMusicActivity : BaseMvvmActivity<ActivityDailyMusicBinding, DailyView
         mBinding.mIvBackGround.setImageResource(R.drawable.default_play_bg)
         mBinding.mIvPlay.setImageResource(R.mipmap.ic_play_w)
 
-        // 设置数据值
-//        mBinding.mProcessBar.max = mCurrentPlay?.duration?.toInt()!!
-//        mBinding.mProcessBar.progress = GlobalMusicData.getProcess()
-//        mBinding.mTvCurrentTime.text = ConvertUtils.getTimeWithProcess(GlobalMusicData.getProcess())
-//        mBinding.mTvTotalTime.text =
-//            ConvertUtils.getTimeWithProcess(mCurrentPlay?.duration?.toInt()!!)
-
         if (playStatus == PLAY_STATUS_PLAYING) {
             mBinding.mIvPlay.setImageResource(R.mipmap.ic_pause_main)
         } else {
             mBinding.mIvPlay.setImageResource(R.mipmap.ic_play_w)
         }
 
-//        if (mCurrentPlay?.isOnline!!) {
-//            val path = mCurrentPlay?.
-//            if (!TextUtils.isEmpty(path) && File(path).exists()) {
-//                // 本地封面为空，从网络下载
-//                setBackWithBitmap(1, path!!)
-//            } else {
-//                OnlineMusicHelper.loadAndSavePic(mCurrentPlay!!)
-//            }
-//        } else {
-//            val uri = mCurrentPlay?.albumUri
-//            if (!TextUtils.isEmpty(uri)) {
-//                mBinding.mIvBackGround.setBlurView(uri)
-//            }
-//        }
     }
 
 
@@ -326,9 +248,10 @@ class DailyMusicActivity : BaseMvvmActivity<ActivityDailyMusicBinding, DailyView
         }
     }
 
+
     override fun onDestroy() {
         super.onDestroy()
-//        EventBus.getDefault().unregister(this)
+        MediaHelper.releasePlayer()
     }
 
 }

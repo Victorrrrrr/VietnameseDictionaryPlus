@@ -10,13 +10,14 @@ import com.alibaba.android.arouter.facade.annotation.Route
 import com.google.android.material.bottomsheet.BottomSheetDialog
 import com.gp.common.constant.SEARCH_ACTIVITY_WORD
 import com.gp.common.model.SentenceBean
+import com.gp.common.model.WordBeanItem
 import com.gp.framework.base.BaseMvvmActivity
 import com.gp.framework.ext.onClick
 import com.gp.framework.toast.TipsToast
+import com.gp.framework.utils.MediaHelper
 import com.gp.framework.utils.getStringFromResource
-import com.gp.mod_search.R
 import com.gp.mod_search.databinding.ActivityWordPageBinding
-import com.gp.network.constant.KEY_WORD
+import com.gp.network.constant.KEY_ID
 import com.gp.search.ui.search.SearchViewModel
 import com.gp.search.ui.suggest.SuggestActivity
 
@@ -25,9 +26,11 @@ class WordPageActivity : BaseMvvmActivity<ActivityWordPageBinding, SearchViewMod
     private var suggestDialog : BottomSheetDialog? = null
     private lateinit var suggestDialogView : View
     private lateinit var mAdapter: SentencesAdapter
+    private var id : String = ""
+    private var word : WordBeanItem? = null
 
     override fun initView(savedInstanceState: Bundle?) {
-        TipsToast.showTips(intent.getStringExtra(KEY_WORD))
+        id = intent.getStringExtra(KEY_ID).toString()
 
         initRecyclerView()
         initEvent()
@@ -41,6 +44,14 @@ class WordPageActivity : BaseMvvmActivity<ActivityWordPageBinding, SearchViewMod
             SentenceBean(sentenceC = "现在第五电视频道在播放足球赛", sentenceV = "Bây giờ kênh truyền hình thứ năm đang phát sóng một trận đấu bóng đá.")
         )
         mAdapter.setData(data)
+
+
+        mViewModel.getWordDetail(id).observe(this) {
+            mBinding.word = it
+            word = it
+        }
+
+
     }
 
     private fun initRecyclerView() {
@@ -62,6 +73,10 @@ class WordPageActivity : BaseMvvmActivity<ActivityWordPageBinding, SearchViewMod
         mBinding.ivSuggest.onClick {
             // 弹出反馈弹窗
             showBottomSheetDialog()
+        }
+
+        mBinding.ivSound.onClick {
+            MediaHelper.playInternetSource(word?.pronounceVi)
         }
 
 

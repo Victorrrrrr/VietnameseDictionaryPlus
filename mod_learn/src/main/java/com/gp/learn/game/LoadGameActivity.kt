@@ -13,7 +13,7 @@ import com.gp.common.constant.LEARN_ACTIVITY_GAME
 import com.gp.common.provider.MainServiceProvider
 import com.gp.framework.base.BaseDataBindActivity
 import com.gp.framework.ext.onClick
-import com.gp.learn.utils.MediaHelper
+import com.gp.framework.utils.MediaHelper
 import com.gp.lib_framework.utils.StatusBarUtil
 import com.gp.mod_learn.R
 import com.gp.mod_learn.databinding.ActivityLoadGameBinding

@@ -5,7 +5,7 @@ import android.os.Bundle
 import android.view.View
 import android.view.animation.Animation
 import android.view.animation.RotateAnimation
-import com.gp.common.model.WordRandomBeanItem
+import com.gp.common.model.WordBeanItem
 import com.gp.common.provider.ReciteServiceProvider
 import com.gp.common.provider.SearchServiceProvider
 import com.gp.framework.base.BaseMvvmFragment
@@ -21,7 +21,7 @@ import com.gp.main.ui.main.MainViewModel
 
 class HomeFragment : BaseMvvmFragment<FragmentHomeBinding, MainViewModel>() {
 
-    private var randomList : ArrayList<WordRandomBeanItem>? = null
+    private var randomList : ArrayList<WordBeanItem>? = null
     private var index : Int = 0
 
     override fun initView(view: View, savedInstanceState: Bundle?) {
@@ -91,7 +91,7 @@ class HomeFragment : BaseMvvmFragment<FragmentHomeBinding, MainViewModel>() {
 
         mBinding?.clRandomWordLayout?.onClick {
             val word = mBinding?.tvVietnameseWord?.text.toString()
-            SearchServiceProvider.toWordPage(context = it.context, word = word)
+            SearchServiceProvider.toWordPage(context = it.context, id = randomList?.get(index-1)?.id.toString())
         }
 
 

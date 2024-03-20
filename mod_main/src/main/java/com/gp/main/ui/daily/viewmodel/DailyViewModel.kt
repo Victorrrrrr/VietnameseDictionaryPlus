@@ -3,6 +3,7 @@ package com.gp.main.ui.daily.viewmodel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.liveData
+import com.gp.common.model.MusicDaily
 import com.gp.common.model.PersonDaily
 import com.gp.common.model.SceneryDaily
 import com.gp.framework.toast.TipsToast
@@ -42,7 +43,18 @@ class DailyViewModel : BaseViewModel() {
     }
 
 
-
+    fun getMusicDailyData() : LiveData<ArrayList<MusicDaily?>> {
+        return liveData {
+            val response = safeApiCall(errorBlock = {code, errorMsg ->
+                TipsToast.showTips(errorMsg)
+            }) {
+                mainRepo.getMusicDaily()
+            }
+            response?.let {
+                emit(it)
+            }
+        }
+    }
 
 
 

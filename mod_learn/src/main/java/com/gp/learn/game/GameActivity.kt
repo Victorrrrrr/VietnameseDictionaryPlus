@@ -1,20 +1,14 @@
 package com.gp.learn.game
 
-import android.content.Intent
 import android.os.Bundle
 import android.os.Handler
-import android.util.Log
-import android.view.View
-import android.widget.AdapterView.OnItemClickListener
-import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.StaggeredGridLayoutManager
 import com.gp.common.provider.MainServiceProvider
 import com.gp.framework.base.BaseMvvmActivity
-import com.gp.learn.utils.MediaHelper.playLocalFileRepeat
-import com.gp.learn.utils.MediaHelper.releasePlayer
+import com.gp.framework.utils.MediaHelper.playLocalFileRepeat
+import com.gp.framework.utils.MediaHelper.releasePlayer
 import com.gp.mod_learn.R
 import com.gp.mod_learn.databinding.ActivityGameBinding
-import java.util.Collections
 
 
 class GameActivity : BaseMvvmActivity<ActivityGameBinding, GameViewModel>() {

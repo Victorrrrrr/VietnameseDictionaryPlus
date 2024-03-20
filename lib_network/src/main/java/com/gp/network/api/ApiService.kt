@@ -7,10 +7,9 @@ import com.gp.common.model.AuthPasswordBean
 import com.gp.common.model.DailyHomeBean
 import com.gp.common.model.MusicBean
 import com.gp.common.model.PersonBean
-import com.gp.common.model.PersonDaily
 import com.gp.common.model.SceneryBean
 import com.gp.common.model.UserInfo
-import com.gp.common.model.WordDetail
+import com.gp.common.model.WordBeanItem
 import com.gp.common.model.WordRandomBean
 import com.gp.framework.base.BaseData
 import com.gp.network.response.BaseResponse
@@ -98,6 +97,6 @@ interface ApiService {
 
 
     @GET("/app-dict/word/{id}")
-    suspend fun getWordDetail(@Path("id")id : String) : BaseResponse<WordDetail>
+    suspend fun getWordDetail(@Path("id")id : String) : BaseResponse<WordBeanItem>
 
 }

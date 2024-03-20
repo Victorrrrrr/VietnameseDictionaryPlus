@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <style name="BottomSheetDialog" parent="Theme.Design.BottomSheetDialog">
-        <item name="bottomSheetStyle">@style/BottomSheetStyleWrapper</item>
+
     </style>
 
     <style name="BottomSheetStyleWrapper" parent="Widget.Design.BottomSheet.Modal">

@@ -5,23 +5,19 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import com.gp.framework.base.BaseMvvmFragment
 import com.gp.main.R
+import com.gp.main.databinding.FragmentMusicLrcBinding
+import com.gp.main.ui.daily.viewmodel.DailyViewModel
 
 
-class MusicLrcFragment : Fragment() {
+class MusicLrcFragment : BaseMvvmFragment<FragmentMusicLrcBinding, DailyViewModel>() {
 
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-
-    }
-
-    override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_music_lrc, container, false)
+    override fun initView(view: View, savedInstanceState: Bundle?) {
+        arguments?.let {
+            mBinding?.mLrcView?.text = it.getString("lyric")
+        }
     }
 
 
