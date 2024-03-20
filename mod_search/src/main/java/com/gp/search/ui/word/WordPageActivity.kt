@@ -17,10 +17,11 @@ import com.gp.framework.utils.getStringFromResource
 import com.gp.mod_search.R
 import com.gp.mod_search.databinding.ActivityWordPageBinding
 import com.gp.network.constant.KEY_WORD
+import com.gp.search.ui.search.SearchViewModel
 import com.gp.search.ui.suggest.SuggestActivity
 
 @Route(path = SEARCH_ACTIVITY_WORD)
-class WordPageActivity : BaseMvvmActivity<ActivityWordPageBinding, WordPageViewModel>() {
+class WordPageActivity : BaseMvvmActivity<ActivityWordPageBinding, SearchViewModel>() {
     private var suggestDialog : BottomSheetDialog? = null
     private lateinit var suggestDialogView : View
     private lateinit var mAdapter: SentencesAdapter
@@ -36,8 +37,8 @@ class WordPageActivity : BaseMvvmActivity<ActivityWordPageBinding, WordPageViewM
 
     override fun initData() {
         val data = mutableListOf (
-            SentenceBean(sentenceC = "sfsfsfsdfsdfsdf", sentenceV = "sdfsdfsdfsdfgsgsdgsd"),
-            SentenceBean(sentenceC = "131212", sentenceV = "23r23r234")
+            SentenceBean(sentenceC = "4个工人在安装钢琴，待会儿他们要搬运大提琴。", sentenceV = "Bốn công nhân đang lắp đàn, và họ sẽ di chuyển chiếc đàn Cello sau đó"),
+            SentenceBean(sentenceC = "现在第五电视频道在播放足球赛", sentenceV = "Bây giờ kênh truyền hình thứ năm đang phát sóng một trận đấu bóng đá.")
         )
         mAdapter.setData(data)
     }
