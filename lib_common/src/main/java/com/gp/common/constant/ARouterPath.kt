@@ -55,7 +55,7 @@ const val USER_ACTIVITY_HISTORY = "/user/activity/history"
 
 const val USER_ACTIVITY_USERINFO = "/user/activity/userinfo"
 
-const val USER_ACTIVITY_language = "/user/activity/language"
+const val USER_ACTIVITY_LANGUAGE = "/user/activity/language"
 
 const val USER_ACTIVITY_NOTIFICATION = "/user/activity/notification"
 

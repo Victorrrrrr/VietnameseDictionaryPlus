@@ -13,5 +13,6 @@ class WordBookConfigActivity : BaseMvvmActivity<ActivityWordBookConfigBinding, W
 
     override fun initView(savedInstanceState: Bundle?) {
 
+
     }
 }
