@@ -3,10 +3,12 @@ package com.gp.framework.utils
 import android.content.res.AssetFileDescriptor
 import android.media.MediaPlayer
 import com.gp.framework.helper.VDHelper
+import wseemann.media.FFmpegMediaMetadataRetriever
 
 
 object MediaHelper {
     var mediaPlayer: MediaPlayer? = null
+    var duration = 0
 
     private const val TAG = "MediaHelper"
     fun play(wordVoiceUrl: String) {
@@ -63,7 +65,10 @@ object MediaHelper {
         try {
             mediaPlayer!!.setDataSource(address)
             mediaPlayer!!.prepareAsync()
-            mediaPlayer!!.setOnPreparedListener { mediaPlayer!!.start() }
+            mediaPlayer!!.setOnPreparedListener {
+                mediaPlayer!!.start()
+                duration = it.duration
+            }
             mediaPlayer!!.setOnCompletionListener {
                 if (mediaPlayer != null) {
                     mediaPlayer!!.release()
@@ -135,5 +140,24 @@ object MediaHelper {
             e.printStackTrace()
         }
     }
+
+    fun getDurationString() : String {
+        val millisecond = getDurationInMilliseconds()
+        var second = millisecond / 1000
+        val hour = second / 3600
+        second %= 3600
+        val minute = second / 60
+        second %= 60
+        val res = if (hour == 0) String.format("%02d:%02d", minute, second) else String.format("%02d:%02d:%02d", hour, minute, second)
+        return res
+    }
+
+    /**
+     * 在playInternalDatasource 后面调用
+     */
+    fun getDurationInMilliseconds() : Int {
+        return duration
+    }
+
 }
 

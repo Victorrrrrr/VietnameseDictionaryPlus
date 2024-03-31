@@ -7,6 +7,7 @@ import com.alibaba.android.arouter.facade.annotation.Route
 import com.gp.common.constant.RECITE_ACTIVITY_RECITE
 import com.gp.common.provider.MainServiceProvider
 import com.gp.framework.base.BaseMvvmActivity
+import com.gp.framework.ext.click
 import com.gp.mod_recite.databinding.ActivityReciteWordBinding
 import com.gp.recite.viewmodel.ReciteWordViewModel
 
@@ -14,6 +15,10 @@ import com.gp.recite.viewmodel.ReciteWordViewModel
 class ReciteWordActivity : BaseMvvmActivity<ActivityReciteWordBinding, ReciteWordViewModel>() {
 
     override fun initView(savedInstanceState: Bundle?) {
+
+        mBinding.ivToHome.click {
+            MainServiceProvider.toMain(this, 0)
+        }
 
     }
 

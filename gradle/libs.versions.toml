@@ -51,6 +51,8 @@ tbssdk = "44132"
 
 circleimageview = "3.1.0"
 
+ffmpeg-core = "1.0.19"
+ffmpeg-native = "1.0.19"
 
 # 声明坐标的别名
 [libraries]
@@ -63,6 +65,10 @@ material = { group = "com.google.android.material", name = "material", version.r
 constraintlayout = { group = "androidx.constraintlayout", name = "constraintlayout", version.ref = "constraintlayout" }
 gson = {group = "com.google.code.gson", name = "gson", version.ref = "gson"}
 circleimageview = {group = "de.hdodenhof", name = "circleimageview", version.ref = "circleimageview"}
+
+# 音频
+ffmpeg-core = { group = "com.github.wseemann", name = "FFmpegMediaMetadataRetriever-core", version.ref = "ffmpeg-core" }
+ffmpeg-native = { group = "com.github.wseemann", name = "FFmpegMediaMetadataRetriever-native", version.ref = "ffmpeg-native" }
 
 # 网络请求
 retrofit2 = { group = "com.squareup.retrofit2", name = "retrofit", version.ref = "retrofit2" }

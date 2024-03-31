@@ -113,6 +113,9 @@ dependencies {
     implementation(libs.glide)
     kapt(libs.glide.compiler)
 
+    implementation(libs.ffmpeg.core)
+    implementation(libs.ffmpeg.native)
+
     implementation(project(":lib_framework"))
     implementation(project(":lib_starter"))
     implementation(project(":lib_common"))

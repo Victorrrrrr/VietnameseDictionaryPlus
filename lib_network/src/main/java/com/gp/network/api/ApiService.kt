@@ -8,6 +8,7 @@ import com.gp.common.model.DailyHomeBean
 import com.gp.common.model.MusicBean
 import com.gp.common.model.PersonBean
 import com.gp.common.model.SceneryBean
+import com.gp.common.model.SearchWordBean
 import com.gp.common.model.UserInfo
 import com.gp.common.model.WordBeanItem
 import com.gp.common.model.WordRandomBean
@@ -96,7 +97,15 @@ interface ApiService {
     suspend fun getMusicDaily() : BaseResponse<MusicBean>
 
 
-    @GET("/app-dict/word/{id}")
+    @GET("app-dict/word/{id}")
     suspend fun getWordDetail(@Path("id")id : String) : BaseResponse<WordBeanItem>
+
+    @GET("app-dict/word")
+    suspend fun getWordList(
+        @Query("currentPage") currentPage : Int,
+        @Query("pageSize") pageSize : Int,
+        @Query("keyword") keyword : String
+    ) : BaseResponse<SearchWordBean>
+
 
 }

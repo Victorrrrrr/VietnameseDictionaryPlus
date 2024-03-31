@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <data>
+
+    </data>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginVertical="@dimen/dp_16"
+        android:layout_marginStart="@dimen/dp_24"
+        android:gravity="center_vertical"
+        android:orientation="horizontal">
+
+        <TextView
+            android:id="@+id/tv_word_search"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Cao"
+            android:textColor="@color/black"
+            android:textSize="@dimen/sp_18"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/tv_word_pos"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/dp_10"
+            android:text="N; P"
+            android:textSize="@dimen/sp_12" />
+
+
+        <TextView
+            android:id="@+id/tv_word_explain_search"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:ellipsize="end"
+            android:maxLines="1"
+            android:singleLine="true"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/dp_8"
+            android:text="操了操了操了操了操了真的是操了操了操了操了操了操了真的是操了操了操了操了操了操了真的是操了操了操了操了操了操了真的是操了操了操了操了操了操了真的是操了操了操了操了操了操了真的是操了操了操了操了操了操了真的是操了操了操了操了操了操了真的是操了"
+            android:layout_marginEnd="@dimen/dp_24"
+            android:textSize="@dimen/sp_14" />
+
+
+    </LinearLayout>
+</layout>

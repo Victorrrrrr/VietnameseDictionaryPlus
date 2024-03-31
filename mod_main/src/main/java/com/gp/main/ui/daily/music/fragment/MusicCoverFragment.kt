@@ -10,12 +10,8 @@ import android.graphics.drawable.LayerDrawable
 import android.graphics.drawable.ShapeDrawable
 import android.graphics.drawable.shapes.OvalShape
 import android.os.Bundle
-import androidx.fragment.app.Fragment
-import android.view.LayoutInflater
 import android.view.View
-import android.view.ViewGroup
 import android.view.animation.LinearInterpolator
-import android.widget.ImageView
 import androidx.core.graphics.drawable.RoundedBitmapDrawableFactory
 import com.gp.framework.base.BaseMvvmFragment
 import com.gp.main.R
@@ -26,18 +22,17 @@ import com.gp.main.ui.daily.viewmodel.DailyViewModel
 class MusicCoverFragment : BaseMvvmFragment<FragmentMusicCoverBinding, DailyViewModel>() {
 
     private var discObjectAnimator: ObjectAnimator? = null
-    private var neddleObjectAnimator: ObjectAnimator? = null
-
+    private var needleObjectAnimator: ObjectAnimator? = null
 
 
     fun startAnim() {
         discObjectAnimator!!.start()
-        neddleObjectAnimator!!.start()
+        needleObjectAnimator!!.start()
     }
 
     fun pause() {
         discObjectAnimator!!.cancel()
-        neddleObjectAnimator!!.reverse()
+        needleObjectAnimator!!.reverse()
     }
 
     override fun initView(view: View, savedInstanceState: Bundle?) {
@@ -95,11 +90,11 @@ class MusicCoverFragment : BaseMvvmFragment<FragmentMusicCoverBinding, DailyView
         //无限循环旋转
         discObjectAnimator?.setRepeatCount(ValueAnimator.INFINITE)
         discObjectAnimator?.setRepeatMode(ValueAnimator.RESTART)
-        neddleObjectAnimator = ObjectAnimator.ofFloat(needleImage, "rotation", 0f, 25f)
+        needleObjectAnimator = ObjectAnimator.ofFloat(needleImage, "rotation", 0f, 25f)
         needleImage?.pivotX = 0f
         needleImage?.pivotY = 0f
-        neddleObjectAnimator?.setDuration(800)
-        neddleObjectAnimator?.setInterpolator(LinearInterpolator())
+        needleObjectAnimator?.setDuration(800)
+        needleObjectAnimator?.setInterpolator(LinearInterpolator())
 
     }
 

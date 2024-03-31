@@ -17,7 +17,7 @@ import com.gp.framework.toast.TipsToast
 import com.gp.framework.utils.MediaHelper
 import com.gp.framework.utils.getStringFromResource
 import com.gp.mod_search.databinding.ActivityWordPageBinding
-import com.gp.network.constant.KEY_ID
+import com.gp.network.constant.KEY_WORD_ID
 import com.gp.search.ui.search.SearchViewModel
 import com.gp.search.ui.suggest.SuggestActivity
 
@@ -30,7 +30,7 @@ class WordPageActivity : BaseMvvmActivity<ActivityWordPageBinding, SearchViewMod
     private var word : WordBeanItem? = null
 
     override fun initView(savedInstanceState: Bundle?) {
-        id = intent.getStringExtra(KEY_ID).toString()
+        id = intent.getStringExtra(KEY_WORD_ID).toString()
 
         initRecyclerView()
         initEvent()

@@ -96,6 +96,14 @@
             app:layout_constraintEnd_toEndOf="@id/iv_no_result"
             app:layout_constraintTop_toBottomOf="@id/iv_no_result" />
 
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rv_search_word_list"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toBottomOf="@id/rl_et_search"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:layout_marginTop="@dimen/dp_10"/>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

@@ -63,6 +63,8 @@ dependencies {
     compileOnly(libs.lifecycle.livedata.ktx)
     compileOnly(libs.lifecycle.viewmodel.ktx)
 
+    compileOnly(libs.ffmpeg.core)
+    compileOnly(libs.ffmpeg.native)
 
     // 路由
     compileOnly(libs.arouter.api)

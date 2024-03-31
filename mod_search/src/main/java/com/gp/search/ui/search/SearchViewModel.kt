@@ -2,6 +2,7 @@ package com.gp.search.ui.search
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.liveData
+import com.gp.common.model.SearchWordBean
 import com.gp.common.model.WordBeanItem
 import com.gp.framework.toast.TipsToast
 import com.gp.network.viewmodel.BaseViewModel
@@ -20,6 +21,20 @@ class SearchViewModel : BaseViewModel() {
                 searchRepository.getWordDetail(id)
             }
             response?.let{
+                emit(it)
+            }
+        }
+    }
+
+
+    fun getWordList(currentPage : Int, pageSize : Int, keyword : String) : LiveData<SearchWordBean> {
+        return liveData {
+            val response = safeApiCall(errorBlock = {code, errorMsg ->
+                TipsToast.showTips(errorMsg)
+            }) {
+                searchRepository.getWordList(currentPage, pageSize, keyword)
+            }
+            response?.let {
                 emit(it)
             }
         }

@@ -84,6 +84,7 @@ class DailyMusicActivity : BaseMvvmActivity<ActivityDailyMusicBinding, DailyView
     private fun playMusic() {
         mCurrentPlay = musicList?.get(playIndex)
         MediaHelper.playInternetSource(mCurrentPlay?.url)
+        mBinding.mTvTotalTime.text = MediaHelper.getDurationString()
         playStatus = PLAY_STATUS_PLAYING
         mBinding.mTvMusicTitle.text = mCurrentPlay?.name
         mBinding.mTvArtist.text = "未知歌手"

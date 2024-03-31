@@ -6,6 +6,7 @@ import androidx.recyclerview.widget.PagerSnapHelper
 import com.gp.common.model.PersonDaily
 import com.gp.common.model.SceneryDaily
 import com.gp.framework.base.BaseMvvmActivity
+import com.gp.lib_framework.utils.StatusBarSettingHelper
 import com.gp.main.databinding.ActivityDailyScenicBinding
 import com.gp.main.ui.daily.adapter.DailyPersonAdapter
 import com.gp.main.ui.daily.adapter.DailySceneryAdapter
@@ -15,6 +16,8 @@ class DailyScenicActivity : BaseMvvmActivity<ActivityDailyScenicBinding, DailyVi
 
     private lateinit var dailyScenicAdapter : DailySceneryAdapter
     override fun initView(savedInstanceState: Bundle?) {
+        StatusBarSettingHelper.setStatusBarTranslucent(this)
+
         val manager = LinearLayoutManager(this)
         dailyScenicAdapter = DailySceneryAdapter()
         val snapHelper = PagerSnapHelper()
