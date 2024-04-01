@@ -88,10 +88,18 @@
                     android:orientation="horizontal"
                     android:layout_weight="1"/>
 
+                <FrameLayout
+                    android:id="@+id/change_frame"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/dp_20"
+                    android:layout_gravity="end"
+                    android:background="@android:color/black" />
+
                 <!--进度指示器-->
                 <RelativeLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="@dimen/dp_15"
                     android:layout_marginTop="5dp">
 
                     <TextView
@@ -127,7 +135,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="5dp"
-                    android:layout_marginTop="5dp"
+                    android:layout_marginTop="10dp"
                     android:gravity="center_vertical"
                     android:padding="10dp">
 

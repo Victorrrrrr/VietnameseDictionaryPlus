@@ -3,7 +3,6 @@ package com.gp.framework.utils
 import android.content.res.AssetFileDescriptor
 import android.media.MediaPlayer
 import com.gp.framework.helper.VDHelper
-import wseemann.media.FFmpegMediaMetadataRetriever
 
 
 object MediaHelper {
@@ -69,6 +68,7 @@ object MediaHelper {
                 mediaPlayer!!.start()
                 duration = it.duration
             }
+            mediaPlayer!!
             mediaPlayer!!.setOnCompletionListener {
                 if (mediaPlayer != null) {
                     mediaPlayer!!.release()
@@ -142,7 +142,7 @@ object MediaHelper {
     }
 
     fun getDurationString() : String {
-        val millisecond = getDurationInMilliseconds()
+        val millisecond = getTotalInMilliseconds()
         var second = millisecond / 1000
         val hour = second / 3600
         second %= 3600
@@ -152,10 +152,16 @@ object MediaHelper {
         return res
     }
 
+    fun getCurrentPosition() = mediaPlayer?.currentPosition
+
+    fun getDurationNow() = mediaPlayer?.duration
+
+    fun seekTo(sec: Int) = mediaPlayer?.seekTo(sec)
+
     /**
      * 在playInternalDatasource 后面调用
      */
-    fun getDurationInMilliseconds() : Int {
+    fun getTotalInMilliseconds() : Int {
         return duration
     }
 

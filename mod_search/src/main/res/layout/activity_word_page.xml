@@ -18,71 +18,77 @@
 
         <View
             android:id="@+id/v_word_bg"
-            android:layout_width="match_parent"
-            android:layout_margin="@dimen/dp_15"
-            android:layout_height="@dimen/dp_150"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
             android:background="@drawable/shape_light_theme_bg"
-            app:layout_constraintStart_toStartOf="@id/tv_word_text"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="parent"/>
+            app:layout_constraintStart_toStartOf="@id/ll_sentence"
+            app:layout_constraintEnd_toEndOf="@id/ll_sentence"
+            app:layout_constraintBottom_toBottomOf="@id/space_word_bottom"
+            app:layout_constraintTop_toTopOf="parent"
+            android:layout_marginTop="@dimen/dp_20"
+            />
 
         <TextView
             android:id="@+id/tv_word_text"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:maxLines="1"
+            android:maxLines="2"
             android:ellipsize="end"
             android:textSize="@dimen/sp_26"
             android:textColor="@color/vd_dark_theme_color"
             android:text="@{word.wordVi}"
             android:textStyle="bold"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            android:layout_margin="@dimen/dp_30"
+            app:layout_constraintStart_toStartOf="@id/v_word_bg"
+            app:layout_constraintEnd_toStartOf="@id/iv_sound"
+            app:layout_constraintTop_toTopOf="@id/v_word_bg"
+            android:layout_marginHorizontal="@dimen/dp_20"
+            android:layout_marginTop="@dimen/dp_15"
             />
 
 
 
         <TextView
             android:id="@+id/tv_word_explain"
-            android:layout_width="match_parent"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:text='@{word.pos  + "  " + word.wordZh}'
             android:textColor="@color/black"
             android:textStyle="bold"
             android:maxLines="3"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="@id/v_word_bg"
+            app:layout_constraintEnd_toEndOf="@id/v_word_bg"
             app:layout_constraintTop_toBottomOf="@id/tv_word_text"
-            android:layout_margin="@dimen/dp_30"/>
-
-
-        <ImageView
-            android:id="@+id/iv_folder"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:background="@drawable/shape_round_icon_bg"
-            android:src="@drawable/ic_folder"
-            app:layout_constraintEnd_toStartOf="@+id/iv_sound"
-            app:layout_constraintTop_toTopOf="@id/iv_sound"
-            android:layout_marginEnd="@dimen/dp_8"
-            />
+            android:layout_marginTop="@dimen/dp_20"
+            android:layout_marginHorizontal="@dimen/dp_20"/>
 
         <ImageView
             android:id="@+id/iv_sound"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:background="@drawable/shape_round_icon_bg"
             android:src="@drawable/ic_sound"
-            app:layout_constraintEnd_toStartOf="@+id/iv_fav"
-            app:layout_constraintTop_toTopOf="@id/iv_fav"
+            android:padding="@dimen/dp_5"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@id/tv_word_text"
+            app:layout_constraintBottom_toBottomOf="@id/tv_word_text"
+            android:layout_marginEnd="@dimen/dp_30"
+            />
+
+
+        <ImageView
+            android:id="@+id/iv_folder"
+            android:layout_width="@dimen/dp_28"
+            android:layout_height="@dimen/dp_28"
+            android:background="@drawable/shape_round_icon_bg"
+            android:src="@drawable/ic_folder"
+            app:layout_constraintEnd_toStartOf="@id/iv_fav"
+            app:layout_constraintTop_toTopOf="@id/iv_suggest"
             android:layout_marginEnd="@dimen/dp_8"
             />
 
         <ImageView
             android:id="@+id/iv_fav"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="@dimen/dp_28"
+            android:layout_height="@dimen/dp_28"
             android:background="@drawable/shape_round_icon_bg"
             android:src="@drawable/ic_fav"
             app:layout_constraintEnd_toStartOf="@+id/iv_suggest"
@@ -93,16 +99,25 @@
 
         <ImageView
             android:id="@+id/iv_suggest"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="@dimen/dp_28"
+            android:layout_height="@dimen/dp_28"
             android:background="@drawable/shape_round_icon_bg"
             android:src="@drawable/ic_suggest"
+            android:padding="@dimen/dp_5"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            android:layout_marginTop="@dimen/dp_30"
+            app:layout_constraintTop_toBottomOf="@id/tv_word_explain"
+            android:layout_marginTop="@dimen/dp_5"
             android:layout_marginEnd="@dimen/dp_30"/>
 
+        <Space
+            android:id="@+id/space_word_bottom"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/dp_15"
+            app:layout_constraintTop_toBottomOf="@id/iv_fav"
+            />
+
         <LinearLayout
+            android:id="@+id/ll_sentence"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"

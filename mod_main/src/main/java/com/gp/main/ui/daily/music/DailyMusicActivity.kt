@@ -1,18 +1,23 @@
 package com.gp.main.ui.daily.music
 
+import android.annotation.SuppressLint
 import android.os.Bundle
+import android.os.Handler
 import android.text.TextUtils
+import android.util.Log
 import android.view.MotionEvent
 import android.view.View
 import android.view.View.OnScrollChangeListener
 import android.widget.MediaController.MediaPlayerControl
 import android.widget.SeekBar
+import android.widget.SeekBar.OnSeekBarChangeListener
 import androidx.fragment.app.Fragment
 import com.gp.common.model.MusicDaily
 import com.gp.common.model.PersonDaily
 import com.gp.framework.base.BaseMvvmActivity
 import com.gp.framework.ext.onClick
 import com.gp.framework.toast.TipsToast
+import com.gp.framework.utils.LogUtil
 import com.gp.framework.utils.MediaHelper
 import com.gp.lib_framework.utils.StatusBarSettingHelper
 import com.gp.main.R
@@ -22,6 +27,8 @@ import com.gp.main.ui.daily.music.fragment.MusicLrcFragment
 import com.gp.main.ui.daily.viewmodel.DailyViewModel
 import com.gp.main.utils.ConvertUtils
 import java.io.File
+import java.util.Timer
+import java.util.TimerTask
 
 class DailyMusicActivity : BaseMvvmActivity<ActivityDailyMusicBinding, DailyViewModel>() {
 
@@ -82,13 +89,28 @@ class DailyMusicActivity : BaseMvvmActivity<ActivityDailyMusicBinding, DailyView
     }
 
     private fun playMusic() {
+        mBinding.mProcessBar.progress = 0
         mCurrentPlay = musicList?.get(playIndex)
         MediaHelper.playInternetSource(mCurrentPlay?.url)
-        mBinding.mTvTotalTime.text = MediaHelper.getDurationString()
+        Handler().postDelayed({
+            mBinding.mTvTotalTime.text = ConvertUtils.getTimeWithProcess(MediaHelper.duration)
+            mBinding.mProcessBar.max = MediaHelper.duration
+        }, 1000)
         playStatus = PLAY_STATUS_PLAYING
         mBinding.mTvMusicTitle.text = mCurrentPlay?.name
         mBinding.mTvArtist.text = "未知歌手"
         mBinding.mIvPlay.setImageResource(R.mipmap.ic_pause_main)
+        val timer = Timer()
+        timer.schedule(object : TimerTask() {
+            override fun run() {
+                if(!isSeeking) {
+                    runOnUiThread {
+                        mBinding.mProcessBar.progress = MediaHelper.getCurrentPosition() ?: 0
+                        mBinding.mTvCurrentTime.text = ConvertUtils.getTimeWithProcess(MediaHelper.getCurrentPosition() ?: 0)
+                    }
+                }
+            }
+        },0,50)
 
         val bundle = Bundle()
         bundle.putString("lyric", mCurrentPlay?.lyric)
@@ -133,6 +155,7 @@ class DailyMusicActivity : BaseMvvmActivity<ActivityDailyMusicBinding, DailyView
     /**
      * 初始化各控件事件监听
      */
+    @SuppressLint("ClickableViewAccessibility")
     private fun initListener() {
         // 播放/暂停
         mBinding.mIvPlay.onClick {
@@ -165,13 +188,28 @@ class DailyMusicActivity : BaseMvvmActivity<ActivityDailyMusicBinding, DailyView
             override fun onStopTrackingTouch(seekBar: SeekBar?) {
                 isSeeking = false
                 // 拖动结束时，发送进度更新指令
-
+                MediaHelper.seekTo(mBinding.mProcessBar.progress)
+                mBinding.mTvCurrentTime.text = ConvertUtils.getTimeWithProcess(MediaHelper.getCurrentPosition()
+                    ?.div(1000) ?: 0)
 
             }
 
             override fun onProgressChanged(seekBar: SeekBar?, progress: Int, fromUser: Boolean) {
-                if (fromUser) mBinding.mTvCurrentTime.text =
-                    ConvertUtils.getTimeWithProcess(progress)
+                if (fromUser) {
+                    mBinding.mTvCurrentTime.text =
+                        ConvertUtils.getTimeWithProcess(progress)
+                } else {
+                    val position = MediaHelper.getCurrentPosition()
+                    Log.d("gxy", "播放进度：${position}")
+                    if (position != null) {
+                        mBinding.mTvCurrentTime.text = ConvertUtils.getTimeWithProcess(position/1000)
+                    }
+                    val duration = MediaHelper.getDurationString()
+                    mBinding.mTvTotalTime.text = duration
+                    Log.d("gxy","total：${duration}")
+
+
+                }
             }
 
         })
@@ -182,14 +220,40 @@ class DailyMusicActivity : BaseMvvmActivity<ActivityDailyMusicBinding, DailyView
             finish()
         }
 
+        mBinding.changeFrame.onClick {
+            changeView()
+        }
 
         mBinding.mCoverLrcView.setOnTouchListener { _, event ->
-            if (event.action == MotionEvent.ACTION_DOWN) {
-                changeView()
+            when(event.action) {
+                MotionEvent.ACTION_DOWN -> {
+                    x1 = event.x
+                    y1 = event.y
+                }
+                MotionEvent.ACTION_MOVE -> {
+
+                }
+
+                MotionEvent.ACTION_UP -> {
+                    x2 = event.x
+                    y2 = event.y
+
+                    if(Math.abs(y2 - y1) < 10) {
+                        changeView()
+                    }
+                    if(Math.abs(y2 - y1) > 100) {
+                        false
+                    }
+                }
             }
-            false
+            true
         }
     }
+
+    private var x1 : Float = 0f
+    private var y1 : Float = 0f
+    private var x2 : Float = 0f
+    private var y2 : Float = 0f
 
 
 
@@ -203,8 +267,8 @@ class DailyMusicActivity : BaseMvvmActivity<ActivityDailyMusicBinding, DailyView
         mBinding.mTvArtist.text = split?.get(1)
 
         // 恢复进度条,背景,播放状态
-        mBinding.mProcessBar.max = 0
-        mBinding.mProcessBar.progress = 0
+//        mBinding.mProcessBar.max = 0
+//        mBinding.mProcessBar.progress = 0
 //        mBinding.mTvCurrentTime.text = getString(R.string.time_zero)
 //        mBinding.mTvTotalTime.text = getString(R.string.time_zero)
         mBinding.mIvBackGround.setImageResource(R.drawable.default_play_bg)

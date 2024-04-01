@@ -18,6 +18,8 @@ class MusicLrcFragment : BaseMvvmFragment<FragmentMusicLrcBinding, DailyViewMode
         arguments?.let {
             mBinding?.mLrcView?.text = it.getString("lyric")
         }
+
+
     }
 
 
