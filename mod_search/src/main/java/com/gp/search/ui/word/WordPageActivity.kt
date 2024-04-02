@@ -11,6 +11,7 @@ import com.google.android.material.bottomsheet.BottomSheetDialog
 import com.gp.common.constant.SEARCH_ACTIVITY_WORD
 import com.gp.common.model.SentenceBean
 import com.gp.common.model.WordBeanItem
+import com.gp.common.provider.MainServiceProvider
 import com.gp.framework.base.BaseMvvmActivity
 import com.gp.framework.ext.onClick
 import com.gp.framework.toast.TipsToast
@@ -67,7 +68,7 @@ class WordPageActivity : BaseMvvmActivity<ActivityWordPageBinding, SearchViewMod
 
     private fun initEvent() {
         mBinding.ivBack.onClick {
-            onBackPressed()
+            MainServiceProvider.toMain(it.context, 0)
         }
 
         mBinding.ivSuggest.onClick {

@@ -12,6 +12,7 @@ import android.widget.MediaController.MediaPlayerControl
 import android.widget.SeekBar
 import android.widget.SeekBar.OnSeekBarChangeListener
 import androidx.fragment.app.Fragment
+import androidx.viewpager.widget.PagerAdapter
 import com.gp.common.model.MusicDaily
 import com.gp.common.model.PersonDaily
 import com.gp.framework.base.BaseMvvmActivity
@@ -22,6 +23,7 @@ import com.gp.framework.utils.MediaHelper
 import com.gp.lib_framework.utils.StatusBarSettingHelper
 import com.gp.main.R
 import com.gp.main.databinding.ActivityDailyMusicBinding
+import com.gp.main.ui.daily.adapter.MusicFragmentAdapter
 import com.gp.main.ui.daily.music.fragment.MusicCoverFragment
 import com.gp.main.ui.daily.music.fragment.MusicLrcFragment
 import com.gp.main.ui.daily.viewmodel.DailyViewModel
@@ -66,10 +68,10 @@ class DailyMusicActivity : BaseMvvmActivity<ActivityDailyMusicBinding, DailyView
     override fun initView(savedInstanceState: Bundle?) {
         StatusBarSettingHelper.setStatusBarTranslucent(this)
         // 初始的专辑封面
-        supportFragmentManager.beginTransaction()
-            .add(R.id.mCoverLrcView, mCoverFragment).commit()
-        mCurrentView = mCoverFragment
-        showCover = true
+//        supportFragmentManager.beginTransaction()
+//            .add(R.id.mCoverLrcView, mCoverFragment).commit()
+//        mCurrentView = mCoverFragment
+//        showCover = true
 
 
         bindView()
@@ -115,6 +117,12 @@ class DailyMusicActivity : BaseMvvmActivity<ActivityDailyMusicBinding, DailyView
         val bundle = Bundle()
         bundle.putString("lyric", mCurrentPlay?.lyric)
         mLrcFragment.arguments = bundle
+
+        val list = mutableListOf<Fragment>()
+        list.add(mCoverFragment)
+        list.add(mLrcFragment)
+        mBinding.mCoverLrcView.adapter = MusicFragmentAdapter(supportFragmentManager, list)
+        mBinding.mCoverLrcView.currentItem = 0
 
         mCoverFragment.startAnim()
     }
@@ -220,40 +228,9 @@ class DailyMusicActivity : BaseMvvmActivity<ActivityDailyMusicBinding, DailyView
             finish()
         }
 
-        mBinding.changeFrame.onClick {
-            changeView()
-        }
 
-        mBinding.mCoverLrcView.setOnTouchListener { _, event ->
-            when(event.action) {
-                MotionEvent.ACTION_DOWN -> {
-                    x1 = event.x
-                    y1 = event.y
-                }
-                MotionEvent.ACTION_MOVE -> {
-
-                }
-
-                MotionEvent.ACTION_UP -> {
-                    x2 = event.x
-                    y2 = event.y
-
-                    if(Math.abs(y2 - y1) < 10) {
-                        changeView()
-                    }
-                    if(Math.abs(y2 - y1) > 100) {
-                        false
-                    }
-                }
-            }
-            true
-        }
     }
 
-    private var x1 : Float = 0f
-    private var y1 : Float = 0f
-    private var x2 : Float = 0f
-    private var y2 : Float = 0f
 
 
 
@@ -287,31 +264,31 @@ class DailyMusicActivity : BaseMvvmActivity<ActivityDailyMusicBinding, DailyView
      * 封面/歌词页面切换,由mLrcFragment，mCoverFragment 根据手势调用
      */
 
-    private fun changeView() {
-        if (showCover) {
-            showCover = false
-            switchFragment(mLrcFragment)
-        } else {
-            showCover = true
-            switchFragment(mCoverFragment)
-        }
-    }
+//    private fun changeView() {
+//        if (showCover) {
+//            showCover = false
+//            switchFragment(mLrcFragment)
+//        } else {
+//            showCover = true
+//            switchFragment(mCoverFragment)
+//        }
+//    }
 
     /**
      * Fragment 跳转
      */
-    private fun switchFragment(fragment: Fragment) {
-        if (fragment != mCurrentView) {
-            if (fragment.isAdded) {
-                supportFragmentManager.beginTransaction()
-                    .hide(mCurrentView).show(fragment).commit()
-            } else {
-                supportFragmentManager.beginTransaction()
-                    .hide(mCurrentView).add(R.id.mCoverLrcView, fragment).commit()
-            }
-            mCurrentView = fragment
-        }
-    }
+//    private fun switchFragment(fragment: Fragment) {
+//        if (fragment != mCurrentView) {
+//            if (fragment.isAdded) {
+//                supportFragmentManager.beginTransaction()
+//                    .hide(mCurrentView).show(fragment).commit()
+//            } else {
+//                supportFragmentManager.beginTransaction()
+//                    .hide(mCurrentView).add(R.id.mCoverLrcView, fragment).commit()
+//            }
+//            mCurrentView = fragment
+//        }
+//    }
 
 
     override fun onDestroy() {

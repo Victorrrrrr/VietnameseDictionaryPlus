@@ -81,19 +81,13 @@
                 </RelativeLayout>
 
                 <!--胶片/歌词-->
-                <FrameLayout
+                <androidx.viewpager.widget.ViewPager
                     android:id="@+id/mCoverLrcView"
                     android:layout_width="match_parent"
                     android:layout_height="0dp"
                     android:orientation="horizontal"
                     android:layout_weight="1"/>
 
-                <FrameLayout
-                    android:id="@+id/change_frame"
-                    android:layout_width="match_parent"
-                    android:layout_height="@dimen/dp_20"
-                    android:layout_gravity="end"
-                    android:background="@android:color/black" />
 
                 <!--进度指示器-->
                 <RelativeLayout
