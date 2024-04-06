@@ -21,7 +21,7 @@
     <string name="title_daily_music">每日歌曲</string>
     <string name="title_daily_person">每日人物</string>
     <string name="me_login_tip_text">立即登陆</string>
-    <string name="me_word_learned_sum">累计学习了 %ss 个单词！！！</string>
+    <string name="me_word_learned_sum">累计学习了 %s 个单词！！！</string>
     <string name="text_history">查词记录</string>
     <string name="text_history_tip">看过的词忘了看这里</string>
     <string name="text_collection">收藏夹</string>
@@ -54,6 +54,11 @@
     <string name="recite_bottom_str_know">认识</string>
     <string name="recite_bottom_str_unclear">模糊</string>
     <string name="recite_bottom_str_unknown">不认识</string>
+    <string name="no_login_tips">请先登陆才能体验该功能哦～</string>
+    <string name="me_word_learned_no_login">立刻登陆查看累计单词数吧！</string>
+    <string name="tv_confirm">确定</string>
+    <string name="recite_tv_en">英语：%s</string>
+    <string name="recite_tv_pos">词性：%s</string>
 
 
 </resources>

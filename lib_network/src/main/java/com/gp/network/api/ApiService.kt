@@ -5,13 +5,17 @@ import com.gp.common.model.ArticleList
 import com.gp.common.model.AuthClientBean
 import com.gp.common.model.AuthPasswordBean
 import com.gp.common.model.DailyHomeBean
+import com.gp.common.model.FinishWordBean
+import com.gp.common.model.LearnProcess
 import com.gp.common.model.MusicBean
 import com.gp.common.model.PersonBean
 import com.gp.common.model.SceneryBean
 import com.gp.common.model.SearchWordBean
 import com.gp.common.model.UserInfo
 import com.gp.common.model.WordBeanItem
+import com.gp.common.model.WordLearnList
 import com.gp.common.model.WordRandomBean
+import com.gp.common.model.WordbookList
 import com.gp.framework.base.BaseData
 import com.gp.network.response.BaseResponse
 import retrofit2.http.Body
@@ -107,5 +111,34 @@ interface ApiService {
         @Query("keyword") keyword : String
     ) : BaseResponse<SearchWordBean>
 
+    @GET("app-dict/book")
+    suspend fun getWordbookList(
+        @Query("currentPage") currentPage : Int,
+        @Query("pageSize") pageSize : Int,
+        @Query("keyword") keyword : String
+    ) : BaseResponse<WordbookList>
+
+
+    @POST("app-dict/book/{id}")
+    suspend fun postWordBookId(
+        @Path("id") wordbookId : Int
+    ) : BaseResponse<Void>
+
+    @GET("app-dict/learn/process")
+    suspend fun getLearnProcess(
+        @Query("bookId") bookId : Int
+    ) : BaseResponse<LearnProcess>
+
+
+    @GET("app-dict/learn/word")
+    suspend fun getLearnWord(
+        @Query("size") size : Int
+    ) : BaseResponse<WordLearnList>
+
+
+    @GET("app-dict/learn/finish")
+    suspend fun finishLearn(
+        @Body body : FinishWordBean
+    ) : BaseResponse<Void>
 
 }

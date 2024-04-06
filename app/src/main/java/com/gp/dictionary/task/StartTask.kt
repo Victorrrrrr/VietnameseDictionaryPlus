@@ -3,6 +3,8 @@ package com.gp.dictionary.task
 import android.app.Application
 import com.alibaba.android.arouter.BuildConfig
 import com.alibaba.android.arouter.launcher.ARouter
+import com.gp.common.constant.YOU_DAO_APP_ID
+import com.gp.common.constant.YOU_DAO_APP_SECRET
 import com.gp.framework.helper.VDHelper
 import com.gp.framework.manager.AppManager
 import com.gp.framework.utils.LogUtil
@@ -10,6 +12,8 @@ import com.gp.starter.task.Task
 import com.gp.starter.utils.DispatcherExecutor
 import com.tencent.mmkv.MMKV
 import com.tencent.mmkv.MMKVLogLevel
+import com.youdao.sdk.app.YouDaoApplication
+
 import java.util.concurrent.ExecutorService
 
 /**
@@ -121,6 +125,38 @@ class InitARouterTask() : Task() {
     }
 
 }
+
+/**
+ * 初始化MMKV
+ */
+
+class InitYouDaoTask() : Task() {
+
+    //异步线程执行的Task在被调用await的时候等待
+    override fun needWait(): Boolean {
+        return true
+    }
+
+    //依赖某些任务，在某些任务完成后才能执行
+    override fun dependsOn(): MutableList<Class<out Task>> {
+        val tasks = mutableListOf<Class<out Task?>>()
+        tasks.add(InitVDHelperTask::class.java)
+        return tasks
+    }
+
+    //指定线程池
+    override fun runOn(): ExecutorService? {
+        return DispatcherExecutor.iOExecutor
+    }
+
+    //执行任务初始化
+    override fun run() {
+        YouDaoApplication.init(VDHelper.getApplication(), YOU_DAO_APP_ID, YOU_DAO_APP_SECRET);
+        LogUtil.d("youdao application init run", tag = "youdao")
+    }
+
+}
+
 
 
 

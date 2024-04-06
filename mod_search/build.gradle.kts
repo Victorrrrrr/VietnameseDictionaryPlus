@@ -68,4 +68,5 @@ dependencies {
     compileOnly(project(":lib_network"))
     compileOnly(project(":lib_common"))
     compileOnly(project(":lib_widget"))
+    compileOnly(project(":lib_room"))
 }

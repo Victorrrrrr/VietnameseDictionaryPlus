@@ -7,6 +7,7 @@ import com.alibaba.android.arouter.facade.annotation.Route
 import com.gp.common.constant.LOGIN_ACTIVITY_LOGIN
 import com.gp.common.manager.UserInfoManager
 import com.gp.common.model.UserInfo
+import com.gp.common.provider.UserServiceProvider
 import com.gp.framework.base.BaseMvvmActivity
 import com.gp.framework.ext.onClick
 import com.gp.framework.toast.TipsToast
@@ -52,6 +53,7 @@ class LoginActivity : BaseMvvmActivity<ActivityLoginBinding, LoginViewModel>() {
                         it?.let {
                             TokenManager.saveToken(it.accessToken)
                             UserInfoManager.saveUserInfo(UserInfo(account = username, username = username))
+                            UserServiceProvider.toWordBook(this)
                             finish()
                         }
                     }

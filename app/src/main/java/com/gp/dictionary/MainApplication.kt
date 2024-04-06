@@ -9,6 +9,7 @@ import com.gp.dictionary.task.InitARouterTask
 import com.gp.dictionary.task.InitAppManagerTask
 import com.gp.dictionary.task.InitMmkvTask
 import com.gp.dictionary.task.InitVDHelperTask
+import com.gp.dictionary.task.InitYouDaoTask
 import com.gp.framework.manager.ActivityManager
 import com.gp.framework.manager.AppFrontBack
 import com.gp.framework.manager.AppFrontBackListener
@@ -48,6 +49,7 @@ class MainApplication : Application() {
             .addTask(InitAppManagerTask())
             .addTask(InitMmkvTask())
             .addTask(InitARouterTask())
+            .addTask(InitYouDaoTask())
             .start()
 
         // 4. 等待，需要等待的方法执行完才可以继续往下执行

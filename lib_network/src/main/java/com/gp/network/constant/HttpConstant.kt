@@ -9,7 +9,12 @@ package com.gp.network.constant
  */
 const val TEST_BASE_URL = "https://www.wanandroid.com"
 
-const val BASE_URL = "http://120.25.103.178:800"
+// 测试
+//const val BASE_URL = "http://120.25.103.178:800"
+// 线上
+const val BASE_URL = "http://139.159.243.90:800"
+
+const val BAIDU_URL = "https://aip.baidubce.com"
 
 const val KEY_TOKEN = "token"
 

@@ -7,6 +7,7 @@ import com.gp.framework.helper.VDHelper
 import com.gp.room.dao.MusicListCacheDao
 import com.gp.room.dao.PersonListCacheDao
 import com.gp.room.dao.SceneryListCacheDao
+import com.gp.room.dao.WordListCacheDao
 import com.gp.room.entity.MusicInfo
 import com.gp.room.entity.PersonInfo
 import com.gp.room.entity.SceneryInfo
@@ -18,6 +19,8 @@ abstract class VDDatabase : RoomDatabase() {
     abstract fun personListDao() : PersonListCacheDao
     abstract fun sceneryListDao() : SceneryListCacheDao
     abstract fun musicListDao() : MusicListCacheDao
+
+//    abstract fun wordListDao() : WordListCacheDao
 
     companion object {
         private var dataBase: VDDatabase? = null

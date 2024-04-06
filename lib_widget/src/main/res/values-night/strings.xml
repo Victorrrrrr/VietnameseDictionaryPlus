@@ -54,5 +54,10 @@
     <string name="recite_bottom_str_know">认识</string>
     <string name="recite_bottom_str_unclear">模糊</string>
     <string name="recite_bottom_str_unknown">不认识</string>
+    <string name="no_login_tips">请先登陆才能体验该功能哦～</string>
+    <string name="me_word_learned_no_login">立刻登陆查看累计单词数吧！！</string>
+    <string name="tv_confirm">确定</string>
+    <string name="recite_tv_en">英语：</string>
+    <string name="recite_tv_pos">词性：</string>
 
 </resources>

@@ -48,7 +48,7 @@ class SearchActivity : BaseMvvmActivity<ActivitySearchBinding, SearchViewModel>(
                 //如果改变了，并且文本长度>0
                 val wordText = s.toString()
                 if (wordText.length > 0) {
-                    mViewModel.getWordList(1, 20, wordText).observe(this@SearchActivity) {
+                    mViewModel.getWordList(1, 50, wordText).observe(this@SearchActivity) {
                         wordSearchAdapter?.setData(it.data)
                         mBinding.rvSearchWordList.layoutManager = LinearLayoutManager(this@SearchActivity)
                         mBinding.rvSearchWordList.adapter = wordSearchAdapter
@@ -71,7 +71,7 @@ class SearchActivity : BaseMvvmActivity<ActivitySearchBinding, SearchViewModel>(
             // TODO : 执行搜索操作
             LogUtil.d(tag = "search", message = "搜索操作执行")
             val wordText = view.text.toString()
-            mViewModel.getWordList(1, 20, wordText).observe(this) {
+            mViewModel.getWordList(1, 50, wordText).observe(this) {
                 wordSearchAdapter?.setData(it.data)
                 mBinding.rvSearchWordList.layoutManager = LinearLayoutManager(this)
                 mBinding.rvSearchWordList.adapter = wordSearchAdapter

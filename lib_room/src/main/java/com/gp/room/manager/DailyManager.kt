@@ -18,6 +18,7 @@ object DailyManager {
     private val sceneryDao by lazy { VDDatabase.getInstance().sceneryListDao() }
 
 
+
     // =================== 人物部分 ========================
     suspend fun savePersonList(list: MutableList<PersonInfo>) {
         personDao.insertAll(list)

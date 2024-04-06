@@ -22,7 +22,12 @@
     <color name="light_orange">#3C3C3C</color>
 
     <color name="text_light_grey">#6A6A6A</color>
+    <color name="wrong_chacha_item">#F8BCB8</color>
+    <color name="right_tick_item">#BEFBC1</color>
+    <color name="right_tick_icon">#22DC2C</color>
 
     <color name="light_white">#3C3C3C</color>
+
+    <color name="btn_press">#C8C8C8</color>
 
 </resources>

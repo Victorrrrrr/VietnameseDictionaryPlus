@@ -1,9 +1,12 @@
 package com.gp.framework.utils
 
+import android.annotation.SuppressLint
 import android.graphics.drawable.ColorDrawable
+import android.graphics.drawable.Drawable
 import androidx.annotation.ArrayRes
 import androidx.annotation.ColorRes
 import androidx.annotation.DimenRes
+import androidx.annotation.DrawableRes
 import androidx.annotation.StringRes
 import androidx.core.content.ContextCompat
 import com.gp.framework.helper.VDHelper
@@ -43,4 +46,8 @@ fun getColorDrawable(@ColorRes colorRes: Int): ColorDrawable? {
             colorRes
         )
     )
+}
+
+fun getDrawable(@DrawableRes drawableRes: Int): Drawable? {
+    return VDHelper.getApplication().getDrawable(drawableRes)
 }

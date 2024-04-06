@@ -61,6 +61,13 @@ android {
         }
     }
 
+    //jniLibs目录指向libs目录
+    sourceSets {
+        getByName("main") {
+            jniLibs.srcDirs("libs")
+        }
+    }
+
     buildFeatures {
         viewBinding = true
         dataBinding = true
@@ -82,9 +89,18 @@ dependencies {
     implementation(libs.appcompat)
     implementation(libs.material)
     implementation(libs.constraintlayout)
+    implementation(files("libs/online_auth.jar"))
+    implementation(files("libs/YoudaoBase_v20230803.jar"))
+    implementation(files("libs/YoudaoTranslateOnline_v2.0.1.jar"))
+    implementation(files("libs/zhiyun_offline_common.jar"))
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.test.ext.junit)
     androidTestImplementation(libs.espresso.core)
+
+    implementation(files("libs/YoudaoBase_v20230803.jar") )
+    implementation(files("libs/online_auth.jar"))
+    implementation(files("libs/zhiyun_offline_common.jar"))
+    implementation(files("libs/YoudaoTranslateOnline_v2.0.1.jar"))
 
     // 路由
     implementation(libs.arouter.api)
@@ -115,6 +131,8 @@ dependencies {
 
     implementation(libs.ffmpeg.core)
     implementation(libs.ffmpeg.native)
+
+    implementation(libs.jtransforms)
 
     implementation(project(":lib_framework"))
     implementation(project(":lib_starter"))

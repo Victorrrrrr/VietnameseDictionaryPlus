@@ -6,17 +6,21 @@ import android.view.View
 import android.view.animation.Animation
 import android.view.animation.RotateAnimation
 import com.gp.common.model.WordBeanItem
+import com.gp.common.provider.LoginServiceProvider
 import com.gp.common.provider.ReciteServiceProvider
 import com.gp.common.provider.SearchServiceProvider
 import com.gp.framework.base.BaseMvvmFragment
 import com.gp.framework.ext.onClick
 import com.gp.framework.toast.TipsToast
+import com.gp.framework.utils.getStringFromResource
 import com.gp.glide.setUrl
+import com.gp.main.R
 import com.gp.main.databinding.FragmentHomeBinding
 import com.gp.main.ui.daily.music.DailyMusicActivity
 import com.gp.main.ui.daily.person.DailyPersonActivity
 import com.gp.main.ui.daily.scenic.DailyScenicActivity
 import com.gp.main.ui.main.MainViewModel
+import com.gp.main.ui.transform.PicTransformActivity
 
 
 class HomeFragment : BaseMvvmFragment<FragmentHomeBinding, MainViewModel>() {
@@ -80,13 +84,15 @@ class HomeFragment : BaseMvvmFragment<FragmentHomeBinding, MainViewModel>() {
         }
 
         mBinding?.btnToRecite?.onClick {
-            ReciteServiceProvider.toReciteLoad(it.context)
+            if(LoginServiceProvider.isLogin()) {
+                ReciteServiceProvider.toReciteLoad(it.context)
+            } else {
+                TipsToast.showTips(getStringFromResource(com.gp.lib_widget.R.string.no_login_tips))
+            }
         }
 
         mBinding?.ivTakePhoto?.onClick {
-            TipsToast.showTips("拍照权限请求")
-            // TODO 请求权限
-
+            startActivity(Intent(it.context, PicTransformActivity::class.java))
         }
 
         mBinding?.clRandomWordLayout?.onClick {

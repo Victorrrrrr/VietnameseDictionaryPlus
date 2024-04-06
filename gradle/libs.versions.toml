@@ -1,6 +1,7 @@
 # 声明可以被依赖项引用的版本
 [versions]
 # sdk版本
+jtransforms = "3.1"
 targetsdk = "34"
 compilesdk = "34"
 minsdk = "24"
@@ -57,6 +58,7 @@ ffmpeg-native = "1.0.19"
 # 声明坐标的别名
 [libraries]
 core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "core-ktx" }
+jtransforms = { group = "com.github.wendykierp", name = "JTransforms" , version.ref = "jtransforms" }
 junit = { group = "junit", name = "junit", version.ref = "junit" }
 androidx-test-ext-junit = { group = "androidx.test.ext", name = "junit", version.ref = "androidx-test-ext-junit" }
 espresso-core = { group = "androidx.test.espresso", name = "espresso-core", version.ref = "espresso-core" }

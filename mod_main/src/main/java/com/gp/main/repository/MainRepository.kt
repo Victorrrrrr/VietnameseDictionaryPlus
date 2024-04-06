@@ -1,7 +1,9 @@
 package com.gp.main.repository
 
 import com.gp.common.model.AuthClientBean
+import com.gp.common.model.BaiduAuthClientBean
 import com.gp.common.model.DailyHomeBean
+import com.gp.common.model.LearnProcess
 import com.gp.common.model.MusicDaily
 import com.gp.common.model.PersonDaily
 import com.gp.common.model.SceneryDaily
@@ -18,6 +20,17 @@ class MainRepository : BaseRepository() {
         }
     }
 
+    suspend fun baiduClient(apiKey : String, secretKey : String) : BaiduAuthClientBean? {
+        return requestAuthResponse {
+            ApiManager.baidu.oauthToken("client_credentials", apiKey, secretKey)
+        }
+    }
+
+    suspend fun getLearnProcess(bookId : Int) : LearnProcess? {
+        return requestResponse {
+            ApiManager.api.getLearnProcess(bookId)
+        }
+    }
 
 
     suspend fun getHomeDailyData() : DailyHomeBean? {

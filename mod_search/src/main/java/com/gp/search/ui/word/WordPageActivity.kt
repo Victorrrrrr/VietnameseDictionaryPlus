@@ -68,7 +68,7 @@ class WordPageActivity : BaseMvvmActivity<ActivityWordPageBinding, SearchViewMod
 
     private fun initEvent() {
         mBinding.ivBack.onClick {
-            MainServiceProvider.toMain(it.context, 0)
+            onBackPressed()
         }
 
         mBinding.ivSuggest.onClick {

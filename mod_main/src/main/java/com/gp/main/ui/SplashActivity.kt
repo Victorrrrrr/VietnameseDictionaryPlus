@@ -34,6 +34,9 @@ class SplashActivity : BaseMvvmActivity<ActivitySplashBinding, MainViewModel>() 
             oauthToken()
         }
 
+        if (TokenManager.getBaiduToken().isNullOrEmpty()) {
+            oauthBaiduToken()
+        }
 
         mBinding.tvSkip.onClick {
             MainServiceProvider.toMain(this)
@@ -55,9 +58,16 @@ class SplashActivity : BaseMvvmActivity<ActivitySplashBinding, MainViewModel>() 
             CLIENT_ID,
             CLIENT_SECRET
         ).observe(this) {
-            Log.d("1112", "result : ${it}")
             TokenManager.saveToken(it.access_token)
         }
     }
 
+
+    private fun oauthBaiduToken() {
+        mViewModel.sendBaiduAuthRequestClient(
+            API_KEY, SECRET_KEY
+        ).observe(this) {
+            TokenManager.saveBaiduToken(it.access_token)
+        }
+    }
 }

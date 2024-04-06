@@ -5,6 +5,7 @@ import androidx.lifecycle.liveData
 import com.gp.common.model.AuthClientBean
 
 import com.gp.common.model.AuthPasswordBean
+import com.gp.common.model.BaiduAuthClientBean
 import com.gp.common.model.DailyHomeBean
 import com.gp.common.model.WordRandomBean
 import com.gp.framework.toast.TipsToast
@@ -51,6 +52,20 @@ class MainViewModel : BaseViewModel() {
                 TipsToast.showTips(errorMsg)
             }) {
                 mainRepo.authClient(grantType, clientId, clientSecret)
+            }
+            response?.let {
+                emit(it)
+            }
+        }
+    }
+
+
+    fun sendBaiduAuthRequestClient(clientId : String, clientSecret : String) : LiveData<BaiduAuthClientBean> {
+        return liveData {
+            val response = safeApiCall(errorBlock = {code, errorMsg ->
+                TipsToast.showTips(errorMsg)
+            }) {
+                mainRepo.baiduClient(clientId, clientSecret)
             }
             response?.let {
                 emit(it)

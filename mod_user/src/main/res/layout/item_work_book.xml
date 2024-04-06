@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+        <variable
+            name="wordbookName"
+            type="String" />
+
+        <variable
+            name="wordbookCount"
+            type="Integer" />
+
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="@dimen/dp_10">
+
+
+        <TextView
+            android:id="@+id/tv_word_book_item"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            app:layout_constraintEnd_toStartOf="@id/cb_choose"
+            android:text="@{wordbookName}"
+            android:textSize="@dimen/sp_16"
+            android:textColor="@color/black"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            />
+
+        <TextView
+            android:id="@+id/tv_word_book_count"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@{`单词量：` + wordbookCount}"
+            android:layout_marginTop="@dimen/dp_8"
+            app:layout_constraintTop_toBottomOf="@id/tv_word_book_item"
+            app:layout_constraintStart_toStartOf="@id/tv_word_book_item"
+            />
+
+        <CheckBox
+            android:id="@+id/cb_choose"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@id/tv_word_book_item"
+            app:layout_constraintTop_toTopOf="@id/tv_word_book_item"
+            app:layout_constraintBottom_toBottomOf="@id/tv_word_book_count"
+            />
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

@@ -12,6 +12,18 @@ class SearchViewModel : BaseViewModel() {
 
     private val searchRepository by lazy { SearchRepository() }
 
+    fun getWordList(currentPage : Int, pageSize : Int, keyword : String) : LiveData<SearchWordBean> {
+        return liveData {
+            val response = safeApiCall(errorBlock = {code, errorMsg ->
+                TipsToast.showTips(errorMsg)
+            }) {
+                searchRepository.getWordList(currentPage, pageSize, keyword)
+            }
+            response?.let {
+                emit(it)
+            }
+        }
+    }
 
     fun getWordDetail(id : String) : LiveData<WordBeanItem> {
         return liveData {
@@ -27,17 +39,6 @@ class SearchViewModel : BaseViewModel() {
     }
 
 
-    fun getWordList(currentPage : Int, pageSize : Int, keyword : String) : LiveData<SearchWordBean> {
-        return liveData {
-            val response = safeApiCall(errorBlock = {code, errorMsg ->
-                TipsToast.showTips(errorMsg)
-            }) {
-                searchRepository.getWordList(currentPage, pageSize, keyword)
-            }
-            response?.let {
-                emit(it)
-            }
-        }
-    }
+
 
 }

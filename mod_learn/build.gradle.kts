@@ -48,9 +48,9 @@ dependencies {
 
     compileOnly(fileTree(mapOf("dir" to "libs", "include" to listOf("*.jar"))))
     compileOnly(libs.core.ktx)
-    api (libs.appcompat)
-    compileOnly(libs.material)
-    compileOnly(libs.constraintlayout)
+    implementation (libs.appcompat)
+    implementation(libs.material)
+    implementation(libs.constraintlayout)
     testCompileOnly(libs.junit)
     androidTestCompileOnly(libs.androidx.test.ext.junit)
     androidTestCompileOnly(libs.espresso.core)
@@ -59,6 +59,8 @@ dependencies {
     compileOnly(libs.lifecycle.viewmodel.ktx)
 
     compileOnly(libs.circleimageview)
+
+    compileOnly(libs.jtransforms)
 
     // 路由
     compileOnly(libs.arouter.api)
