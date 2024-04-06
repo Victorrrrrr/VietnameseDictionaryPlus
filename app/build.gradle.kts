@@ -92,6 +92,7 @@ dependencies {
 
     implementation(libs.lifecycle.livedata.ktx)
     implementation(libs.lifecycle.viewmodel.ktx)
+    implementation(libs.lifecycle.common)
 
     implementation(libs.retrofit2)
     implementation(libs.retrofit2.gson)
@@ -109,12 +110,19 @@ dependencies {
 
     implementation(libs.multidex)
 
+    implementation(libs.glide)
+    kapt(libs.glide.compiler)
+
+    implementation(libs.ffmpeg.core)
+    implementation(libs.ffmpeg.native)
+
     implementation(project(":lib_framework"))
     implementation(project(":lib_starter"))
     implementation(project(":lib_common"))
     implementation(project(":lib_network"))
     implementation(project(":lib_room"))
     implementation(project(":lib_widget"))
+    implementation(project(":lib_glide"))
     implementation(project(":lib_starter"))
     implementation(project(":mod_learn"))
     implementation(project(":mod_login"))

@@ -36,7 +36,11 @@ dependencies {
 
     compileOnly(fileTree(mapOf("dir" to "libs", "include" to listOf("*.jar"))))
     compileOnly(libs.core.ktx)
-    compileOnly(libs.appcompat)
-    compileOnly(libs.material)
-    compileOnly(libs.constraintlayout)
+    implementation(libs.appcompat)
+    implementation(libs.material)
+    implementation(libs.constraintlayout)
+
+    implementation(libs.flexbox)
+
+    compileOnly(project(":lib_framework"))
 }

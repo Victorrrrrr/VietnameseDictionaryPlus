@@ -60,11 +60,11 @@ class MainApplication : Application() {
     private fun appFrontBackRegister() {
         AppFrontBack.register(this, object : AppFrontBackListener {
             override fun onFront(activity: Activity?) {
-                LogUtil.d("onBack")
+                LogUtil.d("前台回调，onFront")
             }
 
             override fun onBack(activity: Activity?) {
-                LogUtil.d("onFront")
+                LogUtil.d("后台回调，onBack")
             }
         })
     }

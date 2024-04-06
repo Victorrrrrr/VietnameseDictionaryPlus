@@ -1,4 +1,33 @@
 <?xml version="1.0" encoding="utf-8"?>
-<manifest xmlns:android="http://schemas.android.com/apk/res/android">
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <application>
+        <activity
+            android:name="com.gp.learn.game.GameStatusActivity"
+            android:configChanges="orientation|keyboardHidden|screenSize"
+            android:screenOrientation="landscape"
+            android:theme="@style/AppFullScreen"
+            />
+        <activity
+            android:name="com.gp.learn.game.GameActivity"
+            android:configChanges="orientation|keyboardHidden|screenSize"
+            android:screenOrientation="landscape"
+            android:theme="@style/AppFullScreen" />
+        <activity
+            android:name="com.gp.learn.tool.voice_trans.VoiceTransActivity"
+            android:exported="false" />
+        <activity
+            android:name="com.gp.learn.tool.note.NoteActivity"
+            android:exported="false" />
+        <activity
+            android:name="com.gp.learn.review.WordMatchActivity"
+            android:exported="false" />
+        <activity
+            android:name="com.gp.learn.game.LoadGameActivity"
+            android:configChanges="orientation|keyboardHidden|screenSize"
+            android:screenOrientation="landscape"
+            android:theme="@style/AppFullScreen" />
+    </application>
 
 </manifest>

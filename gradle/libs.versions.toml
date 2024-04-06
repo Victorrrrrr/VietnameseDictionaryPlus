@@ -1,8 +1,8 @@
 # 声明可以被依赖项引用的版本
 [versions]
 # sdk版本
-targetsdk = "33"
-compilesdk = "33"
+targetsdk = "34"
+compilesdk = "34"
 minsdk = "24"
 versioncode = "1"
 versionname = "1.0"
@@ -24,8 +24,9 @@ espresso-core = "3.5.1"
 appcompat = "1.6.1"
 material = "1.8.0"
 constraintlayout = "2.0.4"
-lifecycle-livedata-ktx = "2.6.1"
-lifecycle-viewmodel-ktx = "2.6.1"
+lifecycle-livedata-ktx = "2.3.1"
+lifecycle-viewmodel-ktx = "2.3.1"
+lifecycle-common = "2.5.0-beta01"
 navigation-fragment-ktx = "2.6.0"
 navigation-ui-ktx = "2.6.0"
 
@@ -43,10 +44,15 @@ glide = "4.15.0"
 glide-compiler = "4.15.0"
 flexbox = "3.0.0"
 
-room = "2.5.0"
+room = "2.6.1"
 
 exoplayer = "2.18.5"
 tbssdk = "44132"
+
+circleimageview = "3.1.0"
+
+ffmpeg-core = "1.0.19"
+ffmpeg-native = "1.0.19"
 
 # 声明坐标的别名
 [libraries]
@@ -58,6 +64,11 @@ appcompat = { group = "androidx.appcompat", name = "appcompat", version.ref = "a
 material = { group = "com.google.android.material", name = "material", version.ref = "material" }
 constraintlayout = { group = "androidx.constraintlayout", name = "constraintlayout", version.ref = "constraintlayout" }
 gson = {group = "com.google.code.gson", name = "gson", version.ref = "gson"}
+circleimageview = {group = "de.hdodenhof", name = "circleimageview", version.ref = "circleimageview"}
+
+# 音频
+ffmpeg-core = { group = "com.github.wseemann", name = "FFmpegMediaMetadataRetriever-core", version.ref = "ffmpeg-core" }
+ffmpeg-native = { group = "com.github.wseemann", name = "FFmpegMediaMetadataRetriever-native", version.ref = "ffmpeg-native" }
 
 # 网络请求
 retrofit2 = { group = "com.squareup.retrofit2", name = "retrofit", version.ref = "retrofit2" }
@@ -86,6 +97,7 @@ mmkv = {group = "com.tencent", name = "mmkv", version.ref = "mmkv"}
 
 lifecycle-livedata-ktx = { group = "androidx.lifecycle", name = "lifecycle-livedata-ktx", version.ref = "lifecycle-livedata-ktx" }
 lifecycle-viewmodel-ktx = { group = "androidx.lifecycle", name = "lifecycle-viewmodel-ktx", version.ref = "lifecycle-viewmodel-ktx" }
+lifecycle-common = {group = "androidx.lifecycle", name = "lifecycle-common", version.ref = "lifecycle-common"}
 navigation-fragment-ktx = { group = "androidx.navigation", name = "navigation-fragment-ktx", version.ref = "navigation-fragment-ktx" }
 navigation-ui-ktx = { group = "androidx.navigation", name = "navigation-ui-ktx", version.ref = "navigation-ui-ktx" }
 
@@ -95,6 +107,7 @@ navigation-ui-ktx = { group = "androidx.navigation", name = "navigation-ui-ktx",
 [plugins]
 androidApplication = { id = "com.android.application", version.ref = "agp" }
 kotlinAndroid = { id = "org.jetbrains.kotlin.android", version.ref = "kotlin" }
+androidLibrary = { id = "com.android.library", version.ref = "agp" }
 
 # 声明依赖包
 [bundles]

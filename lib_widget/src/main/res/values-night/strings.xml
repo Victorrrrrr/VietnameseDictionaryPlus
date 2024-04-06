@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="search_tint_string">输入需要查询的单词</string>
+    <string name="cancel">取消</string>
+    <string name="progress_loading_text">数据准备中，请保持网络通畅，专注!加油!</string>
+
+    <string name="splash_time">跳过 %ss</string>
+
+    <string name="home">主页</string>
+    <string name="learn">学习</string>
+    <string name="me">我的</string>
+    <string name="saying_title_string">每日精选名言</string>
+    <string name="home_words_title">随机词条</string>
+    <string name="home_btn_recite_string">开始学习越南语词语！</string>
+    <string name="home_daily_title">每日精选</string>
+
+
+    <string name="search_no_result">暂无查询结果</string>
+    <string name="title_daily_scenic">每日景点</string>
+    <string name="title_daily_music">每日歌曲</string>
+    <string name="title_daily_person">每日人物</string>
+    <string name="me_login_tip_text">立即登陆</string>
+    <string name="me_word_learned_sum">累计学习了 %ss 个单词！！！</string>
+    <string name="text_history">查词记录</string>
+    <string name="text_history_tip">看过的词忘了看这里</string>
+    <string name="text_collection">收藏夹</string>
+    <string name="text_collection_tip">精选越南语单词，Mark起来</string>
+    <string name="text_notification">通知栏单词</string>
+    <string name="text_notification_tip">在通知栏上显示单词搜索，可随地搜词</string>
+    <string name="text_wordbook">词书设置</string>
+    <string name="text_word_book_tip">单词量不够，修改词书设置</string>
+    <string name="text_dark_mode">夜间模式</string>
+    <string name="text_dark_mode_tip">妈妈再也不用担心我晚上学习</string>
+    <string name="text_change_lang">切换语言</string>
+    <string name="text_change_lang_tip">切换语言，成为国际化挨批批</string>
+    <string name="text_about">关于</string>
+    <string name="text_about_tip">本软件得一些小说明</string>
+    <string name="login_title">登录</string>
+    <string name="register_title">注册</string>
+    <string name="hint_login_username">请输入用户名</string>
+    <string name="hint_login_pwd">请输入密码</string>
+    <string name="login_agree_text">我已阅读并同意 隐私政策</string>
+    <string name="hint_register_email">请输入邮箱</string>
+    <string name="agree_privacy_tip">"请先查看并同意隐私协议"</string>
+    <string name="suggest_title">单词反馈</string>
+    <string name="text_finish">完成</string>
+    <string name="exit_twice_tip">再按一次退出app</string>
+    <string name="tv_suggest_title">单词反馈</string>
+
+    <string name="tip_feedback">感谢您的反馈，后续会进行改善</string>
+    <string name="name_cn">中文名：</string>
+    <string name="see_more_text">查看更多</string>
+    <string name="recite_bottom_str_know">认识</string>
+    <string name="recite_bottom_str_unclear">模糊</string>
+    <string name="recite_bottom_str_unknown">不认识</string>
+
+</resources>

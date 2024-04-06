@@ -1,4 +1,28 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android">
 
+    <application>
+        <activity
+            android:name="com.gp.user.ui.info.UserInfoActivity"
+            android:exported="false" />
+        <activity
+            android:name="com.gp.user.ui.wordbook.WordBookConfigActivity"
+            android:exported="false" />
+        <activity
+            android:name="com.gp.user.ui.notification.NotificationOpenActivity"
+            android:exported="false" />
+        <activity
+            android:name="com.gp.user.ui.language.LanguageActivity"
+            android:exported="false" />
+        <activity
+            android:name="com.gp.user.ui.history.HistoryActivity"
+            android:exported="false" />
+        <activity
+            android:name="com.gp.user.ui.collection.CollectionActivity"
+            android:exported="false" />
+        <activity
+            android:name="com.gp.user.ui.about.AboutActivity"
+            android:exported="false" />
+    </application>
+
 </manifest>

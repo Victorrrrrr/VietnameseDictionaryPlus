@@ -45,4 +45,7 @@ dependencies {
     compileOnly(libs.constraintlayout)
     compileOnly(libs.lifecycle.viewmodel.ktx)
     compileOnly(libs.gson)
+
+    compileOnly(libs.ffmpeg.core)
+    compileOnly(libs.ffmpeg.native)
 }

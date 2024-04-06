@@ -1,19 +1,39 @@
 package com.gp.main.ui
 
+import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import androidx.lifecycle.lifecycleScope
+import com.gp.common.constant.*
 import com.gp.common.provider.MainServiceProvider
-import com.gp.framework.base.BaseDataBindActivity
+import com.gp.framework.base.BaseMvvmActivity
 import com.gp.framework.ext.countDownCoroutines
 import com.gp.framework.ext.onClick
 import com.gp.lib_framework.utils.StatusBarSettingHelper
-import com.gp.main.R
-import com.gp.main.databinding.ActivitySplashBinding
+import com.gp.lib_widget.R
 
-class SplashActivity : BaseDataBindActivity<ActivitySplashBinding>() {
+import com.gp.main.databinding.ActivitySplashBinding
+import com.gp.main.ui.main.MainViewModel
+import com.gp.network.manager.TokenManager
+
+class SplashActivity : BaseMvvmActivity<ActivitySplashBinding, MainViewModel>() {
+
+    override fun preCreate() {
+        // 避免每次启动都走splash界面，针对某米手机
+        if ((intent.flags and Intent.FLAG_ACTIVITY_BROUGHT_TO_FRONT) != 0) {
+            finish()
+            return
+        }
+    }
+
     override fun initView(savedInstanceState: Bundle?) {
         // 设置隐藏导航栏
         StatusBarSettingHelper.setStatusBarTranslucent(this)
+
+        if(TokenManager.getToken().isNullOrEmpty()) {
+            oauthToken()
+        }
+
 
         mBinding.tvSkip.onClick {
             MainServiceProvider.toMain(this)
@@ -27,7 +47,17 @@ class SplashActivity : BaseDataBindActivity<ActivitySplashBinding>() {
             MainServiceProvider.toMain(this)
             finish()
         }
+    }
 
+    private fun oauthToken() {
+        mViewModel.sendAuthRequestClient(
+            GRANT_TYPE,
+            CLIENT_ID,
+            CLIENT_SECRET
+        ).observe(this) {
+            Log.d("1112", "result : ${it}")
+            TokenManager.saveToken(it.access_token)
+        }
     }
 
 }

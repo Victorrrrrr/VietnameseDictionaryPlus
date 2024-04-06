@@ -5,6 +5,12 @@ enum class ERROR(val code: Int, val errMsg: String) {
     /**
      * 对应HTTP的状态码
      */
+
+
+    /**
+     * 参数错误或语法错误
+     */
+    BAD_REQUEST(400, "参数错误或语法错误"),
     /**
      * 当前请求需要用户验证
      */

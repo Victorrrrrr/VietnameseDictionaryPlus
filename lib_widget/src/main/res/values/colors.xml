@@ -11,4 +11,18 @@
     <color name="search_bar_bg_color">#f0f3f5</color>
     <color name="search_text_tint_color">#9A9A9A</color>
 
+    <color name="vd_dark_theme_color">#F76554</color>
+
+    <color name="switch_track_color">#F76554</color>
+    <color name="line_grey_color">#EFEFEF</color>
+
+    <color name="light_theme_color">#FEEDEB</color>
+    <color name="light_trans_theme_color">#D3FEEDEB</color>
+    
+    <color name="light_orange">#F7EDE1</color>
+
+    <color name="text_light_grey">#AAB2C1</color>
+
+    <color name="light_white">#F2F3F8</color>
+
 </resources>

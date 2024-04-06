@@ -25,7 +25,10 @@ object AppFrontBack {
             }
 
             override fun onActivityStarted(activity: Activity) {
-
+                activityStartCount++
+                if (activityStartCount == 1) {
+                    listener.onFront(activity)
+                }
             }
 
             override fun onActivityResumed(activity: Activity) {

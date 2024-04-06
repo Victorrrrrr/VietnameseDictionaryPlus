@@ -6,7 +6,7 @@
     </style>
 
     <style name="SplashAppTheme" parent="Theme.MaterialComponents.DayNight.NoActionBar">
-        <item name="android:windowBackground">@drawable/splash_page</item>
+        <item name="android:windowBackground">@drawable/splash_bg</item>
         <item name="android:windowNoTitle">true</item>
         <item name="statusBarBackground">@color/grey_bg</item>
 
@@ -26,7 +26,7 @@
     </style>
 
     <style name="MainActivityTheme" parent="Theme.MaterialComponents.DayNight.NoActionBar">
-        <item name="android:windowBackground">@drawable/splash_page</item>
+        <item name="android:windowBackground">@drawable/splash_bg</item>
         <item name="android:windowNoTitle">true</item>
         <item name="statusBarBackground">@color/grey_bg</item>
     </style>

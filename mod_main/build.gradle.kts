@@ -55,12 +55,16 @@ dependencies {
     implementation(libs.material)
     implementation(libs.appcompat)
     implementation(libs.constraintlayout)
+
     testCompileOnly(libs.junit)
     androidTestCompileOnly(libs.androidx.test.ext.junit)
     androidTestCompileOnly(libs.espresso.core)
 
     compileOnly(libs.lifecycle.livedata.ktx)
     compileOnly(libs.lifecycle.viewmodel.ktx)
+
+    compileOnly(libs.ffmpeg.core)
+    compileOnly(libs.ffmpeg.native)
 
     // 路由
     compileOnly(libs.arouter.api)
@@ -70,11 +74,17 @@ dependencies {
     compileOnly(libs.navigation.ui.ktx)
     compileOnly(libs.navigation.fragment.ktx)
 
+    compileOnly(libs.glide)
+    kapt(libs.glide.compiler)
+
+    compileOnly(libs.mmkv)
+
     compileOnly(project(":lib_common"))
     compileOnly(project(":lib_framework"))
     compileOnly(project(":lib_starter"))
     compileOnly(project(":lib_network"))
     compileOnly(project(":lib_room"))
     compileOnly(project(":lib_widget"))
+    compileOnly(project(":lib_glide"))
 
 }
