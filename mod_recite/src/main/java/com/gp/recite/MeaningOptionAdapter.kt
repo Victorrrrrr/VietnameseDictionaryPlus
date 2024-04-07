@@ -3,6 +3,7 @@ package com.gp.recite
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import com.gp.common.model.LearnWordBean
 import com.gp.common.model.Option
 import com.gp.framework.adapter.BaseBindViewHolder
 import com.gp.framework.adapter.BaseRecyclerViewAdapter
