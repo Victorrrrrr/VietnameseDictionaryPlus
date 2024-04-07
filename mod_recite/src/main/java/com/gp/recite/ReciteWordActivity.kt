@@ -1,5 +1,6 @@
 package com.gp.recite
 
+import android.content.Intent
 import android.os.Bundle
 import android.os.Handler
 import android.view.View
@@ -89,6 +90,11 @@ class ReciteWordActivity : BaseMvvmActivity<ActivityReciteWordBinding, ReciteWor
             if(mBinding.tvPos.visibility == View.VISIBLE) {
                 mBinding.tvPos.visibility = View.GONE
             }
+
+            if(learningIndex == 0) {
+                mBinding.tvLearnProcess.visibility = View.VISIBLE
+            }
+
             // 跳转下一个，更新数据
             learningIndex++
             updateStatus()
@@ -142,6 +148,8 @@ class ReciteWordActivity : BaseMvvmActivity<ActivityReciteWordBinding, ReciteWor
     }
 
     private fun updateStatus() {
+        mBinding.newLearnCount = learningIndex.toString()
+        mBinding.revise = reviseIndex.toString()
         when(learnMode){
             is NewLearnMode -> {
                 if(learningIndex >= wordNum) {
@@ -162,6 +170,9 @@ class ReciteWordActivity : BaseMvvmActivity<ActivityReciteWordBinding, ReciteWor
 
                 showLearnBottomTab()
                 mBinding.tvWord.text = wordList?.get(learningIndex)?.wordVi
+                wordList?.get(learningIndex)?.pronounceVi?.let {
+                    MediaHelper.play(it)
+                }
 
                 totalTimeIndex++
             }
@@ -185,6 +196,9 @@ class ReciteWordActivity : BaseMvvmActivity<ActivityReciteWordBinding, ReciteWor
                 }
                 // 执行UI操作
                 mBinding.tvWord.text = wordList?.get(reviseIndex)?.wordVi
+                wordList?.get(reviseIndex)?.pronounceVi?.let {
+                    MediaHelper.play(it)
+                }
                 meaningAdapter.setData(wordList?.get(reviseIndex)?.options)
                 meaningAdapter.setOnOptionListener(object : OnOptionListener {
                     override fun onRight() {
@@ -228,17 +242,26 @@ class ReciteWordActivity : BaseMvvmActivity<ActivityReciteWordBinding, ReciteWor
                     val first = wrongDeque.removeFirst()
                     updateDataFromOption(first)
                 } else {
-                    TipsToast.showTips("finish")
+                    // 完成错误练习， 跳转完成页
+                    var wordIdList = mutableListOf<Int>()
+                    for(word in wordList!!) {
+                        wordIdList.add(word.id)
+                    }
+
+                    mViewModel.finishLearn(wordIdList){
+                        Handler().postDelayed({
+                            val intent = Intent(this@ReciteWordActivity, FinishActivity::class.java)
+                            startActivity(intent)
+                            finish()
+                        },500)
+                    }.observe(this) {}
+
                 }
-
-                // 完成错误练习， 跳转完成页
-
 
             }
 
             else -> {}
         }
-
     }
 
 

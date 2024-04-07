@@ -7,6 +7,7 @@ package com.gp.common.constant
 const val HTTP_TOKEN_INFO = "http_token_info"
 const val HTTP_BAIDU_TOKEN_INFO = "http_baidu_token_info"
 const val WORD_BOOK_ID = "word_book_id"
+const val WORD_BOOK_COUNT = "word_book_count"
 const val RECITE_NUM = "recite_num"
 
 /**

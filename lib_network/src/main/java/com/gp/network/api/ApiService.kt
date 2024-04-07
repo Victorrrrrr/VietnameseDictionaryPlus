@@ -136,7 +136,7 @@ interface ApiService {
     ) : BaseResponse<WordLearnList>
 
 
-    @GET("app-dict/learn/finish")
+    @POST("app-dict/learn/finish")
     suspend fun finishLearn(
         @Body body : FinishWordBean
     ) : BaseResponse<Void>

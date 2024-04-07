@@ -59,6 +59,10 @@
     <string name="tv_confirm">确定</string>
     <string name="recite_tv_en">英语：%s</string>
     <string name="recite_tv_pos">词性：%s</string>
+    <string name="text_finish_tip">已完成今日计划</string>
+    <string name="finish_learn_word_tip">学习单词数 + %s</string>
+    <string name="finish_feeling_text_hint">写上今天的感悟吧</string>
+    <string name="finish_process_word">词书学习进度 %s / %s 个单词</string>
 
 
 </resources>

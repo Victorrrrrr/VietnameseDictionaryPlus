@@ -64,6 +64,7 @@ class LoadWordsActivity : BaseMvvmActivity<ActivityLoadWordsBinding, ReciteWords
                             this@LoadWordsActivity
                         ).toBundle()
                     )
+                    finish()
                 }
             }
         }

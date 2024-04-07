@@ -29,7 +29,7 @@
             android:background="@drawable/shape_light_theme_bg"
             android:paddingVertical="@dimen/dp_10"
             android:layout_marginHorizontal="@dimen/dp_10"
-            android:text="@{`新学` + newLearnCount + `| 复习` + revise}"
+            android:text="@{`新学` + newLearnCount + ` | 复习` + revise}"
             android:gravity="end"
             android:paddingEnd="@dimen/dp_18"
             android:textColor="@color/text_light_grey"

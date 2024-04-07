@@ -29,5 +29,6 @@
     <color name="light_white">#F2F3F8</color>
 
     <color name="btn_press">#C8C8C8</color>
+    <color name="color_tick_green">#22DC2C</color>
 
 </resources>

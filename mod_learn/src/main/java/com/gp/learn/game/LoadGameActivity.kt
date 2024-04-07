@@ -10,8 +10,10 @@ import android.os.Message
 import android.view.View
 import com.alibaba.android.arouter.facade.annotation.Route
 import com.gp.common.constant.LEARN_ACTIVITY_GAME
+import com.gp.common.model.LearnWordBean
 import com.gp.common.provider.MainServiceProvider
 import com.gp.framework.base.BaseDataBindActivity
+import com.gp.framework.base.BaseMvvmActivity
 import com.gp.framework.ext.onClick
 import com.gp.framework.utils.MediaHelper
 import com.gp.lib_framework.utils.StatusBarUtil
@@ -19,9 +21,9 @@ import com.gp.mod_learn.R
 import com.gp.mod_learn.databinding.ActivityLoadGameBinding
 
 @Route(path = LEARN_ACTIVITY_GAME)
-class LoadGameActivity : BaseDataBindActivity<ActivityLoadGameBinding>() {
+class LoadGameActivity : BaseMvvmActivity<ActivityLoadGameBinding, GameViewModel>() {
 
-    private var num : Int = 50
+    private var num : Int = 200
 
     private val FINISH : Int = 1
 
@@ -71,21 +73,22 @@ class LoadGameActivity : BaseDataBindActivity<ActivityLoadGameBinding>() {
 
 
     private fun initWordList() {
-        Thread {
-            var list : MutableList<Int> = mutableListOf()
-            for (i in 0 until num) {
-                list.add(i)
+        mViewModel.getWordLearn(num){
+            var list : MutableList<LearnWordBean> = mutableListOf()
+            it?.let {
+                for (i in 0 until it.size) {
+                    list.add(it[i])
+                }
             }
-
-            // TODO 从本地数据库读取单词
-
-            // TODO 打乱单词
+            GameActivity.gameWord = list
 
             // 发送完成消息
             val message = Message()
             message.what = FINISH
             handler.sendMessage(message)
-        }.start()
+        }.observe(this) {
+
+        }
     }
 
 

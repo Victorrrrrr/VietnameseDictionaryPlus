@@ -80,6 +80,7 @@ class WordBookConfigActivity : BaseMvvmActivity<ActivityWordBookConfigBinding, W
                         if(wordBook.isSelected) {
                             mViewModel.postWordbookId(wordBook.id) {
                                 WordBookIdManager.saveWordBookId(wordBook.id)
+                                WordBookIdManager.saveWordBookNum(wordBook.count)
                                 TipsToast.showTips("选择词书${wordBook.name}成功")
                                 onBackPressed()
                             }.observe(this) {

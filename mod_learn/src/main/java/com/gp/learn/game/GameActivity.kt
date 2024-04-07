@@ -3,16 +3,22 @@ package com.gp.learn.game
 import android.os.Bundle
 import android.os.Handler
 import androidx.recyclerview.widget.StaggeredGridLayoutManager
+import com.gp.common.model.LearnWordBean
 import com.gp.common.provider.MainServiceProvider
 import com.gp.framework.base.BaseMvvmActivity
+import com.gp.framework.toast.TipsToast
 import com.gp.framework.utils.MediaHelper.playLocalFileRepeat
 import com.gp.framework.utils.MediaHelper.releasePlayer
 import com.gp.mod_learn.R
 import com.gp.mod_learn.databinding.ActivityGameBinding
+import java.util.Collections
 
 
 class GameActivity : BaseMvvmActivity<ActivityGameBinding, GameViewModel>() {
 
+    companion object {
+        @JvmField var gameWord: MutableList<LearnWordBean> = ArrayList()
+    }
 
     var alreadyWords = ArrayList<Int>()
 
@@ -53,7 +59,7 @@ class GameActivity : BaseMvvmActivity<ActivityGameBinding, GameViewModel>() {
 
     private var inFinish = false
 
-//    private var currentWord: GameWord? = null
+    private var currentWord: LearnWordBean? = null
 
     // 当前展示的单词下标
     private var currentIndex = 0
@@ -62,14 +68,15 @@ class GameActivity : BaseMvvmActivity<ActivityGameBinding, GameViewModel>() {
     // 提供游戏单词
 //    var allWord: List<Word> = ArrayList<Word>()
 //
-//    // 游戏里面的单词
-//    // 从上面的单词中抽取50个
+    // 游戏里面的单词
+    // 从上面的单词中抽取50个
 //    var gameWord: MutableList<GameWord> = ArrayList<GameWord>()
 
     private var progressWidth = 0
 
 
     override fun initView(savedInstanceState: Bundle?) {
+        TipsToast.showTips(gameWord.toString())
         playLocalFileRepeat(R.raw.game)
         val layoutManager = StaggeredGridLayoutManager(2, StaggeredGridLayoutManager.VERTICAL)
         mBinding.recyclerGmBottom.layoutManager = layoutManager
@@ -252,7 +259,7 @@ class GameActivity : BaseMvvmActivity<ActivityGameBinding, GameViewModel>() {
     override fun onDestroy() {
         super.onDestroy()
         releasePlayer()
-//        gameWord.clear()
+        gameWord.clear()
     }
 
 

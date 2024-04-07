@@ -116,8 +116,6 @@ dependencies {
     implementation(libs.navigation.fragment.ktx)
     implementation(libs.navigation.ui.ktx)
 
-//    implementation(libs.glide)
-//    implementation(libs.glide.compiler)
     implementation(libs.flexbox)
 
     implementation(libs.room)
@@ -125,6 +123,8 @@ dependencies {
     implementation(libs.mmkv)
 
     implementation(libs.multidex)
+
+    implementation(libs.circleimageview)
 
     implementation(libs.glide)
     kapt(libs.glide.compiler)

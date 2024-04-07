@@ -1,6 +1,7 @@
 package com.gp.network.manager
 
 import com.gp.common.constant.RECITE_NUM
+import com.gp.common.constant.WORD_BOOK_COUNT
 import com.gp.common.constant.WORD_BOOK_ID
 import com.gp.framework.utils.LogUtil
 import com.tencent.mmkv.MMKV
@@ -26,12 +27,33 @@ object WordBookIdManager {
         return mmkv.decodeInt(WORD_BOOK_ID, -1)
     }
 
+    /**
+     * 保存id
+     */
+    fun saveWordBookNum(count: Int) {
+        val mmkv = MMKV.defaultMMKV()
+        LogUtil.d(count.toString(), tag = "wordbookCount")
+        mmkv.encode(WORD_BOOK_COUNT, count)
+    }
+
+
+    /**
+     * 获取id
+     * @return token
+     */
+    fun getWordBookNum() : Int {
+        val mmkv = MMKV.defaultMMKV()
+        return mmkv.decodeInt(WORD_BOOK_COUNT, 0)
+    }
+
+
 
     /**
      * 清除token
      */
     fun clearWordBookId() {
         saveWordBookId(-1)
+        saveWordBookNum(0)
     }
 
 

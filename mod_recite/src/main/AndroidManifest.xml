@@ -3,6 +3,9 @@
 
     <application>
         <activity
+            android:name="com.gp.recite.FinishActivity"
+            android:exported="false" />
+        <activity
             android:name="com.gp.recite.ReciteWordActivity"
             android:exported="false" />
         <activity
