@@ -126,6 +126,7 @@ dependencies {
 
     implementation(libs.circleimageview)
 
+
     implementation(libs.glide)
     kapt(libs.glide.compiler)
 
@@ -133,6 +134,7 @@ dependencies {
     implementation(libs.ffmpeg.native)
 
     implementation(libs.jtransforms)
+    implementation(libs.lottie)
 
     implementation(project(":lib_framework"))
     implementation(project(":lib_starter"))
@@ -148,6 +150,8 @@ dependencies {
     implementation(project(":mod_recite"))
     implementation(project(":mod_search"))
     implementation(project(":mod_user"))
+
+
 
 
 }

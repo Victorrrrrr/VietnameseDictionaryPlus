@@ -1,5 +1,6 @@
 package com.gp.main.ui
 
+import android.animation.ValueAnimator
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
@@ -43,7 +44,16 @@ class SplashActivity : BaseMvvmActivity<ActivitySplashBinding, MainViewModel>() 
             finish()
         }
 
-        countDownCoroutines(2, lifecycleScope, onTick = {
+        val animator = ValueAnimator.ofFloat(0F,1F)
+        animator.setDuration(1800)
+        animator.addUpdateListener {
+            val alpha = it.animatedValue as Float
+            mBinding.tvAppName.alpha = alpha
+        }
+        animator.start()
+
+
+        countDownCoroutines(3, lifecycleScope, onTick = {
             // 跳过按钮显示文字
             mBinding.tvSkip.text = getString(R.string.splash_time, it.plus(1).toString())
         }) {

@@ -20,20 +20,24 @@ class FinishActivity : BaseMvvmActivity<ActivityFinishBinding, ReciteWordsViewMo
         val wordAddNum = WordBookIdManager.getReciteNum()
         val wordProcessSum = WordBookIdManager.getWordBookNum()
         val wordBookId = WordBookIdManager.getWordBookId()
-        var wordProcessingNum = 0
+
         mViewModel.getProcess(wordBookId).observe(this) {
-            wordProcessingNum = it.process
+            mBinding.tvWordProcess.text = String.format(getStringFromResource(com.gp.lib_widget.R.string.finish_process_word), it.process, wordProcessSum)
         }
 
         mBinding.apply {
             tvWordAddNum.text = String.format(getStringFromResource(com.gp.lib_widget.R.string.finish_learn_word_tip), wordAddNum.toString())
-            tvWordProcess.text = String.format(getStringFromResource(com.gp.lib_widget.R.string.finish_process_word), wordProcessingNum, wordProcessSum)
+
 
             btnFiBack.onClick {
-                MainServiceProvider.toMain(this@FinishActivity, 0)
+                onBackPressed()
             }
         }
 
+    }
 
+
+    override fun onBackPressed() {
+        MainServiceProvider.toMain(this@FinishActivity, 0)
     }
 }

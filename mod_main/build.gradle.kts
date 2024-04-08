@@ -77,6 +77,9 @@ dependencies {
     compileOnly(libs.glide)
     kapt(libs.glide.compiler)
 
+    // 动画
+    compileOnly(libs.lottie)
+
     compileOnly(files("libs/online_auth.jar"))
     compileOnly(files("libs/YoudaoBase_v20230803.jar"))
     compileOnly(files("libs/YoudaoTranslateOnline_v2.0.1.jar"))
