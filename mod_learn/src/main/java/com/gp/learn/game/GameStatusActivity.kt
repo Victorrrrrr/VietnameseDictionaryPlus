@@ -11,10 +11,10 @@ import com.gp.mod_learn.databinding.ActivityGameStatusBinding
 
 class GameStatusActivity : BaseMvvmActivity<ActivityGameStatusBinding, GameViewModel>() {
 
-    init {
-//        const val GAME_STATUS = "gameStatus"
-//        const val STATUS_SUCCESS = 1
-//        const val STATUS_FAIL = -1
+    companion object {
+        const val GAME_STATUS = "gameStatus"
+        const val STATUS_SUCCESS = 1
+        const val STATUS_FAIL = -1
     }
 
 //    private val showActivity: ShowActivity = ShowActivity()

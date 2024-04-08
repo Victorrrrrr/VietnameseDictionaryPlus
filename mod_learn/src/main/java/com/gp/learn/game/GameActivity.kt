@@ -1,9 +1,13 @@
 package com.gp.learn.game
 
+import android.content.Intent
 import android.os.Bundle
 import android.os.Handler
+import android.view.View
+import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.StaggeredGridLayoutManager
 import com.gp.common.model.LearnWordBean
+import com.gp.common.model.Option
 import com.gp.common.provider.MainServiceProvider
 import com.gp.framework.base.BaseMvvmActivity
 import com.gp.framework.toast.TipsToast
@@ -22,9 +26,9 @@ class GameActivity : BaseMvvmActivity<ActivityGameBinding, GameViewModel>() {
 
     var alreadyWords = ArrayList<Int>()
 
-//    private val meanChoiceList: MutableList<ItemWordMeanChoice?> = ArrayList<ItemWordMeanChoice?>()
-//
-//    private var meanChoiceAdapter: MeanChoiceAdapter? = null
+    private val meanChoiceList: MutableList<Option> = ArrayList()
+
+    private var meanChoiceAdapter: MeanChoiceAdapter? = null
 
     private var handler1: Handler? = null
     private var handler2: Handler? = null
@@ -80,77 +84,77 @@ class GameActivity : BaseMvvmActivity<ActivityGameBinding, GameViewModel>() {
         playLocalFileRepeat(R.raw.game)
         val layoutManager = StaggeredGridLayoutManager(2, StaggeredGridLayoutManager.VERTICAL)
         mBinding.recyclerGmBottom.layoutManager = layoutManager
-//        meanChoiceAdapter = MeanChoiceAdapter(meanChoiceList)
-//        mBinding.recyclerGmBottom.adapter = meanChoiceAdapter
+        meanChoiceAdapter = MeanChoiceAdapter(meanChoiceList)
+        mBinding.recyclerGmBottom.adapter = meanChoiceAdapter
         setWordMeanData()
         mBinding.progressGm.progress = progressCat
         mBinding.progressGm.secondaryProgress = progressMouse
         mBinding.progressGm.max = 10000
         mBinding.progressGm.post { progressWidth = mBinding.progressGm.width }
         handler1 = Handler()
-//        Thread {
-//            runnable1 = object : Runnable {
-//                override fun run() {
-//                    if (!inFinish) {
-//                        handler1?.postDelayed(this, 10)
-//                        // 设置猫和老鼠的进度
-//                        progressCat = progressCat + addCat
-//                        progressMouse = progressMouse + addMouse
-//                        mBinding.progressGm.progress = progressCat
-//                        mBinding.progressGm.secondaryProgress = progressMouse
-//                        // 设置头像便宜
-//                        mBinding.imgGmCat.translationX =
-//                            progressCat.toFloat() / mBinding.progressGm.max * progressWidth
-//                        mBinding.imgGmMouse.setTranslationX(progressMouse.toFloat() / mBinding.progressGm.max * progressWidth)
-//                        // 说明猫已经追赶上老鼠了
-//                        if (progressMouse <= progressCat) {
-//                            stopTime1()
-//                            inFinish = true
-//                            val intent = Intent(
-//                                this@GameActivity,
-//                                GameStatusActivity::class.java
-//                            )
-//                            intent.putExtra(
-//                                GameStatusActivity.GAME_STATUS,
-//                                GameStatusActivity.STATUS_FAIL
-//                            )
-//                            startActivity(intent)
-//                            finish()
-//                            // 老鼠已达到顶点
-//                        } else if (progressMouse >= progressBar!!.max) {
-//                            stopTime1()
-//                            inFinish = true
-//                            val intent = Intent(
-//                                this@GameActivity,
-//                                GameStatusActivity::class.java
-//                            )
-//                            intent.putExtra(
-//                                GameStatusActivity.GAME_STATUS,
-//                                GameStatusActivity.STATUS_SUCCESS
-//                            )
-//                            startActivity(intent)
-//                            finish()
-//                        }
-//                    }
-//                }
-//            }
-//            handler1?.postDelayed(runnable1!!, 10)
-//        }.start()
-//        meanChoiceAdapter.setOnItemClickListener(object : OnItemClickListener {
-//            fun onItemClick(
-//                parent: RecyclerView?,
-//                view: View?,
-//                position: Int,
-//                itemWordMeanChoice: ItemWordMeanChoice
-//            ) {
-//                if (MeanChoiceAdapter.isFirstClick) {
-//                    // 答错了
-//                    if (itemWordMeanChoice.getId() !== currentWord.getId()) {
+        Thread {
+            runnable1 = object : Runnable {
+                override fun run() {
+                    if (!inFinish) {
+                        handler1?.postDelayed(this, 10)
+                        // 设置猫和老鼠的进度
+                        progressCat += addCat
+                        progressMouse += addMouse
+                        mBinding.progressGm.progress = progressCat
+                        mBinding.progressGm.secondaryProgress = progressMouse
+                        // 设置头像偏移
+                        mBinding.imgGmCat.translationX =
+                            progressCat.toFloat() / mBinding.progressGm.max * progressWidth
+                        mBinding.imgGmMouse.setTranslationX(progressMouse.toFloat() / mBinding.progressGm.max * progressWidth)
+                        // 说明猫已经追赶上老鼠了
+                        if (progressMouse <= progressCat) {
+                            stopTime1()
+                            inFinish = true
+                            val intent = Intent(
+                                this@GameActivity,
+                                GameStatusActivity::class.java
+                            )
+                            intent.putExtra(
+                                GameStatusActivity.GAME_STATUS,
+                                GameStatusActivity.STATUS_FAIL
+                            )
+                            startActivity(intent)
+                            finish()
+                            // 老鼠已达到顶点
+                        } else if (progressMouse >= mBinding.progressGm.max) {
+                            stopTime1()
+                            inFinish = true
+                            val intent = Intent(
+                                this@GameActivity,
+                                GameStatusActivity::class.java
+                            )
+                            intent.putExtra(
+                                GameStatusActivity.GAME_STATUS,
+                                GameStatusActivity.STATUS_SUCCESS
+                            )
+                            startActivity(intent)
+                            finish()
+                        }
+                    }
+                }
+            }
+            handler1?.postDelayed(runnable1!!, 10)
+        }.start()
+        meanChoiceAdapter?.setOnItemClickListener(object : OnItemClickListener {
+            override fun onItemClick(
+                parent: RecyclerView?,
+                view: View?,
+                position: Int,
+                itemWordMeanChoice: Option?
+            ) {
+                if (MeanChoiceAdapter.isFirstClick) {
+                    // 答错了
+//                    if (itemWordMeanChoice?.id != currentWord?.id) {
 //                        answerWrong()
 //                        itemWordMeanChoice.setRight(ItemWordMeanChoice.WRONG)
-//                        meanChoiceAdapter.notifyDataSetChanged()
+//                        meanChoiceAdapter?.notifyDataSetChanged()
 //                        MeanChoiceAdapter.isFirstClick = false
-//                        Handler().postDelayed(Runnable {
+//                        Handler().postDelayed({
 //                            MeanChoiceAdapter.isFirstClick = true
 //                            setWordMeanData()
 //                        }, 250)
@@ -158,16 +162,16 @@ class GameActivity : BaseMvvmActivity<ActivityGameBinding, GameViewModel>() {
 //                        // 答对了
 //                        answerRight()
 //                        itemWordMeanChoice.setRight(ItemWordMeanChoice.RIGHT)
-//                        meanChoiceAdapter.notifyDataSetChanged()
+//                        meanChoiceAdapter?.notifyDataSetChanged()
 //                        MeanChoiceAdapter.isFirstClick = false
-//                        Handler().postDelayed(Runnable {
+//                        Handler().postDelayed({
 //                            MeanChoiceAdapter.isFirstClick = true
 //                            setWordMeanData()
 //                        }, 250)
 //                    }
-//                }
-//            }
-//        })
+                }
+            }
+        })
         handler2 = Handler()
         runnable2 = object : Runnable {
             override fun run() {
@@ -186,11 +190,11 @@ class GameActivity : BaseMvvmActivity<ActivityGameBinding, GameViewModel>() {
 
 
     private fun setWordMeanData() {
-//        setRandomWord()
-//        if (!meanChoiceList.isEmpty()) meanChoiceList.clear()
-//        alreadyWords.add(currentWord.getId())
+        setRandomWord()
+        if (!meanChoiceList.isEmpty()) meanChoiceList.clear()
+        alreadyWords.add(currentWord!!.id)
 //        meanChoiceList.add(
-//            ItemWordMeanChoice(
+//            Option(
 //                currentWord.getId(),
 //                currentWord.getWordMeans(),
 //                ItemWordMeanChoice.NOTSTART
@@ -210,13 +214,13 @@ class GameActivity : BaseMvvmActivity<ActivityGameBinding, GameViewModel>() {
 //                )
 //            )
 //        }
-//        Collections.shuffle(meanChoiceList)
-//        meanChoiceAdapter.notifyDataSetChanged()
+        Collections.shuffle(meanChoiceList)
+        meanChoiceAdapter?.notifyDataSetChanged()
     }
 
     private fun setRandomWord() {
-//        currentWord = gameWord[currentIndex]
-//        mBinding.textGmWord.setText(currentWord.getWordName())
+        currentWord = gameWord[currentIndex]
+        mBinding.textGmWord.text = currentWord?.wordVi
     }
 
     // 停止计时器
