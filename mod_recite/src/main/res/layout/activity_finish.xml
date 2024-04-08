@@ -129,7 +129,7 @@
                 android:layout_height="match_parent"
                 android:background="@null"
                 android:gravity="start|top"
-                android:textColorHint="@color/text_light_grey"
+                android:textColorHint="@color/light_theme_bg_text_color"
                 android:hint="@string/finish_feeling_text_hint"
                 android:padding="30dp"
                 android:textSize="15sp" />

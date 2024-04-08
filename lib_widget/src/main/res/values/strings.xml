@@ -64,6 +64,9 @@
     <string name="finish_feeling_text_hint">写上今天的感悟吧</string>
     <string name="finish_process_word">词书学习进度 %s / %s 个单词</string>
     <string name="about_title">关于</string>
+    <string name="text_word_list">单词列表</string>
+    <string name="text_show_revise">复习结束，再次回忆一下本轮中出现过的单词吧</string>
+    <string name="text_title_take_photo">拍照翻译</string>
 
 
 </resources>

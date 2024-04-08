@@ -22,5 +22,12 @@ data class Option(
     val pronounceZh: String,
     val wordEn: String,
     val wordVi: String,
-    val wordZh: String
+    val wordZh: String,
+    var result: ChoiceResult = ChoiceResult.NOTSTART
 )
+
+
+enum class ChoiceResult {
+    NOTSTART, RIGHT, WRONG
+}
+

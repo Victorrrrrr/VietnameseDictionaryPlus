@@ -7,8 +7,11 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.cardview.widget.CardView
 import androidx.recyclerview.widget.RecyclerView
+import com.gp.common.model.ChoiceResult
 import com.gp.common.model.Option
+import com.gp.framework.helper.VDHelper
 import com.gp.framework.utils.getColorFromResource
+import com.gp.framework.utils.getDrawable
 import com.gp.mod_learn.R
 
 
@@ -72,56 +75,26 @@ class MeanChoiceAdapter(mItemWordMeanChoiceList: List<Option>) :
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val itemWordMeanChoice: Option = mItemWordMeanChoiceList[position]
-        holder.textWordMean.text = itemWordMeanChoice.wordVi
+        holder.textWordMean.text = itemWordMeanChoice.wordZh
         holder.imgChoice.visibility = View.GONE
         holder.textWordMean.setTextColor(getColorFromResource(com.gp.lib_widget.R.color.vd_dark_theme_color))
-//        if (ConfigData.getIsNight()) holder.textWordMean.setTextColor(
-//            MyApplication.getContext().getResources().getColor(R.color.colorLightBlack)
-//        ) else holder.textWordMean.setTextColor(
-//            MyApplication.getContext().getResources().getColor(R.color.colorLightBlack)
-//        )
-        if (!itemWordMeanChoice.isRight) {
+        holder.textWordMean.setTextColor(getColorFromResource(com.gp.lib_widget.R.color.color_light_black))
+        if (itemWordMeanChoice.result == ChoiceResult.WRONG) {
             // 说明答错了
-//            if (ConfigData.getIsNight()) holder.cardMean.setCardBackgroundColor(
-//                MyApplication.getContext().getColor(R.color.colorLittleRedN)
-//            ) else holder.cardMean.setCardBackgroundColor(
-//                MyApplication.getContext().getColor(R.color.colorLittleRed)
-//            )
-//            holder.imgChoice.visibility = View.VISIBLE
-//            Glide.with(MyApplication.getContext()).load(R.drawable.icon_wrong)
-//                .into(holder.imgChoice)
-//            if (ConfigData.getIsNight()) holder.textWordMean.setTextColor(
-//                MyApplication.getContext().getColor(R.color.colorLightRedN)
-//            ) else holder.textWordMean.setTextColor(
-//                MyApplication.getContext().getColor(R.color.colorLightRed)
-//            )
-//        } else if (itemWordMeanChoice.isRight) {
-//            // 说明答对了
-//            if (ConfigData.getIsNight()) holder.cardMean.setCardBackgroundColor(
-//                MyApplication.getContext().getResources().getColor(R.color.colorLittleBlueN)
-//            ) else holder.cardMean.setCardBackgroundColor(
-//                MyApplication.getContext().getResources().getColor(R.color.colorLittleBlue)
-//            )
-//            holder.imgChoice.visibility = View.VISIBLE
-//            Glide.with(MyApplication.getContext()).load(R.drawable.icon_select_blue)
-//                .into(holder.imgChoice)
-//            if (ConfigData.getIsNight()) holder.textWordMean.setTextColor(
-//                MyApplication.getContext().getResources().getColor(R.color.colorLightBlueN)
-//            ) else holder.textWordMean.setTextColor(
-//                MyApplication.getContext().getResources().getColor(R.color.colorLightBlue)
-//            )
-//        } else if (itemWordMeanChoice.isRight() === ItemWordMeanChoice.NOTSTART) {
-//            if (ConfigData.getIsNight()) holder.cardMean.setCardBackgroundColor(
-//                MyApplication.getContext().getColor(R.color.colorBgWhiteN)
-//            ) else holder.cardMean.setCardBackgroundColor(
-//                MyApplication.getContext().getColor(R.color.colorBgWhite)
-//            )
-//            holder.imgChoice.visibility = View.GONE
-//            if (ConfigData.getIsNight()) holder.textWordMean.setTextColor(
-//                MyApplication.getContext().getResources().getColor(R.color.colorLightBlackN)
-//            ) else holder.textWordMean.setTextColor(
-//                MyApplication.getContext().getResources().getColor(R.color.colorLightBlack)
-//            )
+            holder.cardMean.setCardBackgroundColor(getColorFromResource(com.gp.lib_widget.R.color.wrong_chacha_item))
+            holder.imgChoice.visibility = View.VISIBLE
+            holder.imgChoice.setImageDrawable(getDrawable(com.gp.lib_widget.R.drawable.ic_chacha_red))
+            holder.textWordMean.setTextColor(getColorFromResource(com.gp.lib_widget.R.color.color_light_red))
+        } else if (itemWordMeanChoice.result == ChoiceResult.RIGHT) {
+            // 说明答对了
+            holder.cardMean.setCardBackgroundColor(getColorFromResource(com.gp.lib_widget.R.color.right_tick_item))
+            holder.imgChoice.visibility = View.VISIBLE
+            holder.imgChoice.setImageDrawable(getDrawable(com.gp.lib_widget.R.drawable.ic_tick_green))
+            holder.textWordMean.setTextColor(getColorFromResource(com.gp.lib_widget.R.color.color_tick_green))
+        } else if (itemWordMeanChoice.result == ChoiceResult.NOTSTART) {
+            holder.cardMean.setCardBackgroundColor(getColorFromResource(com.gp.lib_widget.R.color.choice_item_white_bg))
+            holder.imgChoice.visibility = View.GONE
+            holder.textWordMean.setTextColor(getColorFromResource(com.gp.lib_widget.R.color.choice_item_text_color))
         }
     }
 

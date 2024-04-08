@@ -14,6 +14,14 @@ interface ISearchService : IProvider {
     fun toSearch(context: Context)
 
 
+
+    /**
+     * 跳转搜索页搜索
+     */
+    fun toSearch(context: Context, str: String)
+
+
+
     /**
      * 跳转到单词页面
      *

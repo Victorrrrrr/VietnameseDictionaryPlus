@@ -7,6 +7,7 @@ import android.os.Bundle
 import android.os.Environment
 import android.provider.Settings
 import androidx.annotation.RequiresApi
+import androidx.appcompat.app.AppCompatDelegate
 import androidx.databinding.ViewDataBinding
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
@@ -94,6 +95,11 @@ abstract class BaseMvvmActivity<DB : ViewDataBinding, VM : ViewModel> : BaseData
         val intent = Intent(Settings.ACTION_MANAGE_APP_ALL_FILES_ACCESS_PERMISSION)
         intent.setData(Uri.parse("package:$packageName"))
         startActivityForResult(intent, PermissionUtils.REQUEST_MANAGE_EXTERNAL_STORAGE_CODE)
+    }
+
+    protected fun noNight() {
+        delegate.localNightMode = AppCompatDelegate.MODE_NIGHT_NO
+
     }
 
 }

@@ -6,10 +6,12 @@ import android.os.Handler
 import android.view.View
 import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.StaggeredGridLayoutManager
+import com.gp.common.model.ChoiceResult
 import com.gp.common.model.LearnWordBean
 import com.gp.common.model.Option
 import com.gp.common.provider.MainServiceProvider
 import com.gp.framework.base.BaseMvvmActivity
+import com.gp.framework.ext.onClick
 import com.gp.framework.toast.TipsToast
 import com.gp.framework.utils.MediaHelper.playLocalFileRepeat
 import com.gp.framework.utils.MediaHelper.releasePlayer
@@ -22,9 +24,10 @@ class GameActivity : BaseMvvmActivity<ActivityGameBinding, GameViewModel>() {
 
     companion object {
         @JvmField var gameWord: MutableList<LearnWordBean> = ArrayList()
+        @JvmField var alreadyWords = ArrayList<LearnWordBean>()
     }
 
-    var alreadyWords = ArrayList<Int>()
+
 
     private val meanChoiceList: MutableList<Option> = ArrayList()
 
@@ -80,7 +83,9 @@ class GameActivity : BaseMvvmActivity<ActivityGameBinding, GameViewModel>() {
 
 
     override fun initView(savedInstanceState: Bundle?) {
-        TipsToast.showTips(gameWord.toString())
+        mBinding.ivBack.onClick{
+            onBackPressed()
+        }
         playLocalFileRepeat(R.raw.game)
         val layoutManager = StaggeredGridLayoutManager(2, StaggeredGridLayoutManager.VERTICAL)
         mBinding.recyclerGmBottom.layoutManager = layoutManager
@@ -149,26 +154,26 @@ class GameActivity : BaseMvvmActivity<ActivityGameBinding, GameViewModel>() {
             ) {
                 if (MeanChoiceAdapter.isFirstClick) {
                     // 答错了
-//                    if (itemWordMeanChoice?.id != currentWord?.id) {
-//                        answerWrong()
-//                        itemWordMeanChoice.setRight(ItemWordMeanChoice.WRONG)
-//                        meanChoiceAdapter?.notifyDataSetChanged()
-//                        MeanChoiceAdapter.isFirstClick = false
-//                        Handler().postDelayed({
-//                            MeanChoiceAdapter.isFirstClick = true
-//                            setWordMeanData()
-//                        }, 250)
-//                    } else {
-//                        // 答对了
-//                        answerRight()
-//                        itemWordMeanChoice.setRight(ItemWordMeanChoice.RIGHT)
-//                        meanChoiceAdapter?.notifyDataSetChanged()
-//                        MeanChoiceAdapter.isFirstClick = false
-//                        Handler().postDelayed({
-//                            MeanChoiceAdapter.isFirstClick = true
-//                            setWordMeanData()
-//                        }, 250)
-//                    }
+                    if (itemWordMeanChoice?.id != currentWord?.id) {
+                        answerWrong()
+                        itemWordMeanChoice?.result = ChoiceResult.WRONG
+                        meanChoiceAdapter?.notifyDataSetChanged()
+                        MeanChoiceAdapter.isFirstClick = false
+                        Handler().postDelayed({
+                            MeanChoiceAdapter.isFirstClick = true
+                            setWordMeanData()
+                        }, 250)
+                    } else {
+                        // 答对了
+                        answerRight()
+                        itemWordMeanChoice?.result = ChoiceResult.RIGHT
+                        meanChoiceAdapter?.notifyDataSetChanged()
+                        MeanChoiceAdapter.isFirstClick = false
+                        Handler().postDelayed({
+                            MeanChoiceAdapter.isFirstClick = true
+                            setWordMeanData()
+                        }, 250)
+                    }
                 }
             }
         })
@@ -192,28 +197,14 @@ class GameActivity : BaseMvvmActivity<ActivityGameBinding, GameViewModel>() {
     private fun setWordMeanData() {
         setRandomWord()
         if (!meanChoiceList.isEmpty()) meanChoiceList.clear()
-        alreadyWords.add(currentWord!!.id)
-//        meanChoiceList.add(
-//            Option(
-//                currentWord.getId(),
-//                currentWord.getWordMeans(),
-//                ItemWordMeanChoice.NOTSTART
-//            )
-//        )
-//        val randomIds: IntArray =
-//            NumberController.getRandomExceptList(0, gameWord.size - 1, 3, currentIndex)
-//        Log.d(TAG, "currentIndex:$currentIndex")
-//        Log.d(TAG, "size:" + gameWord.size)
-//        for (i in randomIds.indices) {
-//            Log.d(TAG, "otherIndex:" + randomIds[i])
-//            meanChoiceList.add(
-//                ItemWordMeanChoice(
-//                    gameWord[randomIds[i]].getId(),
-//                    gameWord[randomIds[i]].getWordMeans(),
-//                    ItemWordMeanChoice.NOTSTART
-//                )
-//            )
-//        }
+        alreadyWords.add(currentWord!!)
+        val optionList = currentWord?.options
+        if (optionList != null) {
+            for(options in optionList) {
+                options.result = ChoiceResult.NOTSTART
+            }
+            meanChoiceList.addAll(optionList)
+        }
         Collections.shuffle(meanChoiceList)
         meanChoiceAdapter?.notifyDataSetChanged()
     }

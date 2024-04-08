@@ -1,5 +1,8 @@
 package com.gp.main.ui.transform
 
+import android.R
+import android.content.ClipData
+import android.content.ClipboardManager
 import android.content.ContentValues
 import android.content.Intent
 import android.content.pm.PackageManager
@@ -16,16 +19,25 @@ import android.text.Spanned
 import android.text.style.AbsoluteSizeSpan
 import android.text.style.ForegroundColorSpan
 import android.text.style.UnderlineSpan
+import android.util.Log
+import android.view.ActionMode
 import android.view.LayoutInflater
-import android.view.View
+import android.view.Menu
+import android.view.MenuInflater
+import android.view.MenuItem
 import android.widget.LinearLayout
+import android.widget.Toast
 import androidx.annotation.RequiresApi
 import androidx.core.content.FileProvider
 import androidx.core.os.EnvironmentCompat
 import androidx.databinding.DataBindingUtil
 import com.bumptech.glide.Glide
+import com.gp.common.provider.MainServiceProvider
+import com.gp.common.provider.SearchServiceProvider
 import com.gp.framework.base.BaseMvvmActivity
 import com.gp.framework.ext.dp2px
+import com.gp.framework.ext.onClick
+import com.gp.framework.ext.visible
 import com.gp.framework.toast.TipsToast
 import com.gp.framework.utils.BitmapUtils
 import com.gp.framework.utils.CameraUtils
@@ -49,7 +61,7 @@ import java.util.Date
 import java.util.Locale
 
 
-class PicTransformActivity : BaseMvvmActivity<ActivityPicTransformBinding, MainViewModel>() {
+class PicTransformActivity : BaseMvvmActivity<ActivityPicTransformBinding, MainViewModel>(), ActionMode.Callback {
 
     companion object{
         const val SELECT_PHOTO_CODE = 2000
@@ -67,7 +79,9 @@ class PicTransformActivity : BaseMvvmActivity<ActivityPicTransformBinding, MainV
     private var modifyUserInfoDialog: AlertDialog? = null
 
     override fun initView(savedInstanceState: Bundle?) {
-
+        mBinding.btnHome.onClick {
+            MainServiceProvider.toMain(this, 0)
+        }
         showTypeDialog()
 
     }
@@ -291,7 +305,9 @@ class PicTransformActivity : BaseMvvmActivity<ActivityPicTransformBinding, MainV
             handler.post {
                 dismissLoading()
                 TipsToast.showTips("${error.code}  ${error.name}")
-                mBinding.tvTrans.text = "翻译失败"
+                mBinding.tvTrans.setText("翻译失败")
+                mBinding.tvTrans.visible()
+                mBinding.toolbarTakePhoto.visible()
             }
 
         }
@@ -327,8 +343,10 @@ class PicTransformActivity : BaseMvvmActivity<ActivityPicTransformBinding, MainV
                         break
                     }
                 }
-                mBinding.tvTrans.setVisibility(View.VISIBLE)
+                mBinding.tvTrans.visible()
+                mBinding.toolbarTakePhoto.visible()
                 mBinding.tvTrans.setText(spannableString)
+                mBinding.tvTrans.customSelectionActionModeCallback = this@PicTransformActivity
             }
         }
     }
@@ -356,4 +374,112 @@ class PicTransformActivity : BaseMvvmActivity<ActivityPicTransformBinding, MainV
         startActivityForResult(CameraUtils.getSelectPhotoIntent(), SELECT_PHOTO_CODE)
     }
 
+    override fun onCreateActionMode(mode: ActionMode, menu: Menu?): Boolean {
+        return true
+    }
+
+    private var mMenu: Menu? = null
+    override fun onPrepareActionMode(mode: ActionMode, menu: Menu?): Boolean {
+        //菜单创建完成以后获取到其对象，便于后续操作
+        mMenu = menu
+        val menuInflater: MenuInflater = mode.menuInflater
+        menu!!.clear()
+        menuInflater.inflate(com.gp.lib_widget.R.menu.edit_menu, menu)
+        return true
+    }
+
+    override fun onActionItemClicked(mode: ActionMode?, item: MenuItem): Boolean {
+        when (item.itemId) {
+            com.gp.lib_widget.R.id.select_all -> {
+                //全选
+                mBinding.tvTrans.selectAll()
+//                Toast.makeText(this, "完成全选", Toast.LENGTH_SHORT).show()
+            }
+
+            com.gp.lib_widget.R.id.select_copy -> {
+                val selectText = getSelectText(SelectMode.COPY)
+                //setText(selectText)是为了后面的this.mMenu.close()起作用
+                mBinding.tvTrans.setText(selectText)
+//                Toast.makeText(this, "选中的内容已复制到剪切板", Toast.LENGTH_SHORT).show()
+                mMenu!!.close()
+            }
+
+            com.gp.lib_widget.R.id.select_cut -> {
+                //剪切
+                val txt = getSelectText(SelectMode.CUT)
+                mBinding.tvTrans.setText(txt)
+                Toast.makeText(this, "选中的内容已剪切到剪切板", Toast.LENGTH_SHORT).show()
+                mMenu!!.close()
+            }
+
+            com.gp.lib_widget.R.id.select_paste -> {
+                //获取剪切班管理者
+                val cbs = this.getSystemService(CLIPBOARD_SERVICE) as ClipboardManager
+                if (cbs.hasPrimaryClip()) {
+                    mBinding.tvTrans.setText(cbs.primaryClip!!.getItemAt(0).text)
+                }
+                mMenu!!.close()
+            }
+
+            com.gp.lib_widget.R.id.select_search -> {
+                val searchText = getSearchText()
+                SearchServiceProvider.toSearchWord(this, searchText)
+            }
+        }
+        return true
+    }
+
+    override fun onDestroyActionMode(mode: ActionMode?) {
+
+    }
+
+
+    /**
+     * 统一处理复制和剪切的操作
+     * @param mode 用来区别是复制还是剪切
+     * @return
+     */
+    private fun getSelectText(mode: SelectMode): String {
+        //获取剪切班管理者
+        val cbs: ClipboardManager = this.getSystemService(CLIPBOARD_SERVICE) as ClipboardManager
+        //获取选中的起始位置
+        val selectionStart: Int = mBinding.tvTrans.selectionStart
+        val selectionEnd: Int = mBinding.tvTrans.selectionEnd
+        Log.i(TAG, "selectionStart=$selectionStart,selectionEnd=$selectionEnd")
+        //截取选中的文本
+        var txt: String = mBinding.tvTrans.text.toString()
+        val substring = txt.substring(selectionStart, selectionEnd)
+        Log.i(TAG, "substring=$substring")
+        //将选中的文本放到剪切板
+        cbs.setPrimaryClip(ClipData.newPlainText(null, substring))
+        //如果是复制就不往下操作了
+        if (mode == SelectMode.COPY) return txt
+        txt = txt.replace(substring, "")
+        return txt
+    }
+
+
+    private fun getSearchText(): String {
+        //获取选中的起始位置
+        val selectionStart: Int = mBinding.tvTrans.selectionStart
+        val selectionEnd: Int = mBinding.tvTrans.selectionEnd
+        Log.i(TAG, "selectionStart=$selectionStart,selectionEnd=$selectionEnd")
+        //截取选中的文本
+        val txt: String = mBinding.tvTrans.text.toString()
+        val substring = txt.substring(selectionStart, selectionEnd)
+        Log.i(TAG, "substring=$substring")
+        return substring
+    }
+
+
+
+}
+
+
+/**
+ * 用枚举来区分是复制还是剪切
+ */
+enum class SelectMode {
+    COPY,
+    CUT
 }

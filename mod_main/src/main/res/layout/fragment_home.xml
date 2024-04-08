@@ -193,12 +193,14 @@
 
                 <TextView
                     android:id="@+id/tv_vietnamese_word"
-                    android:layout_width="wrap_content"
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:text="@{wordbean.wordVi}"
                     android:textColor="@color/white"
                     android:textSize="@dimen/sp_16"
                     app:layout_constraintStart_toStartOf="parent"
+                    android:layout_marginEnd="@dimen/dp_6"
+                    app:layout_constraintEnd_toStartOf="@id/iv_refresh_word"
                     app:layout_constraintTop_toTopOf="parent" />
 
                 <ImageView
