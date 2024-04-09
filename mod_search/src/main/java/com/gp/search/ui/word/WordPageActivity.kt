@@ -50,6 +50,7 @@ class WordPageActivity : BaseMvvmActivity<ActivityWordPageBinding, SearchViewMod
         mViewModel.getWordDetail(id).observe(this) {
             mBinding.word = it
             word = it
+
         }
 
 

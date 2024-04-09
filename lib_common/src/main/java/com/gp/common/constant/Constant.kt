@@ -62,5 +62,6 @@ const val TABLE_PERSON_LIST = "table_person_list"
 
 const val TABLE_SCENERY_LIST = "table_scenery_list"
 
+const val TABLE_WORD_INFO_LIST = "word_info_list"
+
 const val TABLE_MUSIC_LIST = "table_music_list"
-const val TABLE_WORD_LIST = "table_word_list"

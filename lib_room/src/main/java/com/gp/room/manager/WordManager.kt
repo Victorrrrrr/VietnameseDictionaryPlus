@@ -6,6 +6,7 @@ import com.gp.common.model.SearchWordBean
 import com.gp.room.dao.WordListCacheDao
 import com.gp.room.database.VDDatabase
 import com.gp.room.entity.PersonInfo
+import com.gp.room.entity.WordBeanInfo
 import com.gp.room.entity.WordInfo
 
 /**
@@ -16,10 +17,9 @@ import com.gp.room.entity.WordInfo
  */
 object WordManager {
 
-//    private val wordDao by lazy { VDDatabase.getInstance().wordListDao() }
-    suspend fun getWordList() : SearchWordBean? {
-//        return wordDao.queryAll()
-        return null
+    private val wordDao by lazy { VDDatabase.getInstance().wordListDao() }
+    suspend fun getWordList() : WordBeanInfo? {
+        return wordDao.queryAll()
     }
 
 

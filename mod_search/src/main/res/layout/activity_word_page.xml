@@ -74,46 +74,77 @@
             />
 
 
-        <ImageView
-            android:id="@+id/iv_folder"
-            android:layout_width="@dimen/dp_28"
-            android:layout_height="@dimen/dp_28"
-            android:background="@drawable/shape_round_icon_bg"
-            android:src="@drawable/ic_folder"
-            app:layout_constraintEnd_toStartOf="@id/iv_fav"
-            app:layout_constraintTop_toTopOf="@id/iv_suggest"
-            android:layout_marginEnd="@dimen/dp_8"
-            />
+        <androidx.cardview.widget.CardView
+            android:id="@+id/cv_folder"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:cardCornerRadius="15dp"
+            app:cardElevation="0dp"
+            android:foreground="?android:attr/selectableItemBackground"
+            app:layout_constraintEnd_toStartOf="@id/cv_fav"
+            app:layout_constraintTop_toTopOf="@id/cv_suggest"
+            android:layout_marginEnd="@dimen/dp_8">
 
-        <ImageView
-            android:id="@+id/iv_fav"
-            android:layout_width="@dimen/dp_28"
-            android:layout_height="@dimen/dp_28"
-            android:background="@drawable/shape_round_icon_bg"
-            android:src="@drawable/ic_fav"
-            app:layout_constraintEnd_toStartOf="@+id/iv_suggest"
-            app:layout_constraintTop_toTopOf="@id/iv_suggest"
-            android:layout_marginEnd="@dimen/dp_8"
-            />
+            <ImageView
+                android:id="@+id/iv_folder"
+                android:layout_width="@dimen/dp_28"
+                android:layout_height="@dimen/dp_28"
+                android:background="@drawable/shape_round_icon_bg"
+                android:src="@drawable/ic_folder" />
+
+        </androidx.cardview.widget.CardView>
 
 
-        <ImageView
-            android:id="@+id/iv_suggest"
-            android:layout_width="@dimen/dp_28"
-            android:layout_height="@dimen/dp_28"
-            android:background="@drawable/shape_round_icon_bg"
-            android:src="@drawable/ic_suggest"
-            android:padding="@dimen/dp_5"
+        <androidx.cardview.widget.CardView
+            android:id="@+id/cv_fav"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:cardCornerRadius="15dp"
+            app:cardElevation="0dp"
+            android:foreground="?android:attr/selectableItemBackground"
+            app:layout_constraintEnd_toStartOf="@+id/cv_suggest"
+            app:layout_constraintTop_toTopOf="@id/cv_suggest"
+            android:layout_marginEnd="@dimen/dp_8">
+
+            <ImageView
+                android:id="@+id/iv_fav"
+                android:layout_width="@dimen/dp_28"
+                android:layout_height="@dimen/dp_28"
+                android:background="@drawable/shape_round_icon_bg"
+                android:src="@drawable/ic_fav" />
+        </androidx.cardview.widget.CardView>
+
+
+
+        <androidx.cardview.widget.CardView
+            android:id="@+id/cv_suggest"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toBottomOf="@id/tv_word_explain"
             android:layout_marginTop="@dimen/dp_5"
-            android:layout_marginEnd="@dimen/dp_30"/>
+            android:layout_marginEnd="@dimen/dp_30"
+            app:cardCornerRadius="15dp"
+            app:cardElevation="0dp"
+            android:foreground="?android:attr/selectableItemBackground">
+
+
+            <ImageView
+                android:id="@+id/iv_suggest"
+                android:layout_width="@dimen/dp_28"
+                android:layout_height="@dimen/dp_28"
+                android:background="@drawable/shape_round_icon_bg"
+                android:src="@drawable/ic_suggest"
+                android:padding="@dimen/dp_5"
+                />
+
+        </androidx.cardview.widget.CardView>
 
         <Space
             android:id="@+id/space_word_bottom"
             android:layout_width="match_parent"
             android:layout_height="@dimen/dp_15"
-            app:layout_constraintTop_toBottomOf="@id/iv_fav"
+            app:layout_constraintTop_toBottomOf="@id/cv_fav"
             />
 
         <LinearLayout

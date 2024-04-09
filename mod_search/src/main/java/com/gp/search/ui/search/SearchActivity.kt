@@ -72,7 +72,6 @@ class SearchActivity : BaseMvvmActivity<ActivitySearchBinding, SearchViewModel>(
                         mBinding.tvNoResult.visibility = if (it.data.size == 0) View.VISIBLE else View.GONE
                         wordSearchAdapter?.notifyDataSetChanged()
                     }
-
                 } else {
                     //如果改变了，并且文本长度=0
                     mBinding.ivNoResult.visibility = View.VISIBLE
