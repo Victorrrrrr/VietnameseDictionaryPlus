@@ -1,13 +1,8 @@
 package com.gp.room.manager
 
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
 import com.gp.common.model.SearchWordBean
-import com.gp.room.dao.WordListCacheDao
 import com.gp.room.database.VDDatabase
-import com.gp.room.entity.PersonInfo
 import com.gp.room.entity.WordBeanInfo
-import com.gp.room.entity.WordInfo
 
 /**
  * @Author: gxy

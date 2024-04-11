@@ -1,5 +1,6 @@
 package com.gp.recite
 
+import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.os.Handler
@@ -7,6 +8,7 @@ import android.view.View
 import androidx.databinding.DataBindingUtil
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.alibaba.android.arouter.facade.annotation.Route
+import com.gp.common.constant.KEY_INDEX
 import com.gp.common.constant.RECITE_ACTIVITY_RECITE
 import com.gp.common.model.LearnWordBean
 import com.gp.common.provider.MainServiceProvider
@@ -14,7 +16,6 @@ import com.gp.common.provider.SearchServiceProvider
 import com.gp.framework.base.BaseMvvmActivity
 import com.gp.framework.ext.onClick
 import com.gp.framework.ext.toJson
-import com.gp.framework.toast.TipsToast
 import com.gp.framework.utils.LogUtil
 import com.gp.framework.utils.MediaHelper
 import com.gp.framework.utils.getStringFromResource
@@ -39,6 +40,15 @@ class ReciteWordActivity : BaseMvvmActivity<ActivityReciteWordBinding, ReciteWor
 
         @JvmField var learnMode : LearnMode? = NewLearnMode
         @JvmField var wrongModeContinue = true
+
+        @JvmField var wordListFromFolder : List<LearnWordBean>? = null
+
+        fun start(context: Context, list: List<LearnWordBean>?) {
+            val intent = Intent(context, ReciteWordActivity::class.java)
+            this.wordListFromFolder = list
+            context.startActivity(intent)
+        }
+
     }
 
     private var wordList : List<LearnWordBean>? = null

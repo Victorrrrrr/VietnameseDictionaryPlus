@@ -3,12 +3,10 @@ package com.gp.main.ui.daily.scenic
 import android.os.Bundle
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.PagerSnapHelper
-import com.gp.common.model.PersonDaily
 import com.gp.common.model.SceneryDaily
 import com.gp.framework.base.BaseMvvmActivity
 import com.gp.lib_framework.utils.StatusBarSettingHelper
 import com.gp.main.databinding.ActivityDailyScenicBinding
-import com.gp.main.ui.daily.adapter.DailyPersonAdapter
 import com.gp.main.ui.daily.adapter.DailySceneryAdapter
 import com.gp.main.ui.daily.viewmodel.DailyViewModel
 

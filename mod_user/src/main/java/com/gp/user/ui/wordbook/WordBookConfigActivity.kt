@@ -16,7 +16,6 @@ import com.gp.framework.ext.onClick
 import com.gp.framework.toast.TipsToast
 import com.gp.framework.utils.getColorFromResource
 import com.gp.lib_widget.databinding.DialogEditBinding
-import com.gp.lib_widget.databinding.DialogModifyBinding
 import com.gp.mod_user.databinding.ActivityWordBookConfigBinding
 import com.gp.network.manager.WordBookIdManager
 import com.gp.widget.AlertDialog

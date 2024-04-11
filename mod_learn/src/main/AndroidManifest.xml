@@ -7,6 +7,15 @@
 
     <application>
         <activity
+            android:name="com.gp.learn.tool.note.AddFolderActivity"
+            android:exported="false" />
+        <activity
+            android:name="com.gp.learn.tool.notedetail.FolderWordsActivity"
+            android:exported="false" />
+        <activity
+            android:name="com.gp.learn.quick.QuickActivity"
+            android:exported="false" />
+        <activity
             android:name="com.gp.learn.show.ShowActivity"
             android:exported="false" />
         <activity
@@ -23,7 +32,7 @@
             android:name="com.gp.learn.tool.voice_trans.VoiceTransActivity"
             android:exported="false" />
         <activity
-            android:name="com.gp.learn.tool.note.NoteActivity"
+            android:name="com.gp.learn.tool.note.FolderActivity"
             android:exported="false" />
         <activity
             android:name="com.gp.learn.review.WordMatchActivity"

@@ -22,3 +22,5 @@ const val KEY_AUTHORIZATION = "Authorization"
 
 const val KEY_WORD_ID = "word_id"
 
+const val KEY_FOLDER_ID = "folder_id"
+

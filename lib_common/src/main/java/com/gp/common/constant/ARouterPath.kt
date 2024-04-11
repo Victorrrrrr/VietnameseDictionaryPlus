@@ -43,6 +43,8 @@ const val LEARN_ACTIVITY_NOTE = "/learn/activity/note"
 
 const val LEARN_ACTIVITY_VOICE = "/learn/activity/voice"
 
+const val LEARN_ACTIVITY_QUICK = "/learn/activity/quick"
+
 
 /**
  * 我的界面

@@ -2,6 +2,7 @@ package com.gp.common.service
 
 import android.content.Context
 import com.alibaba.android.arouter.facade.template.IProvider
+import com.gp.common.model.LearnWordBean
 
 interface IReciteService : IProvider {
 
@@ -10,5 +11,7 @@ interface IReciteService : IProvider {
      */
     fun toReciteLoad(context: Context, index: Int)
 
+
+    fun toReciteWord(context: Context, list: List<LearnWordBean>)
 
 }

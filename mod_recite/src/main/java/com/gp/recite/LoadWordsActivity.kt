@@ -32,6 +32,10 @@ class LoadWordsActivity : BaseMvvmActivity<ActivityLoadWordsBinding, ReciteWords
             intent.putExtra(KEY_INDEX, index)
             context.startActivity(intent)
         }
+
+
+
+
     }
 
 
@@ -43,6 +47,7 @@ class LoadWordsActivity : BaseMvvmActivity<ActivityLoadWordsBinding, ReciteWords
     }
 
     override fun initData() {
+
         val count = WordBookIdManager.getReciteNum()
         mViewModel.getWordLearn(count).observe(this) {
             WordController.saveWordList(it)

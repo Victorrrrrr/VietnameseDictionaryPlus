@@ -33,7 +33,6 @@ class HomeFragment : BaseMvvmFragment<FragmentHomeBinding, MainViewModel>() {
     }
 
 
-
     override fun initData() {
         mViewModel.getHomeDailyData().observe(this) {
             mBinding?.sayingBean = it.sentence

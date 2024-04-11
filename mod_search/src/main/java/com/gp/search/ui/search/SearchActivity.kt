@@ -6,10 +6,8 @@ import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
 import android.view.View
-import androidx.core.widget.addTextChangedListener
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.alibaba.android.arouter.facade.annotation.Route
-import com.gp.common.constant.KEY_INDEX
 import com.gp.common.constant.KEY_WORD_SEARCH
 import com.gp.common.constant.SEARCH_ACTIVITY_SEARCH
 import com.gp.framework.base.BaseMvvmActivity
@@ -18,7 +16,6 @@ import com.gp.framework.utils.LogUtil
 import com.gp.framework.utils.SoftInputUtil
 import com.gp.lib_framework.utils.StatusBarSettingHelper
 import com.gp.mod_search.databinding.ActivitySearchBinding
-import com.gp.network.constant.KEY_WORD_ID
 import com.gp.search.ui.adapter.WordSearchAdapter
 import java.util.Timer
 import java.util.TimerTask

@@ -13,8 +13,6 @@ class GameViewModel : BaseViewModel() {
 
     private val learnRepo by lazy { LearnRepository() }
 
-
-
     fun getWordLearn(size: Int, success: (WordLearnList?) -> Unit): LiveData<WordLearnList> {
         return liveData {
             val response = launchUIWithResult({

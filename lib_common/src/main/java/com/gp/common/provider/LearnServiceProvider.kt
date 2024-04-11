@@ -31,4 +31,8 @@ object LearnServiceProvider {
         learnService.toVoiceTrans(context)
     }
 
+    fun toQuickPass(context: Context) {
+        learnService.toQuick(context)
+    }
+
 }

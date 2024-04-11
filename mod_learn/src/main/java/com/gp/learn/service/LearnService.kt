@@ -6,8 +6,9 @@ import com.alibaba.android.arouter.facade.annotation.Route
 import com.gp.common.constant.LEARN_SERVICE_LEARN
 import com.gp.common.service.ILearnService
 import com.gp.learn.game.LoadGameActivity
+import com.gp.learn.quick.QuickActivity
 import com.gp.learn.review.WordMatchActivity
-import com.gp.learn.tool.note.NoteActivity
+import com.gp.learn.tool.note.FolderActivity
 import com.gp.learn.tool.voice_trans.VoiceTransActivity
 
 @Route(path = LEARN_SERVICE_LEARN)
@@ -21,12 +22,17 @@ class LearnService : ILearnService{
     }
 
     override fun toNote(context: Context) {
-        context.startActivity(Intent(context, NoteActivity::class.java))
+        context.startActivity(Intent(context, FolderActivity::class.java))
     }
 
     override fun toVoiceTrans(context: Context) {
         context.startActivity(Intent(context, VoiceTransActivity::class.java))
     }
+
+    override fun toQuick(context: Context) {
+        context.startActivity(Intent(context, QuickActivity::class.java))
+    }
+
 
     override fun init(context: Context?) {
 

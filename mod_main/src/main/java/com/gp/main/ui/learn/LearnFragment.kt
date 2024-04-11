@@ -42,7 +42,15 @@ class LearnFragment : BaseMvvmFragment<FragmentLearnBinding, LearnViewModel>() {
             if (LoginServiceProvider.isLogin()) {
                 LearnServiceProvider.toWordMatch(it.context)
             } else {
-            TipsToast.showTips(getStringFromResource(R.string.no_login_tips))
+                TipsToast.showTips(getStringFromResource(R.string.no_login_tips))
+            }
+        }
+
+        mBinding?.rlWordsQuickPass?.onClick {
+            if (LoginServiceProvider.isLogin()) {
+                LearnServiceProvider.toQuickPass(it.context)
+            } else {
+                TipsToast.showTips(getStringFromResource(R.string.no_login_tips))
             }
         }
 

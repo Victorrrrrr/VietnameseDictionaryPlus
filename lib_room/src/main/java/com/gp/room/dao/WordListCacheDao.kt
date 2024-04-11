@@ -1,9 +1,11 @@
 package com.gp.room.dao
 
+import androidx.room.Dao
 import androidx.room.Query
 import com.gp.common.constant.TABLE_WORD_INFO_LIST
 import com.gp.room.entity.WordBeanInfo
 
+@Dao
 interface WordListCacheDao {
 
     /**

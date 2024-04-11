@@ -6,6 +6,7 @@ import android.os.Build
 import android.os.Bundle
 import android.os.Environment
 import android.provider.Settings
+import android.transition.Explode
 import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatDelegate
 import androidx.databinding.ViewDataBinding
@@ -102,4 +103,11 @@ abstract class BaseMvvmActivity<DB : ViewDataBinding, VM : ViewModel> : BaseData
 
     }
 
+
+    protected fun windowExplode() {
+        window.enterTransition = Explode().setDuration(300)
+        window.exitTransition = Explode().setDuration(300)
+        window.reenterTransition = Explode().setDuration(300)
+        window.returnTransition = Explode().setDuration(300)
+    }
 }
