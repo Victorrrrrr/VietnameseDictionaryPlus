@@ -13,7 +13,10 @@ import com.gp.common.provider.SearchServiceProvider
 import com.gp.framework.base.BaseMvvmFragment
 import com.gp.framework.ext.onClick
 import com.gp.framework.toast.TipsToast
+import com.gp.framework.utils.LanguageChangeUtils
 import com.gp.framework.utils.LogUtil
+import com.gp.framework.utils.MMKVUtil
+import com.gp.framework.utils.MMKV_TYPE
 import com.gp.framework.utils.getStringFromResource
 import com.gp.glide.setUrl
 import com.gp.main.R
@@ -25,6 +28,7 @@ import com.gp.main.ui.main.MainViewModel
 import com.gp.main.ui.transform.PicTransformActivity
 import com.gp.network.manager.TokenManager
 import com.gp.network.manager.WordBookIdManager
+import java.util.Locale
 
 
 class HomeFragment : BaseMvvmFragment<FragmentHomeBinding, MainViewModel>() {
@@ -40,10 +44,12 @@ class HomeFragment : BaseMvvmFragment<FragmentHomeBinding, MainViewModel>() {
     override fun initData() {
         initFavFolder()
         mViewModel.getHomeDailyData().observe(this) {
+            mBinding?.isEnglish = LanguageChangeUtils.getSelectLanguageLocale() == Locale.ENGLISH
             mBinding?.sayingBean = it.sentence
 
             mBinding?.ivDailyScenic?.setUrl(it.scenery.img)
             mBinding?.ivDailyPerson?.setUrl(it.character.pic)
+
 
             mBinding?.tvDailyPerson?.append(" - ${it.character.nameZh} ")
             mBinding?.tvDailyScenic?.append(" - ${it.scenery.nameZh} ")

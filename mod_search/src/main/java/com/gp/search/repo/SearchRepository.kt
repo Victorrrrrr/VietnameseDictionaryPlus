@@ -6,6 +6,7 @@ import com.gp.common.model.FolderWordList
 import com.gp.common.model.SearchWordBean
 import com.gp.common.model.SuggestList
 import com.gp.common.model.SuggestListItem
+import com.gp.common.model.SuggestRequest
 import com.gp.common.model.WordBeanItem
 import com.gp.network.manager.ApiManager
 import com.gp.network.repository.BaseRepository
@@ -55,7 +56,7 @@ class SearchRepository : BaseRepository() {
         }
     }
 
-    suspend fun suggest(suggestListItem: SuggestListItem) : BaseResponse<Void>? {
+    suspend fun suggest(suggestListItem: SuggestRequest) : BaseResponse<Void>? {
         return requestBaseDataResponse {
             ApiManager.api.suggest(suggestListItem)
         }

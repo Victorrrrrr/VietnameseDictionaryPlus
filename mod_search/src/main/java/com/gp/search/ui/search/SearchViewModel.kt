@@ -6,6 +6,7 @@ import com.gp.common.model.AddWordToFolderRequest
 import com.gp.common.model.FolderList
 import com.gp.common.model.FolderWordList
 import com.gp.common.model.SearchWordBean
+import com.gp.common.model.SuggestList
 import com.gp.common.model.WordBeanItem
 import com.gp.framework.toast.TipsToast
 import com.gp.network.callback.IApiErrorCallback
@@ -98,6 +99,19 @@ class SearchViewModel : BaseViewModel() {
         }
     }
 
+
+    fun getSuggestList(id: Int, currentPage: Int, pageSize: Int): LiveData<SuggestList> {
+        return liveData {
+            val response = safeApiCall(errorBlock = {code, errorMsg ->
+                TipsToast.showTips(errorMsg)
+            }) {
+                searchRepository.getSuggestList(id, currentPage, pageSize)
+            }
+            response?.let{
+                emit(it)
+            }
+        }
+    }
 
 
 

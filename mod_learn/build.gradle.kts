@@ -62,6 +62,8 @@ dependencies {
 
     compileOnly(libs.jtransforms)
 
+    compileOnly(libs.autofittextview)
+
     // 路由
     compileOnly(libs.arouter.api)
     kapt(libs.arouter.compiler)

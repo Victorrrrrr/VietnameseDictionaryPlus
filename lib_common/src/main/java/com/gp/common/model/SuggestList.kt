@@ -1,3 +1,9 @@
 package com.gp.common.model
 
-class SuggestList : ArrayList<SuggestListItem>()
+data class SuggestList(
+    val currentPage: Int,
+    val `data`: List<SuggestListItem>,
+    val pageSize: Int,
+    val pages: Int,
+    val total: Int
+)

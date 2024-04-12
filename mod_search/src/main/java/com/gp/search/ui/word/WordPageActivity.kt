@@ -17,7 +17,10 @@ import com.gp.common.model.SentenceBean
 import com.gp.common.model.WordBeanItem
 import com.gp.common.model.WordInfo
 import com.gp.framework.base.BaseMvvmActivity
+import com.gp.framework.ext.gone
+import com.gp.framework.ext.invisible
 import com.gp.framework.ext.onClick
+import com.gp.framework.ext.visible
 import com.gp.framework.toast.TipsToast
 import com.gp.framework.utils.MediaHelper
 import com.gp.framework.utils.getDrawableFromResource
@@ -37,7 +40,12 @@ class WordPageActivity : BaseMvvmActivity<ActivityWordPageBinding, SearchViewMod
     private var folderDialog: BottomSheetDialog? = null
     private lateinit var folderDialogView : View
 
+    private var commentDialog : BottomSheetDialog? = null
+    private lateinit var commentDialogView : View
+
     private var folderDialogAdapter = FolderDialogAdapter()
+
+    private var commentAdapter = CommentAdapter()
 
     private lateinit var mAdapter: SentencesAdapter
     private var id : String = ""
@@ -49,7 +57,6 @@ class WordPageActivity : BaseMvvmActivity<ActivityWordPageBinding, SearchViewMod
 
         initRecyclerView()
         initEvent()
-
 
     }
 
@@ -98,6 +105,8 @@ class WordPageActivity : BaseMvvmActivity<ActivityWordPageBinding, SearchViewMod
                     mBinding.ivFav.parent.requestLayout()
                 }
             }
+
+        refreshComment()
     }
 
     private fun initEvent() {
@@ -116,6 +125,10 @@ class WordPageActivity : BaseMvvmActivity<ActivityWordPageBinding, SearchViewMod
 
         mBinding.ivFolder.onClick {
             showBottomSheetFolderDialog()
+        }
+
+        mBinding.ivComment.onClick {
+            showBottomSheetCommentDialog()
         }
 
 
@@ -146,6 +159,17 @@ class WordPageActivity : BaseMvvmActivity<ActivityWordPageBinding, SearchViewMod
 
     }
 
+    private fun showBottomSheetCommentDialog() {
+        if(commentDialog == null) {
+            commentDialog = BottomSheetDialog(this, com.gp.lib_widget.R.style.BottomSheetDialog)
+            commentDialogView = LayoutInflater.from(this).inflate(R.layout.dialog_comment , null, false)
+            commentDialog?.setContentView(commentDialogView)
+
+            initFolderDialogEvent()
+        }
+        commentDialog?.show()
+    }
+
 
     private fun showBottomSheetFolderDialog() {
         if(folderDialog == null) {
@@ -159,9 +183,38 @@ class WordPageActivity : BaseMvvmActivity<ActivityWordPageBinding, SearchViewMod
         folderDialog?.show()
     }
 
+
+    private fun initFolderDialogEvent() {
+        val rvComment = commentDialog?.findViewById<RecyclerView>(R.id.rv_comment)
+
+//        commentAdapter = CommentAdapter()
+        rvComment?.adapter = commentAdapter
+        rvComment?.layoutManager = LinearLayoutManager(this)
+        refreshComment()
+
+        val btnDismiss = commentDialog?.findViewById<ImageView>(R.id.iv_dismiss)
+        btnDismiss?.onClick {
+            commentDialog?.dismiss()
+        }
+    }
+
+    private fun refreshComment() {
+        val tvNoResult = commentDialog?.findViewById<TextView>(R.id.tv_no_result)
+        mViewModel.getSuggestList(id.toInt(), 1, 100).observe(this) {
+            commentAdapter.setData(it.data)
+            commentAdapter.notifyDataSetChanged()
+            if(it.data.isEmpty()) {
+                tvNoResult?.visible()
+            } else {
+                tvNoResult?.gone()
+            }
+        }
+    }
+
+
     private fun initFolderDialogEvent(folderDialogView: View?) {
         val rvFolder = folderDialog?.findViewById<RecyclerView>(R.id.rv_folder)
-        folderDialogAdapter = FolderDialogAdapter()
+//        folderDialogAdapter = FolderDialogAdapter()
         rvFolder?.adapter = folderDialogAdapter
         rvFolder?.layoutManager = LinearLayoutManager(this)
         var filterData = listOf<FolderListBean>()
@@ -178,7 +231,7 @@ class WordPageActivity : BaseMvvmActivity<ActivityWordPageBinding, SearchViewMod
         val btnConfirm = folderDialog?.findViewById<Button>(R.id.btn_confirm)
         btnConfirm?.onClick {
             val folderId = getFolderId()
-            if(folderId != null){
+            if(folderId != null) {
                 var list = ArrayList<WordInfo>()
                 list.add(WordInfo("" , id.toInt()))
                 val addWordToFolderRequest = AddWordToFolderRequest(folderId, list)
@@ -190,9 +243,8 @@ class WordPageActivity : BaseMvvmActivity<ActivityWordPageBinding, SearchViewMod
                 TipsToast.showTips("请选择一个单词夹进行添加")
             }
         }
-
-
     }
+
 
     private fun getFolderId() : Int?{
         for (folderListBean in folderDialogAdapter.getData()) {
@@ -228,17 +280,17 @@ class WordPageActivity : BaseMvvmActivity<ActivityWordPageBinding, SearchViewMod
 
 
         suggestDialogView?.findViewById<TextView>(com.gp.lib_widget.R.id.tv_meaning_error)?.onClick {
-            SuggestActivity.startSuggest(this, SuggestActivity.ERROR_WORD_DEFINITION)
+            SuggestActivity.startSuggest(this, SuggestActivity.ERROR_WORD_DEFINITION, id.toInt())
             suggestDialog?.dismiss()
         }
 
         suggestDialogView?.findViewById<TextView>(com.gp.lib_widget.R.id.tv_sentence_error)?.onClick {
-            SuggestActivity.startSuggest(this, SuggestActivity.ERROR_SENTENCE)
+            SuggestActivity.startSuggest(this, SuggestActivity.ERROR_SENTENCE, id.toInt())
             suggestDialog?.dismiss()
         }
 
         suggestDialogView?.findViewById<TextView>(com.gp.lib_widget.R.id.tv_bad_info)?.onClick {
-            SuggestActivity.startSuggest(this, SuggestActivity.ERROR_BAD_INFORMATION)
+            SuggestActivity.startSuggest(this, SuggestActivity.ERROR_BAD_INFORMATION, id.toInt())
             suggestDialog?.dismiss()
         }
 

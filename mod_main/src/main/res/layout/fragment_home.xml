@@ -9,6 +9,10 @@
             type="com.gp.common.model.Sentence" />
 
         <variable
+            name="isEnglish"
+            type="boolean" />
+
+        <variable
             name="person"
             type="com.gp.common.model.Character" />
 
@@ -143,7 +147,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginTop="@dimen/dp_10"
                         android:gravity="center"
-                        android:text="@{sayingBean.sentenceZh}"
+                        android:text="@{ isEnglish ? sayingBean.sentenceEn :sayingBean.sentenceZh}"
                         android:textSize="@dimen/sp_14"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
@@ -220,7 +224,7 @@
                     android:layout_marginTop="@dimen/dp_10"
                     android:ellipsize="end"
                     android:maxLines="3"
-                    android:text="@{@string/word_meaning(wordbean.wordZh)}"
+                    android:text="@{@string/word_meaning(isEnglish ? wordbean.wordEn : wordbean.wordZh)}"
                     android:textColor="@color/white"
                     android:textSize="@dimen/sp_14"
                     app:layout_constraintBottom_toBottomOf="parent"

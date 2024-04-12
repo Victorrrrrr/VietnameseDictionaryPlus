@@ -18,6 +18,7 @@ import com.gp.common.model.SceneryBean
 import com.gp.common.model.SearchWordBean
 import com.gp.common.model.SuggestList
 import com.gp.common.model.SuggestListItem
+import com.gp.common.model.SuggestRequest
 import com.gp.common.model.UserInfo
 import com.gp.common.model.WordBeanItem
 import com.gp.common.model.WordLearnList
@@ -204,7 +205,7 @@ interface ApiService {
 
     @POST("app-dict/feedback/word")
     suspend fun suggest(
-        @Body suggestListItem: SuggestListItem
+        @Body suggestListItem: SuggestRequest
     ) : BaseResponse<Void>
 
     @GET("app-dict/feedback/word/{id}")

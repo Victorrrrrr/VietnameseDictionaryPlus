@@ -13,6 +13,8 @@ import com.gp.framework.ext.onClick
 import com.gp.learn.data.ItemShow
 import com.gp.learn.game.GameActivity
 import com.gp.learn.game.GameViewModel
+import com.gp.learn.quick.QuickActivity
+import com.gp.learn.review.WordMatchActivity
 import com.gp.mod_learn.databinding.ActivityShowBinding
 
 
@@ -30,9 +32,9 @@ class ShowActivity : BaseMvvmActivity<ActivityShowBinding, GameViewModel>() {
         const val TAG = "ShowActivity"
     }
 
-    private val showList: MutableList<ItemShow> = ArrayList()
+    private val showList: ArrayList<ItemShow> = ArrayList()
 
-    private var wordList: MutableList<LearnWordBean> = ArrayList()
+    private var wordList: ArrayList<LearnWordBean> = ArrayList()
 
     private val FINISH = 0
 
@@ -78,18 +80,13 @@ class ShowActivity : BaseMvvmActivity<ActivityShowBinding, GameViewModel>() {
 //        Log.d(TAG, "searchWord: " + MatchActivity.allMatches.size())
         when (currentType) {
             TYPE_MATCH -> {
-//                Log.d(TAG, "searchWord: ")
-//                for (match in MatchActivity.allMatches) {
-//                    val words: List<Word> =
-//                        LitePal.where("wordId = ?", match.getId() + "").select("wordId", "word")
-//                            .find(
-//                                Word::class.java
-//                            )
-//                    wordList.add(words[0])
-//                }
+                Log.d(TAG, "searchWord: ")
+                for (match in WordMatchActivity.receiveWordList) {
+                    wordList.add(match)
+                }
             }
 
-//            TYPE_SPEED -> wordList = SpeedActivity.wordList.clone()
+            TYPE_SPEED -> wordList = QuickActivity.wordList.clone() as ArrayList<LearnWordBean>
             TYPE_GAME -> {
                 for (word in GameActivity.alreadyWords) {
                     wordList.add(word)

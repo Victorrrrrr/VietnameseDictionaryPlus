@@ -52,7 +52,7 @@ object LanguageChangeUtils {
     /**
      * 从首选项获取用户选择的语言种类
      */
-    private fun getSelectLanguageLocale():Locale{
+    fun getSelectLanguageLocale():Locale{
         if (MMKVUtil.get(MMKV_TYPE.APP).decodeString("LANGUAGE").equals("ENGLISH")){
             return Locale.ENGLISH
         }

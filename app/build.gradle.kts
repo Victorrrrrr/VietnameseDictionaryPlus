@@ -97,6 +97,8 @@ dependencies {
     androidTestImplementation(libs.androidx.test.ext.junit)
     androidTestImplementation(libs.espresso.core)
 
+    implementation (libs.autofittextview)
+
     implementation(files("libs/YoudaoBase_v20230803.jar") )
     implementation(files("libs/online_auth.jar"))
     implementation(files("libs/zhiyun_offline_common.jar"))

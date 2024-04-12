@@ -27,6 +27,8 @@ class LearnFragment : BaseMvvmFragment<FragmentLearnBinding, LearnViewModel>() {
         }
 
         mBinding?.rlVoiceTransBtn?.onClick {
+            TipsToast.showTips("暂未实现")
+            return@onClick
             LearnServiceProvider.toVoiceTrans(it.context)
         }
 

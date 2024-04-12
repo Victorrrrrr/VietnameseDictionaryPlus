@@ -1,6 +1,7 @@
 # 声明可以被依赖项引用的版本
 [versions]
 # sdk版本
+autofittextview = "0.2.1"
 jtransforms = "3.1"
 lottie = "3.7.0"
 targetsdk = "34"
@@ -58,6 +59,7 @@ ffmpeg-native = "1.0.19"
 
 # 声明坐标的别名
 [libraries]
+autofittextview = { module = "me.grantland:autofittextview", version.ref = "autofittextview" }
 core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "core-ktx" }
 jtransforms = { group = "com.github.wendykierp", name = "JTransforms" , version.ref = "jtransforms" }
 junit = { group = "junit", name = "junit", version.ref = "junit" }
