@@ -51,7 +51,6 @@ class FolderWordsActivity : BaseMvvmActivity<ActivityNoteDetailBinding, FolderVi
 
 
 
-
     fun refreshList(folderId : Int) {
         mViewModel.getFolderWordList(folderId, 1, 100, "").observe(this) {
             wordListAdapter!!.setData(it.data)
@@ -65,5 +64,4 @@ class FolderWordsActivity : BaseMvvmActivity<ActivityNoteDetailBinding, FolderVi
             }
         }
     }
-
 }

@@ -11,7 +11,7 @@ import com.gp.common.model.ChoiceResult
 import com.gp.common.model.Option
 import com.gp.framework.helper.VDHelper
 import com.gp.framework.utils.getColorFromResource
-import com.gp.framework.utils.getDrawable
+import com.gp.framework.utils.getDrawableFromResource
 import com.gp.mod_learn.R
 
 
@@ -83,13 +83,13 @@ class MeanChoiceAdapter(mItemWordMeanChoiceList: List<Option>) :
             // 说明答错了
             holder.cardMean.setCardBackgroundColor(getColorFromResource(com.gp.lib_widget.R.color.wrong_chacha_item))
             holder.imgChoice.visibility = View.VISIBLE
-            holder.imgChoice.setImageDrawable(getDrawable(com.gp.lib_widget.R.drawable.ic_chacha_red))
+            holder.imgChoice.setImageDrawable(getDrawableFromResource(com.gp.lib_widget.R.drawable.ic_chacha_red))
             holder.textWordMean.setTextColor(getColorFromResource(com.gp.lib_widget.R.color.color_light_red))
         } else if (itemWordMeanChoice.result == ChoiceResult.RIGHT) {
             // 说明答对了
             holder.cardMean.setCardBackgroundColor(getColorFromResource(com.gp.lib_widget.R.color.right_tick_item))
             holder.imgChoice.visibility = View.VISIBLE
-            holder.imgChoice.setImageDrawable(getDrawable(com.gp.lib_widget.R.drawable.ic_tick_green))
+            holder.imgChoice.setImageDrawable(getDrawableFromResource(com.gp.lib_widget.R.drawable.ic_tick_green))
             holder.textWordMean.setTextColor(getColorFromResource(com.gp.lib_widget.R.color.color_tick_green))
         } else if (itemWordMeanChoice.result == ChoiceResult.NOTSTART) {
             holder.cardMean.setCardBackgroundColor(getColorFromResource(com.gp.lib_widget.R.color.choice_item_white_bg))

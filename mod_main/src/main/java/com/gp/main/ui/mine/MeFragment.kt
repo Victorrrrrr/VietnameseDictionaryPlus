@@ -97,6 +97,7 @@ class MeFragment : BaseMvvmFragment<FragmentMeBinding, MeViewModel>() {
         mBinding?.ivLogout?.onClick {
             UserInfoManager.clearAll()
             TokenManager.clearToken()
+            WordBookIdManager.saveFavFolderId(-1)
 
             mBinding?.tvUserName?.text = getStringFromResource(com.gp.lib_widget.R.string.me_login_tip_text)
             it.gone()

@@ -6,10 +6,13 @@ import android.os.Bundle
 import android.util.Log
 import androidx.lifecycle.lifecycleScope
 import com.gp.common.constant.*
+import com.gp.common.model.FolderAddRequest
 import com.gp.common.provider.MainServiceProvider
 import com.gp.framework.base.BaseMvvmActivity
 import com.gp.framework.ext.countDownCoroutines
 import com.gp.framework.ext.onClick
+import com.gp.framework.toast.TipsToast
+import com.gp.framework.utils.LogUtil
 import com.gp.lib_framework.utils.StatusBarSettingHelper
 import com.gp.lib_widget.R
 
@@ -80,4 +83,5 @@ class SplashActivity : BaseMvvmActivity<ActivitySplashBinding, MainViewModel>() 
             TokenManager.saveBaiduToken(it.access_token)
         }
     }
+
 }

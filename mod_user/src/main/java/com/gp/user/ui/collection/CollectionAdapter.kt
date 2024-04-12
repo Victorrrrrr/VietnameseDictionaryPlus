@@ -1,20 +1,16 @@
-package com.gp.learn.tool.notedetail
+package com.gp.user.ui.collection
 
 import android.view.LayoutInflater
-import android.view.View
 import android.view.ViewGroup
-import com.gp.common.model.FolderListBean
 import com.gp.common.model.WordBeanItem
 import com.gp.common.provider.SearchServiceProvider
 import com.gp.framework.adapter.BaseBindViewHolder
 import com.gp.framework.adapter.BaseRecyclerViewAdapter
 import com.gp.framework.ext.onClick
 import com.gp.framework.utils.LogUtil
-import com.gp.mod_learn.databinding.ItemFolderWordListBinding
-import com.gp.mod_learn.databinding.ItemNoteBinding
-import com.gp.network.manager.WordBookIdManager
+import com.gp.mod_user.databinding.ItemFabBinding
 
-class WordFolderListAdapter : BaseRecyclerViewAdapter<WordBeanItem, ItemFolderWordListBinding>() {
+class CollectionAdapter : BaseRecyclerViewAdapter<WordBeanItem,ItemFabBinding>() {
 
     private var onItemDelete: OnItemDelete? = null
 
@@ -23,7 +19,7 @@ class WordFolderListAdapter : BaseRecyclerViewAdapter<WordBeanItem, ItemFolderWo
     }
 
     override fun onBindDefViewHolder(
-        holder: BaseBindViewHolder<ItemFolderWordListBinding>,
+        holder: BaseBindViewHolder<ItemFabBinding>,
         item: WordBeanItem?,
         position: Int
     ) {
@@ -34,7 +30,7 @@ class WordFolderListAdapter : BaseRecyclerViewAdapter<WordBeanItem, ItemFolderWo
                 SearchServiceProvider.toWordPage(it.context, item?.id.toString())
             }
 
-            imgItwfdReduce.onClick {
+            imgFavReduce.onClick {
                 LogUtil.d(tag = "111", message = "click delete")
                 onItemDelete!!.onDelete(item!!.id)
             }
@@ -45,8 +41,8 @@ class WordFolderListAdapter : BaseRecyclerViewAdapter<WordBeanItem, ItemFolderWo
         layoutInflater: LayoutInflater,
         parent: ViewGroup,
         viewType: Int
-    ): ItemFolderWordListBinding {
-        return ItemFolderWordListBinding.inflate(layoutInflater,parent,false)
+    ): ItemFabBinding {
+        return ItemFabBinding.inflate(layoutInflater, parent, false)
     }
 }
 

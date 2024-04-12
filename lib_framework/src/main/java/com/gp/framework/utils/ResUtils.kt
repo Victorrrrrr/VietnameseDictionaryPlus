@@ -48,6 +48,6 @@ fun getColorDrawable(@ColorRes colorRes: Int): ColorDrawable? {
     )
 }
 
-fun getDrawable(@DrawableRes drawableRes: Int): Drawable? {
+fun getDrawableFromResource(@DrawableRes drawableRes: Int): Drawable? {
     return VDHelper.getApplication().getDrawable(drawableRes)
 }
