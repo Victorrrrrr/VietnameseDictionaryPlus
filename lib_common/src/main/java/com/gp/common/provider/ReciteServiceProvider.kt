@@ -4,6 +4,7 @@ import android.content.Context
 import com.alibaba.android.arouter.facade.annotation.Autowired
 import com.alibaba.android.arouter.launcher.ARouter
 import com.gp.common.constant.RECITE_SERVICE_RECITE
+import com.gp.common.model.LearnWordBean
 import com.gp.common.service.IReciteService
 
 object ReciteServiceProvider {
@@ -18,6 +19,11 @@ object ReciteServiceProvider {
 
     fun toReciteLoad(context: Context, index: Int = 0) {
         reciteService.toReciteLoad(context, index)
+    }
+
+
+    fun toReciteWord(context: Context, list: List<LearnWordBean>) {
+        reciteService.toReciteWord(context, list)
     }
 
 

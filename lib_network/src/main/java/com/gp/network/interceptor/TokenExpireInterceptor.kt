@@ -20,6 +20,7 @@ class TokenExpireInterceptor : Interceptor {
         if(response.code() == 401 || response.code() == 403 || response.code() == 700) {
             // 清除token
             TokenManager.clearToken()
+            TokenManager.clearBaiduToken()
             // TODO 重新获取游客模式的token
 
             // 清除用户信息

@@ -25,6 +25,10 @@ object SearchServiceProvider {
         searchService.toSearch(context)
     }
 
+    fun toSearchWord(context: Context, str: String) {
+        searchService.toSearch(context, str)
+    }
+
 
     fun toWordPage(context: Context, id: String) {
         searchService.toWordPage(context, id)

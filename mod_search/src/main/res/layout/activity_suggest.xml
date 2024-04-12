@@ -44,6 +44,79 @@
         </com.google.android.material.appbar.MaterialToolbar>
 
 
+        <TextView
+            android:id="@+id/tv_suggest_type"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="全是错"
+            android:textSize="@dimen/sp_18"
+            android:textColor="@color/title_black"
+            app:layout_constraintTop_toBottomOf="@id/toolbar_suggest"
+            app:layout_constraintStart_toStartOf="parent"
+            android:layout_marginStart="@dimen/dp_15"
+            android:layout_marginTop="@dimen/dp_8"/>
+
+
+        <View
+            android:id="@+id/v_bg_suggest"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:background="@drawable/shape_light_theme_bg"
+            app:layout_constraintTop_toTopOf="@id/space_1"
+            app:layout_constraintBottom_toBottomOf="@id/space_2"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:layout_marginHorizontal="@dimen/dp_10"
+            />
+
+        <Space
+            android:id="@+id/space_1"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/dp_10"
+            android:layout_marginTop="@dimen/dp_20"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tv_suggest_type"
+            />
+
+        <EditText
+            android:id="@+id/et_type"
+            android:layout_width="0dp"
+            android:layout_height="@dimen/dp_36"
+            android:textSize="@dimen/sp_16"
+            app:layout_constraintTop_toBottomOf="@id/space_1"
+            android:layout_marginHorizontal="@dimen/dp_25"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:background="@null"
+            />
+
+        <EditText
+            android:id="@+id/et_suggest_content"
+            android:layout_width="0dp"
+            android:layout_height="@dimen/dp_36"
+            android:textSize="@dimen/sp_16"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/et_type"
+            android:layout_marginTop="@dimen/dp_25"
+            android:layout_marginHorizontal="@dimen/dp_25"
+            android:background="@null"
+            />
+
+        <Space
+            android:id="@+id/space_2"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/dp_15"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/et_suggest_content"
+            />
+
+
+
+
+
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

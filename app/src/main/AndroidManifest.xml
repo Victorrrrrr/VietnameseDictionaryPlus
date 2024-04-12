@@ -7,10 +7,23 @@
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-feature android:name="android.hardware.camera.any" />
     <uses-permission android:name="android.permission.CAMERA"/>
+    <uses-permission android:name="android.permission.RECORD_AUDIO"/>
     <!--存储图像或者视频权限-->
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"
         tools:ignore="ScopedStorage" />
+    <!-- 获取WiFi状态 -->
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
+
+    <uses-permission
+        android:name="android.permission.WRITE_EXTERNAL_STORAGE"
+        tools:ignore="ScopedStorage" />
+    <!-- 管理外部存储权限，Android11需要-->
+    <uses-permission
+        android:name="android.permission.MANAGE_EXTERNAL_STORAGE"
+        tools:ignore="ScopedStorage" />
+    <!--通知权限-->
+    <uses-permission android:name="android.permission.POST_NOTIFICATIONS"/>
 
     <!--allowBackup:应用数据是否能能够被备份或恢复-->
     <application
@@ -21,10 +34,13 @@
         android:networkSecurityConfig="@xml/network_security_config"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
+        android:requestLegacyExternalStorage="true"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.VietnameseDictionaryPlus"
-        tools:targetApi="31">
+        tools:targetApi="31"
+        android:forceDarkAllowed="false">
+        <!--android:forceDarkAllowed="false"无视系统的暗色模式的影响，适用于android10、api29更早的版本-->
 
         <activity
             android:name="com.gp.main.ui.SplashActivity"
@@ -46,6 +62,28 @@
             android:windowSoftInputMode="adjustPan"
             android:exported="true" />
 
+        <!-- Android7.0以后读取文件需要配置Provider -->
+        <provider
+            android:name="androidx.core.content.FileProvider"
+            android:authorities="${applicationId}.fileprovider"
+            android:exported="false"
+            android:grantUriPermissions="true">
+            <meta-data
+                android:name="android.support.FILE_PROVIDER_PATHS"
+                android:resource="@xml/file_paths" />
+        </provider>
+
+        <receiver android:name="com.gp.user.ui.notification.NotificationSearchWordBroadCast"
+            android:exported="true">
+
+            <intent-filter>
+                <action android:name="notification_show_search_word_option_up"/>
+                <action android:name="notification_show_search_word_option_down"/>
+            </intent-filter>
+
+        </receiver>
+
     </application>
+
 
 </manifest>

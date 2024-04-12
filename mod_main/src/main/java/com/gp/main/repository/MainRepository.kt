@@ -1,14 +1,20 @@
 package com.gp.main.repository
 
 import com.gp.common.model.AuthClientBean
+import com.gp.common.model.BaiduAuthClientBean
 import com.gp.common.model.DailyHomeBean
+import com.gp.common.model.FolderAddRequest
+import com.gp.common.model.FolderList
+import com.gp.common.model.LearnProcess
 import com.gp.common.model.MusicDaily
 import com.gp.common.model.PersonDaily
 import com.gp.common.model.SceneryDaily
 import com.gp.common.model.WordRandomBean
+import com.gp.framework.ext.toJson
 import com.gp.framework.utils.LogUtil
 import com.gp.network.manager.ApiManager
 import com.gp.network.repository.BaseRepository
+import com.gp.network.response.BaseResponse
 
 class MainRepository : BaseRepository() {
 
@@ -18,6 +24,17 @@ class MainRepository : BaseRepository() {
         }
     }
 
+    suspend fun baiduClient(apiKey : String, secretKey : String) : BaiduAuthClientBean? {
+        return requestAuthResponse {
+            ApiManager.baidu.oauthToken("client_credentials", apiKey, secretKey)
+        }
+    }
+
+    suspend fun getLearnProcess(bookId : Int) : LearnProcess? {
+        return requestResponse {
+            ApiManager.api.getLearnProcess(bookId)
+        }
+    }
 
 
     suspend fun getHomeDailyData() : DailyHomeBean? {
@@ -90,6 +107,19 @@ class MainRepository : BaseRepository() {
 //        DailyManager.savePersonList(localList)
     }
 
+
+    suspend fun addFolder(body : FolderAddRequest) : BaseResponse<Void>? {
+        LogUtil.d(body.toJson())
+        return requestBaseDataResponse {
+            ApiManager.api.newFolder(body)
+        }
+    }
+
+    suspend fun getFolderList(currentPage: Int, pageSize: Int) : FolderList? {
+        return requestResponse {
+            ApiManager.api.getFolderList(currentPage, pageSize)
+        }
+    }
 
 
 

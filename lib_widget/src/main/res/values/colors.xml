@@ -22,7 +22,39 @@
     <color name="light_orange">#F7EDE1</color>
 
     <color name="text_light_grey">#AAB2C1</color>
+    <color name="wrong_chacha_item">#F8BCB8</color>
+    <color name="right_tick_item">#BEFBC1</color>
+    <color name="right_tick_icon">#22DC2C</color>
 
     <color name="light_white">#F2F3F8</color>
+
+    <color name="white_bg">#FFFFFF</color>
+
+    <color name="btn_press">#C8C8C8</color>
+    <color name="color_tick_green">#22DC2C</color>
+
+    <color name="color_light_black">#333944</color>
+
+    <color name="color_little_red_n">#9f9596</color>
+
+    <color name="color_light_red">#F76554</color>
+
+    <color name="choice_item_white_bg">#FFFFFF</color>
+
+    <color name="choice_item_text_color">#333944</color>
+
+    <color name="title_black">#000000</color>
+
+    <color name="light_theme_bg_text_color">#BEB6B6</color>
+
+    <!--wushang-->
+    <color name="red_FA7964">#FA7964</color>
+    <color name="white">#FFFFFF</color>
+    <color name="black">#FF000000</color>
+    <color name="grey_BEBEBE">#BEBEBE</color>
+    <color name="red_CBFDC5BF">#CBFDC5BF</color>
+    <color name="black_80000000">#80000000</color>
+    <color name="gray_aaa">#aaa</color>
+    <color name="black_90000000">#90000000</color>
 
 </resources>

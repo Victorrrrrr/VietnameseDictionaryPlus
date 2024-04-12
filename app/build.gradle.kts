@@ -61,6 +61,13 @@ android {
         }
     }
 
+    //jniLibs目录指向libs目录
+    sourceSets {
+        getByName("main") {
+            jniLibs.srcDirs("libs")
+        }
+    }
+
     buildFeatures {
         viewBinding = true
         dataBinding = true
@@ -82,9 +89,20 @@ dependencies {
     implementation(libs.appcompat)
     implementation(libs.material)
     implementation(libs.constraintlayout)
+    implementation(files("libs/online_auth.jar"))
+    implementation(files("libs/YoudaoBase_v20230803.jar"))
+    implementation(files("libs/YoudaoTranslateOnline_v2.0.1.jar"))
+    implementation(files("libs/zhiyun_offline_common.jar"))
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.test.ext.junit)
     androidTestImplementation(libs.espresso.core)
+
+    implementation (libs.autofittextview)
+
+    implementation(files("libs/YoudaoBase_v20230803.jar") )
+    implementation(files("libs/online_auth.jar"))
+    implementation(files("libs/zhiyun_offline_common.jar"))
+    implementation(files("libs/YoudaoTranslateOnline_v2.0.1.jar"))
 
     // 路由
     implementation(libs.arouter.api)
@@ -100,8 +118,6 @@ dependencies {
     implementation(libs.navigation.fragment.ktx)
     implementation(libs.navigation.ui.ktx)
 
-//    implementation(libs.glide)
-//    implementation(libs.glide.compiler)
     implementation(libs.flexbox)
 
     implementation(libs.room)
@@ -110,11 +126,17 @@ dependencies {
 
     implementation(libs.multidex)
 
+    implementation(libs.circleimageview)
+
+
     implementation(libs.glide)
     kapt(libs.glide.compiler)
 
     implementation(libs.ffmpeg.core)
     implementation(libs.ffmpeg.native)
+
+    implementation(libs.jtransforms)
+    implementation(libs.lottie)
 
     implementation(project(":lib_framework"))
     implementation(project(":lib_starter"))
@@ -130,6 +152,8 @@ dependencies {
     implementation(project(":mod_recite"))
     implementation(project(":mod_search"))
     implementation(project(":mod_user"))
+
+
 
 
 }

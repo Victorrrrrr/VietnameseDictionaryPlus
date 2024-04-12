@@ -5,7 +5,6 @@ import androidx.room.ColumnInfo
 import androidx.room.Entity
 import androidx.room.Ignore
 import androidx.room.PrimaryKey
-import com.gp.common.constant.TABLE_PERSON_LIST
 import com.gp.common.constant.TABLE_SCENERY_LIST
 import kotlinx.android.parcel.Parcelize
 

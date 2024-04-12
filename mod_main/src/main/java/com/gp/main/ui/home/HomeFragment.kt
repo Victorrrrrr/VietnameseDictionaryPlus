@@ -5,18 +5,30 @@ import android.os.Bundle
 import android.view.View
 import android.view.animation.Animation
 import android.view.animation.RotateAnimation
+import com.gp.common.model.FolderAddRequest
 import com.gp.common.model.WordBeanItem
+import com.gp.common.provider.LoginServiceProvider
 import com.gp.common.provider.ReciteServiceProvider
 import com.gp.common.provider.SearchServiceProvider
 import com.gp.framework.base.BaseMvvmFragment
 import com.gp.framework.ext.onClick
 import com.gp.framework.toast.TipsToast
+import com.gp.framework.utils.LanguageChangeUtils
+import com.gp.framework.utils.LogUtil
+import com.gp.framework.utils.MMKVUtil
+import com.gp.framework.utils.MMKV_TYPE
+import com.gp.framework.utils.getStringFromResource
 import com.gp.glide.setUrl
+import com.gp.main.R
 import com.gp.main.databinding.FragmentHomeBinding
 import com.gp.main.ui.daily.music.DailyMusicActivity
 import com.gp.main.ui.daily.person.DailyPersonActivity
 import com.gp.main.ui.daily.scenic.DailyScenicActivity
 import com.gp.main.ui.main.MainViewModel
+import com.gp.main.ui.transform.PicTransformActivity
+import com.gp.network.manager.TokenManager
+import com.gp.network.manager.WordBookIdManager
+import java.util.Locale
 
 
 class HomeFragment : BaseMvvmFragment<FragmentHomeBinding, MainViewModel>() {
@@ -29,13 +41,15 @@ class HomeFragment : BaseMvvmFragment<FragmentHomeBinding, MainViewModel>() {
     }
 
 
-
     override fun initData() {
+        initFavFolder()
         mViewModel.getHomeDailyData().observe(this) {
+            mBinding?.isEnglish = LanguageChangeUtils.getSelectLanguageLocale() == Locale.ENGLISH
             mBinding?.sayingBean = it.sentence
 
             mBinding?.ivDailyScenic?.setUrl(it.scenery.img)
             mBinding?.ivDailyPerson?.setUrl(it.character.pic)
+
 
             mBinding?.tvDailyPerson?.append(" - ${it.character.nameZh} ")
             mBinding?.tvDailyScenic?.append(" - ${it.scenery.nameZh} ")
@@ -46,6 +60,12 @@ class HomeFragment : BaseMvvmFragment<FragmentHomeBinding, MainViewModel>() {
             randomList = it
         }
 
+    }
+
+    private fun initFavFolder() {
+        if(WordBookIdManager.getFavFolderId() == -1) {
+            setFavFolder()
+        }
     }
 
 
@@ -80,13 +100,15 @@ class HomeFragment : BaseMvvmFragment<FragmentHomeBinding, MainViewModel>() {
         }
 
         mBinding?.btnToRecite?.onClick {
-            ReciteServiceProvider.toReciteLoad(it.context)
+            if(LoginServiceProvider.isLogin()) {
+                ReciteServiceProvider.toReciteLoad(it.context)
+            } else {
+                TipsToast.showTips(getStringFromResource(com.gp.lib_widget.R.string.no_login_tips))
+            }
         }
 
         mBinding?.ivTakePhoto?.onClick {
-            TipsToast.showTips("拍照权限请求")
-            // TODO 请求权限
-
+            startActivity(Intent(it.context, PicTransformActivity::class.java))
         }
 
         mBinding?.clRandomWordLayout?.onClick {
@@ -130,6 +152,25 @@ class HomeFragment : BaseMvvmFragment<FragmentHomeBinding, MainViewModel>() {
             startActivity(intent)
         }
 
+    }
+
+
+    private fun setFavFolder() {
+        val wordFolder = FolderAddRequest("unique", "我的收藏")
+        mViewModel.addFolder(wordFolder){
+            LogUtil.d(tag = "fav", message = "create folder success")
+            TokenManager
+        }.observe(this) {
+
+        }
+
+        mViewModel.getFolderList().observe(this) {
+            for (folder in it.data) {
+                if(folder.desc == "unique" && folder.name == "我的收藏") {
+                    WordBookIdManager.saveFavFolderId(folder.id)
+                }
+            }
+        }
     }
 
 }

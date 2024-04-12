@@ -38,6 +38,7 @@ android {
 
 dependencies {
 
+    implementation(libs.cronet.embedded)
     compileOnly(fileTree(mapOf("dir" to "libs", "include" to listOf("*.jar"))))
     compileOnly(libs.core.ktx)
     compileOnly(libs.appcompat)
@@ -45,6 +46,7 @@ dependencies {
     compileOnly(libs.constraintlayout)
     compileOnly(libs.lifecycle.viewmodel.ktx)
     compileOnly(libs.gson)
+    compileOnly(libs.mmkv)
 
     compileOnly(libs.ffmpeg.core)
     compileOnly(libs.ffmpeg.native)

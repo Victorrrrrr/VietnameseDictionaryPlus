@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+        <variable
+            name="pos"
+            type="String" />
+
+        <variable
+            name="meaning"
+            type="String" />
+    </data>
+
+    <LinearLayout
+        android:id="@+id/ll_meaning_bg"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:background="@drawable/shape_bg_white_radius_12"
+        android:paddingHorizontal="@dimen/dp_15"
+        android:paddingVertical="@dimen/dp_18"
+        android:layout_margin="@dimen/dp_10">
+
+        <TextView
+            android:id="@+id/tv_option_meaning"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:textSize="@dimen/sp_16"
+            android:maxLines="1"
+            android:ellipsize="end"
+            android:layout_gravity="center_vertical"
+            android:text="@{pos + ` ` + meaning}"
+            android:textColor="@color/black" />
+
+        <ImageView
+            android:id="@+id/iv_choose_result"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_tick"
+            android:layout_gravity="center_vertical"
+            android:layout_marginEnd="@dimen/dp_10"
+            android:visibility="invisible"
+            tools:visibility="visible"/>
+
+    </LinearLayout>
+
+</layout>

@@ -60,6 +60,10 @@ dependencies {
     androidTestCompileOnly(libs.androidx.test.ext.junit)
     androidTestCompileOnly(libs.espresso.core)
 
+
+    compileOnly(libs.lifecycle.livedata.ktx)
+    compileOnly(libs.lifecycle.viewmodel.ktx)
+
     // 路由
     compileOnly(libs.arouter.api)
     kapt(libs.arouter.compiler)

@@ -18,6 +18,10 @@ class SearchService : ISearchService{
         context.startActivity(intent)
     }
 
+    override fun toSearch(context: Context, str: String) {
+        SearchActivity.toSearchWord(context, str)
+    }
+
 
     override fun toWordPage(context: Context, id: String) {
         val intent = Intent(context, WordPageActivity::class.java)

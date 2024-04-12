@@ -1,9 +1,12 @@
 package com.gp.framework.utils
 
+import android.annotation.SuppressLint
 import android.graphics.drawable.ColorDrawable
+import android.graphics.drawable.Drawable
 import androidx.annotation.ArrayRes
 import androidx.annotation.ColorRes
 import androidx.annotation.DimenRes
+import androidx.annotation.DrawableRes
 import androidx.annotation.StringRes
 import androidx.core.content.ContextCompat
 import com.gp.framework.helper.VDHelper
@@ -20,7 +23,7 @@ fun getStringArrayFromResource(@ArrayRes arrayId: Int): Array<String> {
 }
 
 fun getStringFromResource(@StringRes stringId: Int): String {
-    return VDHelper.getApplication().getString(stringId)
+    return VDHelper.getApplication().resources.getString(stringId)
 }
 
 fun getStringFromResource(@StringRes stringId: Int, vararg formatArgs: Any?): String? {
@@ -43,4 +46,8 @@ fun getColorDrawable(@ColorRes colorRes: Int): ColorDrawable? {
             colorRes
         )
     )
+}
+
+fun getDrawableFromResource(@DrawableRes drawableRes: Int): Drawable? {
+    return VDHelper.getApplication().getDrawable(drawableRes)
 }

@@ -24,7 +24,7 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:background="#80000000"
+                android:background="@color/black_80000000"
                 android:orientation="vertical"
                 android:fitsSystemWindows="true"
                 android:padding="12dp">
@@ -58,7 +58,7 @@
                         android:maxWidth="200dp"
                         android:singleLine="true"
                         android:text="sdfdsfsdfs"
-                        android:textColor="@android:color/white"
+                        android:textColor="@color/white"
                         android:textSize="18sp" />
 
                     <com.gp.main.widget.MarqueeTextView
@@ -75,7 +75,7 @@
                         android:maxWidth="150dp"
                         android:singleLine="true"
                         android:text="sdfsdfsdfsdf"
-                        android:textColor="@android:color/darker_gray"
+                        android:textColor="@color/gray_aaa"
                         android:textSize="14sp"/>
 
                 </RelativeLayout>

@@ -26,6 +26,20 @@ open class BaseRepository {
     }
 
 
+    suspend fun <T> requestBaseDataResponse(requestCall: suspend () -> BaseResponse<T>?): BaseResponse<T>? {
+        val response = withContext(Dispatchers.IO) {
+            withTimeout(10 * 1000) {
+                requestCall()
+            }
+        } ?: return null
+
+        if(response.isFailed()) {
+            throw ApiException(response.errorCode, response.errorMsg)
+        }
+        return response
+    }
+
+
     suspend fun <T> requestAuthResponse(requestCall: suspend () -> T?) : T? {
         val response = withContext(Dispatchers.IO) {
             withTimeout(10 * 1000) {

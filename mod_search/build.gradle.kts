@@ -63,9 +63,11 @@ dependencies {
 
     compileOnly(libs.lifecycle.livedata.ktx)
     compileOnly(libs.lifecycle.viewmodel.ktx)
+    compileOnly(libs.flexbox)
 
     compileOnly(project(":lib_framework"))
     compileOnly(project(":lib_network"))
     compileOnly(project(":lib_common"))
     compileOnly(project(":lib_widget"))
+    compileOnly(project(":lib_room"))
 }

@@ -5,10 +5,14 @@ import androidx.lifecycle.liveData
 import com.gp.common.model.AuthClientBean
 
 import com.gp.common.model.AuthPasswordBean
+import com.gp.common.model.BaiduAuthClientBean
 import com.gp.common.model.DailyHomeBean
+import com.gp.common.model.FolderAddRequest
+import com.gp.common.model.FolderList
 import com.gp.common.model.WordRandomBean
 import com.gp.framework.toast.TipsToast
 import com.gp.main.repository.MainRepository
+import com.gp.network.callback.IApiErrorCallback
 import com.gp.network.viewmodel.BaseViewModel
 
 class MainViewModel : BaseViewModel() {
@@ -57,6 +61,49 @@ class MainViewModel : BaseViewModel() {
             }
         }
     }
+
+
+    fun sendBaiduAuthRequestClient(clientId : String, clientSecret : String) : LiveData<BaiduAuthClientBean> {
+        return liveData {
+            val response = safeApiCall(errorBlock = {code, errorMsg ->
+                TipsToast.showTips(errorMsg)
+            }) {
+                mainRepo.baiduClient(clientId, clientSecret)
+            }
+            response?.let {
+                emit(it)
+            }
+        }
+    }
+
+
+    fun addFolder(body: FolderAddRequest, success: (Void?) -> Unit) : LiveData<Void> {
+        return liveData {
+            val response = launchUIWithResult({
+                mainRepo.addFolder(body)
+            }, errorCall = object : IApiErrorCallback {
+
+            }) {
+                success.invoke(it)
+            }
+        }
+    }
+
+
+    fun getFolderList(): LiveData<FolderList> {
+        return liveData {
+            val response = safeApiCall(errorBlock = {code, errorMsg ->
+                TipsToast.showTips(errorMsg)
+            }) {
+                mainRepo.getFolderList(1,100)
+            }
+            response?.let{
+                emit(it)
+            }
+        }
+    }
+
+
 
 
 }

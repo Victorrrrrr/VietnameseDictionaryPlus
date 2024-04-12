@@ -3,6 +3,7 @@ package com.gp.network.manager
 import android.util.Log
 import com.gp.framework.helper.VDHelper
 import com.gp.framework.utils.NetworkUtil
+import com.gp.network.constant.BAIDU_URL
 import com.gp.network.constant.BASE_URL
 import com.gp.network.error.ERROR
 import com.gp.network.error.NoNetWorkException
@@ -17,22 +18,32 @@ import retrofit2.converter.gson.GsonConverterFactory
 import java.util.concurrent.TimeUnit
 
 object HttpManager {
-    private val mRetrofit: Retrofit
+    private var mRetrofit: Retrofit? = null
+    private var baiduRetrofit: Retrofit? = null
+    private var urlRetrofitMap : HashMap<String, Retrofit>
 
     init {
+        urlRetrofitMap = HashMap()
         mRetrofit = Retrofit.Builder()
             .client(initOkHttpClient())
             .baseUrl(BASE_URL)
             .addConverterFactory(GsonConverterFactory.create())
             .build()
-    }
+        urlRetrofitMap.put(BASE_URL, mRetrofit!!)
 
+        baiduRetrofit = Retrofit.Builder()
+            .client(initOkHttpClient())
+            .baseUrl(BAIDU_URL)
+            .addConverterFactory(GsonConverterFactory.create())
+            .build()
+        urlRetrofitMap.put(BAIDU_URL, baiduRetrofit!!)
+    }
 
     /**
      * 获取 apiService
      */
-    fun <T> create(apiService: Class<T>): T {
-        return mRetrofit.create(apiService)
+    fun <T> create(apiService: Class<T>, baseUrl : String): T {
+        return urlRetrofitMap[baseUrl]!!.create(apiService)
     }
 
 

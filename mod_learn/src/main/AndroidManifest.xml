@@ -2,13 +2,27 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools">
 
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.RECORD_AUDIO" />
+
     <application>
+        <activity
+            android:name="com.gp.learn.tool.note.AddFolderActivity"
+            android:exported="false" />
+        <activity
+            android:name="com.gp.learn.tool.notedetail.FolderWordsActivity"
+            android:exported="false" />
+        <activity
+            android:name="com.gp.learn.quick.QuickActivity"
+            android:exported="false" />
+        <activity
+            android:name="com.gp.learn.show.ShowActivity"
+            android:exported="false" />
         <activity
             android:name="com.gp.learn.game.GameStatusActivity"
             android:configChanges="orientation|keyboardHidden|screenSize"
             android:screenOrientation="landscape"
-            android:theme="@style/AppFullScreen"
-            />
+            android:theme="@style/AppFullScreen" />
         <activity
             android:name="com.gp.learn.game.GameActivity"
             android:configChanges="orientation|keyboardHidden|screenSize"
@@ -18,7 +32,7 @@
             android:name="com.gp.learn.tool.voice_trans.VoiceTransActivity"
             android:exported="false" />
         <activity
-            android:name="com.gp.learn.tool.note.NoteActivity"
+            android:name="com.gp.learn.tool.note.FolderActivity"
             android:exported="false" />
         <activity
             android:name="com.gp.learn.review.WordMatchActivity"

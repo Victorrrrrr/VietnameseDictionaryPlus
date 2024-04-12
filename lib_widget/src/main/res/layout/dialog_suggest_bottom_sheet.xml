@@ -115,16 +115,5 @@
             android:layout_marginBottom="@dimen/dp_25"
             />
 
-
-
-
-
     </com.google.android.flexbox.FlexboxLayout>
-
-
-
-
-
-
-
 </androidx.constraintlayout.widget.ConstraintLayout>

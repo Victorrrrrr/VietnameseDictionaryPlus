@@ -14,4 +14,6 @@ interface ILearnService : IProvider {
     fun toNote(context: Context)
 
     fun toVoiceTrans(context: Context)
+
+    fun toQuick(context: Context)
 }

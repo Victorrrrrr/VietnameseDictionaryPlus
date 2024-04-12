@@ -1,12 +1,14 @@
 package com.gp.search.ui.search
 
+import android.content.Context
+import android.content.Intent
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
 import android.view.View
-import androidx.core.widget.addTextChangedListener
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.alibaba.android.arouter.facade.annotation.Route
+import com.gp.common.constant.KEY_WORD_SEARCH
 import com.gp.common.constant.SEARCH_ACTIVITY_SEARCH
 import com.gp.framework.base.BaseMvvmActivity
 import com.gp.framework.ext.onClick
@@ -24,6 +26,16 @@ class SearchActivity : BaseMvvmActivity<ActivitySearchBinding, SearchViewModel>(
 
     var wordSearchAdapter : WordSearchAdapter? = null
 
+    companion object {
+        fun toSearchWord(context: Context, word: String = "") {
+            val intent = Intent(context, SearchActivity::class.java)
+            intent.putExtra(KEY_WORD_SEARCH, word)
+            context.startActivity(intent)
+        }
+    }
+
+
+
     override fun initView(savedInstanceState: Bundle?) {
         StatusBarSettingHelper.setStatusBarTranslucent(this)
         StatusBarSettingHelper.statusBarLightMode(this, true)
@@ -33,6 +45,7 @@ class SearchActivity : BaseMvvmActivity<ActivitySearchBinding, SearchViewModel>(
     }
 
     private fun initEvent() {
+
         wordSearchAdapter = WordSearchAdapter()
 
         mBinding.etSearchTextEdit.addTextChangedListener(object : TextWatcher {
@@ -48,7 +61,7 @@ class SearchActivity : BaseMvvmActivity<ActivitySearchBinding, SearchViewModel>(
                 //如果改变了，并且文本长度>0
                 val wordText = s.toString()
                 if (wordText.length > 0) {
-                    mViewModel.getWordList(1, 20, wordText).observe(this@SearchActivity) {
+                    mViewModel.getWordList(1, 50, wordText).observe(this@SearchActivity) {
                         wordSearchAdapter?.setData(it.data)
                         mBinding.rvSearchWordList.layoutManager = LinearLayoutManager(this@SearchActivity)
                         mBinding.rvSearchWordList.adapter = wordSearchAdapter
@@ -56,7 +69,6 @@ class SearchActivity : BaseMvvmActivity<ActivitySearchBinding, SearchViewModel>(
                         mBinding.tvNoResult.visibility = if (it.data.size == 0) View.VISIBLE else View.GONE
                         wordSearchAdapter?.notifyDataSetChanged()
                     }
-
                 } else {
                     //如果改变了，并且文本长度=0
                     mBinding.ivNoResult.visibility = View.VISIBLE
@@ -71,7 +83,7 @@ class SearchActivity : BaseMvvmActivity<ActivitySearchBinding, SearchViewModel>(
             // TODO : 执行搜索操作
             LogUtil.d(tag = "search", message = "搜索操作执行")
             val wordText = view.text.toString()
-            mViewModel.getWordList(1, 20, wordText).observe(this) {
+            mViewModel.getWordList(1, 50, wordText).observe(this) {
                 wordSearchAdapter?.setData(it.data)
                 mBinding.rvSearchWordList.layoutManager = LinearLayoutManager(this)
                 mBinding.rvSearchWordList.adapter = wordSearchAdapter
@@ -86,6 +98,12 @@ class SearchActivity : BaseMvvmActivity<ActivitySearchBinding, SearchViewModel>(
         // 取消按钮点击监听
         mBinding.btnCancel.onClick {
             finish()
+        }
+
+        val searchWord = intent.getStringExtra(KEY_WORD_SEARCH)
+        if(searchWord.isNullOrEmpty().not()) {
+            mBinding.etSearchTextEdit.setText(searchWord)
+            mBinding.etSearchTextEdit.setSelection(searchWord!!.length)
         }
     }
 

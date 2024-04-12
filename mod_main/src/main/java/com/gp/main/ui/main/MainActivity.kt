@@ -3,6 +3,7 @@ package com.gp.main.ui.main
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
+import androidx.appcompat.app.AppCompatDelegate
 import androidx.core.view.get
 import androidx.fragment.app.Fragment
 import androidx.viewpager2.adapter.FragmentStateAdapter
@@ -12,7 +13,10 @@ import com.gp.common.constant.KEY_INDEX
 import com.gp.common.constant.MAIN_ACTIVITY_HOME
 import com.gp.framework.base.BaseDataBindActivity
 import com.gp.framework.toast.TipsToast
+import com.gp.framework.utils.DarkThemeChangeUtils
 import com.gp.framework.utils.LogUtil
+import com.gp.framework.utils.MMKVUtil
+import com.gp.framework.utils.MMKV_TYPE
 import com.gp.framework.utils.getStringFromResource
 import com.gp.lib_framework.utils.StatusBarSettingHelper
 import com.gp.main.R
@@ -20,6 +24,7 @@ import com.gp.main.databinding.ActivityMainBinding
 import com.gp.main.ui.home.HomeFragment
 import com.gp.main.ui.learn.LearnFragment
 import com.gp.main.ui.mine.MeFragment
+import java.util.Locale
 
 @Route(path = MAIN_ACTIVITY_HOME)
 class MainActivity : BaseDataBindActivity<ActivityMainBinding>() {
@@ -36,8 +41,7 @@ class MainActivity : BaseDataBindActivity<ActivityMainBinding>() {
 
 
     override fun initView(savedInstanceState: Bundle?) {
-        StatusBarSettingHelper.setStatusBarTranslucent(this)
-        StatusBarSettingHelper.statusBarLightMode(this, true)
+        autoSetDarkMode()
         mBinding.navView.isItemActiveIndicatorEnabled = false
         mBinding.navView.setOnItemSelectedListener {
             LogUtil.d(message = "initView : $it", tag = TAG)
@@ -49,6 +53,18 @@ class MainActivity : BaseDataBindActivity<ActivityMainBinding>() {
             true
         }
         initViewPager()
+    }
+
+    /**
+     * 设置是否是暗色模式
+     */
+    private fun autoSetDarkMode() {
+        StatusBarSettingHelper.setStatusBarTranslucent(this)
+        MMKVUtil.get(MMKV_TYPE.APP).decodeBoolean("IS_NIGHT_MODE")
+            ?.let {
+                StatusBarSettingHelper.statusBarLightMode(this, !it)
+                DarkThemeChangeUtils.autoSetDayAndNightMode(this)
+            }
     }
 
     private fun switchFragment(position: Int) = mBinding.mainViewPager.setCurrentItem(position, false)

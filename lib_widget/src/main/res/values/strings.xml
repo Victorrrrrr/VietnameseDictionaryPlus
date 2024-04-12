@@ -21,7 +21,7 @@
     <string name="title_daily_music">每日歌曲</string>
     <string name="title_daily_person">每日人物</string>
     <string name="me_login_tip_text">立即登陆</string>
-    <string name="me_word_learned_sum">累计学习了 %ss 个单词！！！</string>
+    <string name="me_word_learned_sum">累计学习了 %s 个单词！！！</string>
     <string name="text_history">查词记录</string>
     <string name="text_history_tip">看过的词忘了看这里</string>
     <string name="text_collection">收藏夹</string>
@@ -54,6 +54,51 @@
     <string name="recite_bottom_str_know">认识</string>
     <string name="recite_bottom_str_unclear">模糊</string>
     <string name="recite_bottom_str_unknown">不认识</string>
+    <string name="no_login_tips">请先登陆才能体验该功能哦～</string>
+    <string name="me_word_learned_no_login">立刻登陆查看累计单词数吧！</string>
+    <string name="tv_confirm">确定</string>
+    <string name="recite_tv_en">英语：%s</string>
+    <string name="recite_tv_pos">词性：%s</string>
+    <string name="text_finish_tip">已完成今日计划</string>
+    <string name="finish_learn_word_tip">学习单词数 + %s</string>
+    <string name="finish_feeling_text_hint">写上今天的感悟吧</string>
+    <string name="finish_process_word">词书学习进度 %s / %s 个单词</string>
+    <string name="about_title">关于</string>
+    <string name="app_name">越南语翻译词典</string>
+    <string name="app_version">当前版本: 1.0(1)</string>
+    <string name="text_word_list">单词列表</string>
+    <string name="text_show_revise">复习结束，再次回忆一下本轮中出现过的单词吧</string>
+    <string name="text_title_take_photo">拍照翻译</string>
 
+    <string name="word_meaning">释义: %1$s</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="learn_tool">学习工具</string>
+    <string name="phonetic_word_extraction">语音取词</string>
+    <string name="word_folder">单词夹</string>
+    <string name="review_vocabulary">复习词语</string>
+    <string name="multi_word_matching">多词匹配</string>
+    <string name="just_vocabulary">单词速记</string>
+    <string name="fun_games">趣味游戏</string>
+    <string name="cats_chasing_mice">猫追老鼠</string>
+
+
+    <string name="switch_language">切换语言</string>
+    <string name="toast_select_work_book">请选择以下词书，选择完成后续的学习均会出现该词书内的单词</string>
+    <string name="toast_select_language">您可以在此处切换应用界面显示语言，选择保存后重启应用生效</string>
+    <string name="chinese">中文</string>
+    <string name="english">英文</string>
+    <string name="restarting_the_application_takes_effect">重启应用才能立刻全局生效！是否立即重启？</string>
+    <string name="toast_restart">重启提示</string>
+    <string name="long_press_recording">长按录音，右滑删除</string>
+    <string name="splash_app_name">越 南 语 翻 译 词 典</string>
+
+    <!--通知栏单词-->
+    <string name="notification_bar_words">通知栏单词</string>
+    <string name="notification_switch">通知开关</string>
+    <string name="notification_function">1.仅作为巩固复习作用，其记忆效果并不被记录\n2.充分利用空闲时间记忆单词</string>
+    <string name="notification_app_name">越南语词典</string>
+    <string name="notification_jump_to">点击跳转查词页面</string>
 
 </resources>

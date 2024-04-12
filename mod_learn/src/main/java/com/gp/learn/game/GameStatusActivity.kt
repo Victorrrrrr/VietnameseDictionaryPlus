@@ -3,18 +3,21 @@ package com.gp.learn.game
 import android.content.Intent
 import android.os.Bundle
 import android.view.View
+import androidx.appcompat.app.AppCompatDelegate
 import androidx.cardview.widget.CardView
 import com.gp.common.provider.MainServiceProvider
 import com.gp.framework.base.BaseMvvmActivity
+import com.gp.framework.ext.onClick
+import com.gp.learn.show.ShowActivity
 import com.gp.mod_learn.databinding.ActivityGameStatusBinding
 
 
 class GameStatusActivity : BaseMvvmActivity<ActivityGameStatusBinding, GameViewModel>() {
 
-    init {
-//        const val GAME_STATUS = "gameStatus"
-//        const val STATUS_SUCCESS = 1
-//        const val STATUS_FAIL = -1
+    companion object {
+        const val GAME_STATUS = "gameStatus"
+        const val STATUS_SUCCESS = 1
+        const val STATUS_FAIL = -1
     }
 
 //    private val showActivity: ShowActivity = ShowActivity()
@@ -26,32 +29,33 @@ class GameStatusActivity : BaseMvvmActivity<ActivityGameStatusBinding, GameViewM
     }
 
     override fun initView(savedInstanceState: Bundle?) {
-//        noNight()
-//        init()
-//        cardGameStatus!!.background.alpha = 150
-//        cardReview.getBackground().setAlpha(180)
-//        cardExit.getBackground().setAlpha(180)
-//        cardAgain.getBackground().setAlpha(180)
-//        val currentStatus = intent.getIntExtra(GAME_STATUS, 0)
-//        if (currentStatus == STATUS_FAIL) {
-//            textStatus!!.text = "游戏失败"
-//        } else {
-//            textStatus!!.text = "游戏胜利"
-//        }
-//        layoutExit!!.setOnClickListener { onBackPressed() }
-//        layoutReview.setOnClickListener(View.OnClickListener {
-//            val intent = Intent()
-//            intent.setClass(this@GameStatusActivity, ShowActivity::class.java)
-//            intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
-//            intent.putExtra(showActivity.SHOW_TYPE, showActivity.TYPE_GAME)
-//            startActivity(intent)
-//        })
-//        layoutAgain.setOnClickListener(View.OnClickListener {
-//            ActivityCollector.startOtherActivity(
-//                this@GameStatusActivity,
-//                LoadGameActivity::class.java
-//            )
-//        })
+        // 禁止夜间模式
+        noNight()
+
+        mBinding.cardGameStatus.background.alpha = 150
+        mBinding.cardGsReview.getBackground().setAlpha(180)
+        mBinding.cardGsExit.getBackground().setAlpha(180)
+        mBinding.cardGsAgain.getBackground().setAlpha(180)
+        val currentStatus = intent.getIntExtra(GAME_STATUS, 0)
+        if (currentStatus == STATUS_FAIL) {
+            mBinding.textGsStatus.text = "游戏失败"
+        } else {
+            mBinding.textGsStatus.text = "游戏胜利"
+        }
+        mBinding.layoutGsExit.setOnClickListener { onBackPressed() }
+        mBinding.layoutGsReview.onClick {
+            val intent = Intent()
+            intent.setClass(this@GameStatusActivity, ShowActivity::class.java)
+            intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
+            intent.putExtra(ShowActivity.SHOW_TYPE, ShowActivity.TYPE_GAME)
+            startActivity(intent)
+        }
+        mBinding.layoutGsAgain.onClick {
+            val intent = Intent()
+            intent.setClass(this@GameStatusActivity, LoadGameActivity::class.java)
+            intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
+            startActivity(intent)
+        }
 
     }
 

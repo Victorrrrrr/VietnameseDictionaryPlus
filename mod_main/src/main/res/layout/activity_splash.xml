@@ -10,7 +10,7 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@color/grey_bg"
+        android:background="@color/white"
         android:fitsSystemWindows="true"
         tools:context=".ui.SplashActivity">
 
@@ -27,18 +27,47 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
-        <TextView
-            android:id="@+id/text_ad_tip"
+<!--        <TextView-->
+<!--            android:id="@+id/text_ad_tip"-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="match_parent"-->
+<!--            android:text="广\n告\n位\n招\n租"-->
+<!--            android:textColor="@color/black"-->
+<!--            android:textSize="40sp"-->
+<!--            android:gravity="center"-->
+<!--            app:layout_constraintStart_toStartOf="parent"-->
+<!--            app:layout_constraintEnd_toEndOf="parent"-->
+<!--            app:layout_constraintTop_toTopOf="parent"-->
+<!--            app:layout_constraintBottom_toBottomOf="parent"/>-->
+
+        <com.airbnb.lottie.LottieAnimationView
+            android:id="@+id/animationView"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:text="广\n告\n位\n招\n租"
-            android:textColor="@color/black"
-            android:textSize="40sp"
-            android:gravity="center"
+            android:layout_height="wrap_content"
+            app:lottie_rawRes="@raw/splash_anim"
+            app:lottie_autoPlay="true"
+            app:lottie_loop="true"
+            app:layout_constraintVertical_bias="0.45"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintBottom_toBottomOf="parent"/>
+            app:layout_constraintBottom_toBottomOf="parent" />
+
+        <TextView
+            android:id="@+id/tv_app_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/splash_app_name"
+            android:textColor="@color/vd_theme_color"
+            android:textSize="24sp"
+            android:alpha="0"
+            android:gravity="center"
+            app:layout_constraintBottom_toBottomOf="parent"
+            android:layout_marginBottom="@dimen/dp_24"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:layout_marginTop="@dimen/dp_24"
+            />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

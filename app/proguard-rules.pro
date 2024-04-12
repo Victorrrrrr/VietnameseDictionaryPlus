@@ -30,3 +30,11 @@
 
 # 如果使用了 单类注入，即不定义接口实现 IProvider，需添加下面规则，保护实现
 # -keep class * implements com.alibaba.android.arouter.facade.template.IProvider
+
+
+-ignorewarnings
+-libraryjars libs/ YoudaoBase_v20230803.jar
+-libraryjars libs/ YoudaoTranslateOnline_v2.0.1.jar
+
+-keep class com.youdao.sdk.ydtranslate.** { *;}
+-keep class com.youdao.sdk.ydonlinetranslate.** { *;}
