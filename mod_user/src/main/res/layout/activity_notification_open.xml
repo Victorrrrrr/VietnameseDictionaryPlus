@@ -12,5 +12,69 @@
         android:layout_height="match_parent"
         tools:context="com.gp.user.ui.notification.NotificationOpenActivity">
 
+        <com.google.android.material.appbar.MaterialToolbar
+            android:id="@+id/toolbar_language"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            android:background="@color/vd_theme_color"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:navigationIcon="@drawable/ic_home_to"
+            app:navigationIconTint="@color/white">
+
+            <TextView
+                android:id="@+id/tv_language_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:text="@string/notification_bar_words"
+                android:textColor="@color/white"
+                android:textSize="@dimen/sp_17" />
+
+        </com.google.android.material.appbar.MaterialToolbar>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/view_switch"
+            app:layout_constraintTop_toBottomOf="@+id/toolbar_language"
+            android:padding="15dp">
+
+            <TextView
+                android:id="@+id/textView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/notification_switch"
+                android:textColor="@color/black"
+                android:textSize="18sp"
+                android:textStyle="bold" />
+
+            <Switch
+                android:id="@+id/switch_notification_search"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentEnd="true"
+                android:layout_centerVertical="true"
+                android:layout_marginEnd="15dp"
+                android:clickable="false"
+                android:thumb="@drawable/selector_switch_thumb"
+                android:track="@drawable/selector_switch_track"
+                tools:ignore="UseSwitchCompatOrMaterialXml" />
+
+        </RelativeLayout>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:layout_marginStart="15dp"
+            android:padding="5dp"
+            android:text="@string/notification_function"
+            android:textColor="@color/gray_aaa"
+            app:layout_constraintTop_toBottomOf="@+id/view_switch"
+            tools:layout_editor_absoluteX="0dp" />
+
     </androidx.constraintlayout.widget.ConstraintLayout>
+
 </layout>

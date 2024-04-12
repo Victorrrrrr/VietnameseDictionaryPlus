@@ -7,13 +7,16 @@
             android:exported="false" />
         <activity
             android:name="com.gp.user.ui.wordbook.WordBookConfigActivity"
-            android:exported="false" />
+            android:exported="false"
+            android:theme="@style/F98377StatusBarActivityTheme"/>
         <activity
             android:name="com.gp.user.ui.notification.NotificationOpenActivity"
-            android:exported="false" />
+            android:exported="false"
+            android:theme="@style/F98377StatusBarActivityTheme"/>
         <activity
             android:name="com.gp.user.ui.language.LanguageActivity"
-            android:exported="false" />
+            android:exported="false"
+            android:theme="@style/F98377StatusBarActivityTheme"/>
         <activity
             android:name="com.gp.user.ui.history.HistoryActivity"
             android:exported="false" />

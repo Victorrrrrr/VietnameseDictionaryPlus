@@ -38,6 +38,7 @@ android {
 
 dependencies {
 
+    implementation(libs.cronet.embedded)
     compileOnly(fileTree(mapOf("dir" to "libs", "include" to listOf("*.jar"))))
     compileOnly(libs.core.ktx)
     compileOnly(libs.appcompat)

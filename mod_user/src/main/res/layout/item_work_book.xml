@@ -49,7 +49,7 @@
             app:layout_constraintStart_toEndOf="@id/tv_word_book_item"
             app:layout_constraintTop_toTopOf="@id/tv_word_book_item"
             app:layout_constraintBottom_toBottomOf="@id/tv_word_book_count"
-            />
+            android:buttonTint="@color/vd_theme_color"/>
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>

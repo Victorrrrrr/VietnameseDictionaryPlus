@@ -1,20 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <color name="grey_bg">#F8F8F8</color>
-    <color name="bnv_bg">#BBBBBB</color>
-    <color name="bnv_icon_normal">#BBBBBB</color>
-    <color name="bnv_icon_selected">#F98377</color>
+    <color name="grey_bg">#252525</color>
+    <color name="bnv_bg">#303030</color>
+    <color name="bnv_icon_normal">#616161</color>
+    <color name="bnv_icon_selected">#B14A3B</color>
 
-    <color name="vd_theme_color">#F98377</color>
+    <color name="vd_theme_color">#C16E65</color>
 
-    <color name="search_bar_bg_color">#f0f3f5</color>
-    <color name="search_text_tint_color">#9A9A9A</color>
+    <color name="search_bar_bg_color">#444444</color>
+    <color name="search_text_tint_color">#D3D3D3</color>
 
-    <color name="vd_dark_theme_color">#F76554</color>
+    <color name="vd_dark_theme_color">#C14A3B</color>
 
-    <color name="switch_track_color">#F76554</color>
-    <color name="line_grey_color">#EFEFEF</color>
+    <color name="switch_track_color">#C14A3B</color>
+    <color name="line_grey_color">#5A5A5A</color>
 
     <color name="light_theme_color">#FEEDEB</color>
     <color name="light_trans_theme_color">#D3FEEDEB</color>
@@ -47,6 +47,17 @@
 
     <color name="light_theme_bg_text_color">#BEB6B6</color>
 
+
+
+    <!--wushang-->
+    <color name="red_FA7964">#882E2E</color>
+    <color name="white">#424242</color>
+    <color name="black">#FFFFFF</color>
+    <color name="grey_BEBEBE">#666666</color>b
+    <color name="red_CBFDC5BF">#CBE57373</color>
+    <color name="black_80000000">#80000000</color>
+    <color name="gray_aaa">#444</color>
+    <color name="black_90000000">#90FFFFFF</color>
 
 
 </resources>

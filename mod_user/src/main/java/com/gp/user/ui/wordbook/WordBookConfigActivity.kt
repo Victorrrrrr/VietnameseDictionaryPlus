@@ -26,10 +26,10 @@ class WordBookConfigActivity : BaseMvvmActivity<ActivityWordBookConfigBinding, W
     private var numDialog : AlertDialog? = null
     private var adapter : WordbookAdapter? = null
     override fun initView(savedInstanceState: Bundle?) {
-        // 设置状态栏背景色
+/*        // 设置状态栏背景色
         getWindow().setStatusBarColor(getColorFromResource(com.gp.lib_widget.R.color.vd_theme_color));
         // 设置状态栏字体白色
-        getWindow().getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_VISIBLE)
+        getWindow().getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_VISIBLE)*/
 
         mBinding.toolbarWordbook.setNavigationOnClickListener {
             onBackPressed()

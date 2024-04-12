@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="search_tint_string">Enter the word to search</string>
+    <string name="cancel">Cancel</string>
+    <string name="progress_loading_text">Data preparing, please ensure smooth network connection, focus! Keep it up!</string>
+
+    <string name="splash_time">Skip %ss</string>
+
+    <string name="home">Home</string>
+    <string name="learn">Learn</string>
+    <string name="me">Me</string>
+    <string name="saying_title_string">Daily Featured Quotes</string>
+    <string name="home_words_title">Random Entries</string>
+    <string name="home_btn_recite_string">Start learning Vietnamese words!</string>
+    <string name="home_daily_title">Daily Featured</string>
+
+
+    <string name="search_no_result">No search results yet</string>
+    <string name="title_daily_scenic">Daily Scenery</string>
+    <string name="title_daily_music">Daily Songs</string>
+    <string name="title_daily_person">Daily Personalities</string>
+    <string name="me_login_tip_text">Login Now</string>
+    <string name="me_word_learned_sum">Learned %s words so far!!!</string>
+    <string name="text_history">Search History</string>
+    <string name="text_history_tip">Forgotten words? Check here</string>
+    <string name="text_collection">Favorites</string>
+    <string name="text_collection_tip">Handpicked Vietnamese words, mark them</string>
+    <string name="text_notification">Notification Words</string>
+    <string name="text_notification_tip">Display word searches in the notification bar, search words anywhere</string>
+    <string name="text_wordbook">Vocabulary Settings</string>
+    <string name="text_word_book_tip">Not enough words? Modify vocabulary settings</string>
+    <string name="text_dark_mode">Dark Mode</string>
+    <string name="text_dark_mode_tip">No more worries about studying at night</string>
+    <string name="text_change_lang">Switch Language</string>
+    <string name="text_change_lang_tip">Switch languages, become internationally savvy</string>
+    <string name="text_about">About</string>
+    <string name="text_about_tip">Some small explanations about this software</string>
+    <string name="login_title">Log In</string>
+    <string name="register_title">Register</string>
+    <string name="hint_login_username">Enter Username</string>
+    <string name="hint_login_pwd">Enter Password</string>
+    <string name="login_agree_text">I have read and agree to the Privacy Policy</string>
+    <string name="hint_register_email">Enter Email</string>
+    <string name="agree_privacy_tip">"Please read and agree to the privacy policy first"</string>
+    <string name="suggest_title">Word Feedback</string>
+    <string name="text_finish">Finish</string>
+    <string name="exit_twice_tip">Press again to exit the app</string>
+    <string name="tv_suggest_title">Word Feedback</string>
+
+    <string name="tip_feedback">Thank you for your feedback, improvements will be made in the future</string>
+    <string name="name_cn">Chinese Name:</string>
+    <string name="see_more_text">See More</string>
+    <string name="recite_bottom_str_know">Know</string>
+    <string name="recite_bottom_str_unclear">Unclear</string>
+    <string name="recite_bottom_str_unknown">Don\'t Know</string>
+    <string name="no_login_tips">Please log in first to experience this feature~</string>
+    <string name="me_word_learned_no_login">Log in now to see the total number of learned words!</string>
+    <string name="tv_confirm">Confirm</string>
+    <string name="recite_tv_en">English: %s</string>
+    <string name="recite_tv_pos">Part of Speech: %s</string>
+    <string name="text_finish_tip">Today\'s plan completed</string>
+    <string name="finish_learn_word_tip">Words learned + %s</string>
+    <string name="finish_feeling_text_hint">Write down today\'s reflections</string>
+    <string name="finish_process_word">Wordbook study progress %s / %s words</string>
+    <string name="about_title">About</string>
+    <string name="text_word_list">Word List</string>
+    <string name="text_show_revise">Revision completed, let\'s recall the words appeared in this round again</string>
+    <string name="text_title_take_photo">Take Photo Translation</string>
+
+
+
+    <string name="word_meaning">Meaning: %1$s</string>
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="learn_tool">Learning Tool</string>
+    <string name="phonetic_word_extraction">Phonetic Word Extraction</string>
+    <string name="word_folder">Word Folder</string>
+    <string name="review_vocabulary">Review Vocabulary</string>
+    <string name="multi_word_matching">Multi-Word Matching</string>
+    <string name="just_vocabulary">Just Vocabulary</string>
+    <string name="fun_games">Fun Games</string>
+    <string name="cats_chasing_mice">Cats Chasing Mice</string>
+
+    <string name="switch_language">Switch Language</string>
+    <string name="toast_select_work_book">Please select the following vocabulary book. After completing the subsequent learning, the words in this vocabulary book will appear.</string>
+    <string name="toast_select_language">You can switch the application interface display language here, choose to save and restart the application to take effect.</string>
+    <string name="chinese">Chinese</string>
+    <string name="english">English</string>
+    <string name="restarting_the_application_takes_effect">
+        Restart the application to immediately take effect globally! Do you want to restart now?</string>
+    <string name="toast_restart">Restart prompt</string>
+    <string name="long_press_recording">Long press recording, right swipe to delete</string>
+    <string name="app_name">Vietnamese Translation Dictionary</string>
+    <string name="app_version">Current version: 1.0 (1)</string>
+    <string name="splash_app_name">Vietnamese Translation Dictionary</string>
+    
+    <!--通知栏单词-->
+    <string name="notification_bar_words">Notification bar words</string>
+    <string name="notification_switch">Notification Switch</string>
+    <string name="notification_function">1. Only for the purpose of consolidating and reviewing, its memory effect is not recorded.\n2. Make full use of free time to memorize words.</string>
+    <string name="notification_app_name">Vietnamese Dictionary</string>
+    <string name="notification_jump_to">click to jump to the activity</string>
+
+</resources>
