@@ -23,7 +23,7 @@ fun getStringArrayFromResource(@ArrayRes arrayId: Int): Array<String> {
 }
 
 fun getStringFromResource(@StringRes stringId: Int): String {
-    return VDHelper.getApplication().getString(stringId)
+    return VDHelper.getApplication().resources.getString(stringId)
 }
 
 fun getStringFromResource(@StringRes stringId: Int, vararg formatArgs: Any?): String? {

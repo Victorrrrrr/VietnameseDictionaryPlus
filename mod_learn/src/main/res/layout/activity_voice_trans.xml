@@ -24,7 +24,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/btn_start"
-            android:text="长按录音，右滑删除"
+            android:text="@string/long_press_recording"
             android:layout_marginTop="@dimen/dp_20"
             app:layout_constraintTop_toBottomOf="@id/tv_path"
             app:layout_constraintStart_toStartOf="parent"

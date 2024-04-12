@@ -2,6 +2,8 @@ package com.gp.main.ui
 
 import android.animation.ValueAnimator
 import android.content.Intent
+import android.content.res.Configuration
+import android.os.Build
 import android.os.Bundle
 import android.util.Log
 import androidx.lifecycle.lifecycleScope
@@ -11,6 +13,9 @@ import com.gp.common.provider.MainServiceProvider
 import com.gp.framework.base.BaseMvvmActivity
 import com.gp.framework.ext.countDownCoroutines
 import com.gp.framework.ext.onClick
+import com.gp.framework.utils.DarkThemeChangeUtils
+import com.gp.framework.utils.MMKVUtil
+import com.gp.framework.utils.MMKV_TYPE
 import com.gp.framework.toast.TipsToast
 import com.gp.framework.utils.LogUtil
 import com.gp.lib_framework.utils.StatusBarSettingHelper
@@ -19,6 +24,7 @@ import com.gp.lib_widget.R
 import com.gp.main.databinding.ActivitySplashBinding
 import com.gp.main.ui.main.MainViewModel
 import com.gp.network.manager.TokenManager
+import java.util.Locale
 
 class SplashActivity : BaseMvvmActivity<ActivitySplashBinding, MainViewModel>() {
 
@@ -31,10 +37,11 @@ class SplashActivity : BaseMvvmActivity<ActivitySplashBinding, MainViewModel>() 
     }
 
     override fun initView(savedInstanceState: Bundle?) {
+        autoSetDarkMode()
         // 设置隐藏导航栏
         StatusBarSettingHelper.setStatusBarTranslucent(this)
 
-        if(TokenManager.getToken().isNullOrEmpty()) {
+        if (TokenManager.getToken().isNullOrEmpty()) {
             oauthToken()
         }
 
@@ -65,6 +72,18 @@ class SplashActivity : BaseMvvmActivity<ActivitySplashBinding, MainViewModel>() 
         }
     }
 
+    /**
+     * 设置是否是暗色模式
+     */
+    private fun autoSetDarkMode() {
+        StatusBarSettingHelper.setStatusBarTranslucent(this)
+        MMKVUtil.get(MMKV_TYPE.APP).decodeBoolean("IS_NIGHT_MODE")
+            ?.let {
+                StatusBarSettingHelper.statusBarLightMode(this, !it)
+                DarkThemeChangeUtils.autoSetDayAndNightMode(this)
+            }
+    }
+
     private fun oauthToken() {
         mViewModel.sendAuthRequestClient(
             GRANT_TYPE,
@@ -83,5 +102,4 @@ class SplashActivity : BaseMvvmActivity<ActivitySplashBinding, MainViewModel>() 
             TokenManager.saveBaiduToken(it.access_token)
         }
     }
-
 }

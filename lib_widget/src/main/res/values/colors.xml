@@ -47,4 +47,14 @@
 
     <color name="light_theme_bg_text_color">#BEB6B6</color>
 
+    <!--wushang-->
+    <color name="red_FA7964">#FA7964</color>
+    <color name="white">#FFFFFF</color>
+    <color name="black">#FF000000</color>
+    <color name="grey_BEBEBE">#BEBEBE</color>
+    <color name="red_CBFDC5BF">#CBFDC5BF</color>
+    <color name="black_80000000">#80000000</color>
+    <color name="gray_aaa">#aaa</color>
+    <color name="black_90000000">#90000000</color>
+
 </resources>

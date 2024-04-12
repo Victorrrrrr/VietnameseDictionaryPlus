@@ -351,7 +351,9 @@
                     android:thumb="@drawable/selector_switch_thumb"
                     android:track="@drawable/selector_switch_track"
                     android:checked="true"
+                    android:clickable="false"
                     tools:ignore="UseSwitchCompatOrMaterialXml" />
+                <!--禁用原本的点击，点击外部布局，防止冲突-->
 
             </RelativeLayout>
 

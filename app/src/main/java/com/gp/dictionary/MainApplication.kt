@@ -3,6 +3,9 @@ package com.gp.dictionary
 import android.app.Activity
 import android.app.Application
 import android.content.Context
+import android.content.res.Configuration
+import android.content.res.Resources
+import android.os.Build
 import android.os.Bundle
 import androidx.multidex.MultiDex
 import com.gp.dictionary.task.InitARouterTask
@@ -14,8 +17,14 @@ import com.gp.framework.manager.ActivityManager
 import com.gp.framework.manager.AppFrontBack
 import com.gp.framework.manager.AppFrontBackListener
 import com.gp.framework.toast.TipsToast
+import com.gp.framework.utils.DarkThemeChangeUtils
+import com.gp.framework.utils.LanguageChangeUtils
 import com.gp.framework.utils.LogUtil
+import com.gp.framework.utils.MMKVUtil
+import com.gp.framework.utils.MMKV_TYPE
+import com.gp.lib_framework.utils.StatusBarSettingHelper
 import com.gp.starter.dispatcher.TaskDispatcher
+import com.tencent.mmkv.MMKV
 
 /**
  * @Author: gxy
@@ -26,8 +35,11 @@ import com.gp.starter.dispatcher.TaskDispatcher
 class MainApplication : Application() {
 
     override fun attachBaseContext(base: Context?) {
-        super.attachBaseContext(base)
-        MultiDex.install(base)
+        base?.let {
+            MMKV.initialize(base)
+            super.attachBaseContext(LanguageChangeUtils.changeAppLanguage(base))
+            MultiDex.install(base)
+        }?:super.attachBaseContext(base)
     }
 
     override fun onCreate() {
@@ -54,6 +66,10 @@ class MainApplication : Application() {
 
         // 4. 等待，需要等待的方法执行完才可以继续往下执行
         dispatcher.await()
+
+        DarkThemeChangeUtils.autoSetDayAndNightMode(this);//设置暗夜模式
+        //对于7.0以下，需要在Application创建的时候进行语言切换,设置语言首选项
+        LanguageChangeUtils.changeAppLanguage(this)
     }
 
     /**
@@ -107,4 +123,11 @@ class MainApplication : Application() {
         })
     }
 
+    /**
+     * 系统切换语言时，会回调次方法
+     */
+    override fun onConfigurationChanged(newConfig: Configuration) {
+        super.onConfigurationChanged(newConfig)
+        LanguageChangeUtils.changeAppLanguage(this)
+    }
 }

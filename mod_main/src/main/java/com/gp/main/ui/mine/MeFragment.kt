@@ -23,7 +23,7 @@ import com.gp.network.manager.WordBookIdManager
 
 class MeFragment : BaseMvvmFragment<FragmentMeBinding, MeViewModel>() {
 
-    private var process: Int = 0
+    private var process : Int = 0
 
     override fun initView(view: View, savedInstanceState: Bundle?) {
 
@@ -39,17 +39,14 @@ class MeFragment : BaseMvvmFragment<FragmentMeBinding, MeViewModel>() {
 
     override fun onResume() {
         super.onResume()
-        if (LoginServiceProvider.isLogin()) {
+        if(LoginServiceProvider.isLogin()) {
             mBinding?.tvUserName?.text = UserInfoManager.getUserName()
             mBinding?.ivLogout?.visible()
         }
 
 
-        mBinding?.tvWordNumSum?.text = if (LoginServiceProvider.isLogin()) {
-            String.format(
-                getStringFromResource(com.gp.lib_widget.R.string.me_word_learned_sum),
-                process.toString()
-            )
+        mBinding?.tvWordNumSum?.text = if(LoginServiceProvider.isLogin()) {
+            String.format(getStringFromResource(com.gp.lib_widget.R.string.me_word_learned_sum), process.toString() )
         } else {
             getStringFromResource(com.gp.lib_widget.R.string.me_word_learned_no_login)
         }
@@ -58,15 +55,14 @@ class MeFragment : BaseMvvmFragment<FragmentMeBinding, MeViewModel>() {
     }
 
     private fun initEvent() {
-        mBinding?.switchDarkModeOpen?.isChecked =
-            MMKVUtil.get(MMKV_TYPE.APP).decodeBoolean("IS_NIGHT_MODE") == true
+        mBinding?.switchDarkModeOpen?.isChecked = MMKVUtil.get(MMKV_TYPE.APP).decodeBoolean("IS_NIGHT_MODE")==true
 
         mBinding?.rlAbout?.onClick {
             UserServiceProvider.toAbout(it.context)
         }
 
         mBinding?.rlBookWord?.onClick {
-            if (LoginServiceProvider.isLogin()) {
+            if(LoginServiceProvider.isLogin()) {
                 UserServiceProvider.toWordBook(it.context)
             } else {
                 TipsToast.showTips(getStringFromResource(com.gp.lib_widget.R.string.no_login_tips))
@@ -78,7 +74,7 @@ class MeFragment : BaseMvvmFragment<FragmentMeBinding, MeViewModel>() {
         }
 
         mBinding?.rlFavWord?.onClick {
-            if (LoginServiceProvider.isLogin()) {
+            if(LoginServiceProvider.isLogin()) {
                 UserServiceProvider.toCollection(it.context)
             } else {
                 TipsToast.showTips(getStringFromResource(com.gp.lib_widget.R.string.no_login_tips))
@@ -90,7 +86,7 @@ class MeFragment : BaseMvvmFragment<FragmentMeBinding, MeViewModel>() {
         }
 
         mBinding?.rlSearchWordHistory?.onClick {
-            if (LoginServiceProvider.isLogin()) {
+            if(LoginServiceProvider.isLogin()){
                 UserServiceProvider.toHistory(it.context)
             } else {
                 TipsToast.showTips(getStringFromResource(com.gp.lib_widget.R.string.no_login_tips))
@@ -110,21 +106,13 @@ class MeFragment : BaseMvvmFragment<FragmentMeBinding, MeViewModel>() {
             // 切换switch
             if (mBinding?.switchDarkModeOpen?.isChecked == true) {
                 //原本为true，切换为false
-                mBinding?.switchDarkModeOpen?.isChecked = false
-                MMKVUtil.get(MMKV_TYPE.APP).encode("IS_NIGHT_MODE", false)
-                activity?.applicationContext?.let { it1 ->
-                    DarkThemeChangeUtils.autoSetDayAndNightMode(
-                        it1
-                    )
-                }
+                mBinding?.switchDarkModeOpen?.isChecked = false;
+                MMKVUtil.get(MMKV_TYPE.APP).encode("IS_NIGHT_MODE", false);
+                DarkThemeChangeUtils.autoSetDayAndNightMode(requireContext());
             } else {
                 mBinding?.switchDarkModeOpen?.isChecked = true;
-                MMKVUtil.get(MMKV_TYPE.APP).encode("IS_NIGHT_MODE", true)
-                activity?.applicationContext?.let { it1 ->
-                    DarkThemeChangeUtils.autoSetDayAndNightMode(
-                        it1
-                    )
-                }
+                MMKVUtil.get(MMKV_TYPE.APP).encode("IS_NIGHT_MODE", true);
+                DarkThemeChangeUtils.autoSetDayAndNightMode(requireContext());
             }
         }
 
@@ -134,8 +122,7 @@ class MeFragment : BaseMvvmFragment<FragmentMeBinding, MeViewModel>() {
             TokenManager.clearToken()
             WordBookIdManager.saveFavFolderId(-1)
 
-            mBinding?.tvUserName?.text =
-                getStringFromResource(com.gp.lib_widget.R.string.me_login_tip_text)
+            mBinding?.tvUserName?.text = getStringFromResource(com.gp.lib_widget.R.string.me_login_tip_text)
             it.gone()
         }
 
@@ -144,7 +131,7 @@ class MeFragment : BaseMvvmFragment<FragmentMeBinding, MeViewModel>() {
 
     private fun toUserOrLogin(context: Context) {
         // 判断是否登陆，未登陆跳转登陆页
-        if (LoginServiceProvider.isLogin()) {
+        if(LoginServiceProvider.isLogin()) {
             UserServiceProvider.toUserInfo(context)
         } else {
             LoginServiceProvider.toLogin(context)

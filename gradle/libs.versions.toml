@@ -104,6 +104,7 @@ lifecycle-viewmodel-ktx = { group = "androidx.lifecycle", name = "lifecycle-view
 lifecycle-common = {group = "androidx.lifecycle", name = "lifecycle-common", version.ref = "lifecycle-common"}
 navigation-fragment-ktx = { group = "androidx.navigation", name = "navigation-fragment-ktx", version.ref = "navigation-fragment-ktx" }
 navigation-ui-ktx = { group = "androidx.navigation", name = "navigation-ui-ktx", version.ref = "navigation-ui-ktx" }
+cronet-embedded = { group = "org.chromium.net", name = "cronet-embedded", version = "119.6045.31" }
 
 
 

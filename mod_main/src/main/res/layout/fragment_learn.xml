@@ -17,7 +17,7 @@
             android:id="@+id/tv_learn_tools"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="学习工具"
+            android:text="@string/learn_tool"
             android:textColor="@color/black"
             android:textSize="@dimen/sp_20"
             android:layout_marginTop="@dimen/dp_38"
@@ -39,7 +39,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="语音取词"
+                android:text="@string/phonetic_word_extraction"
                 android:textColor="@color/black"
                 android:textSize="@dimen/sp_14"
                 android:layout_marginStart="@dimen/dp_20"
@@ -69,7 +69,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="单词夹"
+                android:text="@string/word_folder"
                 android:textColor="@color/black"
                 android:textSize="@dimen/sp_14"
                 android:layout_marginStart="@dimen/dp_20"
@@ -90,7 +90,7 @@
             android:id="@+id/tv_review_word"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="复习词语"
+            android:text="@string/review_vocabulary"
             android:textColor="@color/black"
             android:textSize="@dimen/sp_20"
             android:layout_marginTop="@dimen/dp_30"
@@ -112,7 +112,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="多词匹配"
+                android:text="@string/multi_word_matching"
                 android:textColor="@color/black"
                 android:textSize="@dimen/sp_14"
                 android:layout_marginStart="@dimen/dp_20"
@@ -142,12 +142,11 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="单词速记"
-                android:textColor="@color/black"
-                android:textSize="@dimen/sp_14"
                 android:layout_marginStart="@dimen/dp_20"
                 android:layout_marginTop="@dimen/dp_20"
-                />
+                android:text="@string/just_vocabulary"
+                android:textColor="@color/black"
+                android:textSize="@dimen/sp_14" />
 
             <ImageView
                 android:layout_width="@dimen/dp_100"
@@ -163,7 +162,7 @@
             android:id="@+id/tv_game"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="趣味游戏"
+            android:text="@string/fun_games"
             android:textColor="@color/black"
             android:textSize="@dimen/sp_20"
             android:layout_marginTop="@dimen/dp_38"
@@ -185,7 +184,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="猫追老鼠"
+                android:text="@string/cats_chasing_mice"
                 android:textColor="@color/black"
                 android:textSize="@dimen/sp_16"
                 android:textStyle="bold"
