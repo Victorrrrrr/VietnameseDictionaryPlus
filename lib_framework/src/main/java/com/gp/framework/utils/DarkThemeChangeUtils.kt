@@ -13,22 +13,27 @@ import androidx.appcompat.app.AppCompatDelegate
  */
 object DarkThemeChangeUtils {
     fun autoSetDayAndNightMode(context: Context) {
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S) {
-            val systemService = context.getSystemService(Context.UI_MODE_SERVICE) as? UiModeManager
-            systemService?.let {
-                if (MMKVUtil.get(MMKV_TYPE.APP).decodeBoolean("IS_NIGHT_MODE") == true) {
-                    it.setApplicationNightMode(UiModeManager.MODE_NIGHT_YES)
-                } else {
-                    it.setApplicationNightMode(UiModeManager.MODE_NIGHT_NO)
-                }
-            }
+        if (MMKVUtil.get(MMKV_TYPE.APP).decodeBoolean("IS_NIGHT_MODE") == true) {
+            AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES)
         } else {
-            if (MMKVUtil.get(MMKV_TYPE.APP).decodeBoolean("IS_NIGHT_MODE") == true) {
-                AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES)
-            } else {
-                AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
-            }
+            AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
         }
+//        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S) {
+//            val systemService = context.getSystemService(Context.UI_MODE_SERVICE) as? UiModeManager
+//            systemService?.let {
+//                if (MMKVUtil.get(MMKV_TYPE.APP).decodeBoolean("IS_NIGHT_MODE") == true) {
+//                    it.setApplicationNightMode(UiModeManager.MODE_NIGHT_YES)
+//                } else {
+//                    it.setApplicationNightMode(UiModeManager.MODE_NIGHT_NO)
+//                }
+//            }
+//        } else {
+//            if (MMKVUtil.get(MMKV_TYPE.APP).decodeBoolean("IS_NIGHT_MODE") == true) {
+//                AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES)
+//            } else {
+//                AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
+//            }
+//        }
     }
 
 }

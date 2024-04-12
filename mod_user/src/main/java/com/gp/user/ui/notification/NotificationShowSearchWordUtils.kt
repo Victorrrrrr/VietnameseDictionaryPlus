@@ -83,32 +83,32 @@ object NotificationShowSearchWordUtils {
         val intent1 = Intent(context,NotificationSearchWordBroadCast::class.java)
         intent1.action = "notification_show_search_word_option_up"
         val pendingIntent1 =
-            PendingIntent.getBroadcast(context, 0, intent1, PendingIntent.FLAG_UPDATE_CURRENT)
+            PendingIntent.getBroadcast(context, 0, intent1, PendingIntent.FLAG_IMMUTABLE)
 
         val intent2 = Intent(context,NotificationSearchWordBroadCast::class.java)
         intent2.action = "notification_show_search_word_option_down"
         val pendingIntent2 =
-            PendingIntent.getBroadcast(context, 1, intent2, PendingIntent.FLAG_UPDATE_CURRENT)
+            PendingIntent.getBroadcast(context, 1, intent2, PendingIntent.FLAG_IMMUTABLE)
 
         val intent3 = Intent(context,NotificationSearchWordBroadCast::class.java)
         intent3.action = "notification_show_search_word_jump_activity"
         val pendingIntent3 =
-            PendingIntent.getBroadcast(context, 1, intent3, PendingIntent.FLAG_UPDATE_CURRENT)
+            PendingIntent.getBroadcast(context, 2, intent3, PendingIntent.FLAG_IMMUTABLE)
 
         val intent4 = Intent(context,NotificationSearchWordBroadCast::class.java)
         intent4.action = "notification_show_search_word_sound"
         val pendingIntent4 =
-            PendingIntent.getBroadcast(context, 1, intent4, PendingIntent.FLAG_UPDATE_CURRENT)
+            PendingIntent.getBroadcast(context, 3, intent4, PendingIntent.FLAG_IMMUTABLE)
 
         val intent5 = Intent(context,NotificationSearchWordBroadCast::class.java)
         intent5.action = "notification_show_search_word_star"
         val pendingIntent5 =
-            PendingIntent.getBroadcast(context, 1, intent5, PendingIntent.FLAG_UPDATE_CURRENT)
+            PendingIntent.getBroadcast(context, 4, intent5, PendingIntent.FLAG_IMMUTABLE)
 
         val intent6 = Intent(context,NotificationSearchWordBroadCast::class.java)
         intent6.action = "notification_show_search_word_next"
         val pendingIntent6 =
-            PendingIntent.getBroadcast(context, 1, intent6, PendingIntent.FLAG_UPDATE_CURRENT)
+            PendingIntent.getBroadcast(context, 5, intent6, PendingIntent.FLAG_IMMUTABLE)
 
         remoteViews.setOnClickPendingIntent(R.id.img_fold_down,pendingIntent1)
         remoteViews.setOnClickPendingIntent(R.id.img_fold_up,pendingIntent2)
