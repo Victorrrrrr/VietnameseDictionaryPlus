@@ -15,10 +15,9 @@ import com.gp.search.ui.search.SearchViewModel
 class SuggestActivity : BaseMvvmActivity<ActivitySuggestBinding, SearchViewModel>() {
 
     companion object {
-
-        const val ERROR_WORD_DEFINITION = 0
-        const val ERROR_SENTENCE = 1
-        const val ERROR_BAD_INFORMATION = 2
+        const val ERROR_WORD_DEFINITION = 1
+        const val ERROR_SENTENCE = 2
+        const val ERROR_BAD_INFORMATION = 0
 
         fun startSuggest(context: Context, error: Int) {
             val intent = Intent(context, SuggestActivity::class.java)
@@ -32,7 +31,21 @@ class SuggestActivity : BaseMvvmActivity<ActivitySuggestBinding, SearchViewModel
     override fun initView(savedInstanceState: Bundle?) {
         val type = intent.getIntExtra(SUGGEST_TYPE, -1)
 
-        TipsToast.showTips("type : $type")
+        mBinding.tvSuggestType.text = when(type) {
+            ERROR_SENTENCE-> {
+                "例句有误"
+            }
+            ERROR_WORD_DEFINITION -> {
+                "释义有误"
+            }
+            ERROR_BAD_INFORMATION -> {
+                "存在违规等不良信息"
+            }
+            else -> ""
+        }
+
+
+
 
     }
 }

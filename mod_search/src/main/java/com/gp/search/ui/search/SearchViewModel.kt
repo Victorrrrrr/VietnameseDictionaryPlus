@@ -4,6 +4,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.liveData
 import com.gp.common.model.AddWordToFolderRequest
 import com.gp.common.model.FolderList
+import com.gp.common.model.FolderWordList
 import com.gp.common.model.SearchWordBean
 import com.gp.common.model.WordBeanItem
 import com.gp.framework.toast.TipsToast
@@ -67,6 +68,36 @@ class SearchViewModel : BaseViewModel() {
             }
         }
     }
+
+
+    fun getFolderWordList(folderId: Int,
+                          currentPage: Int,
+                          pageSize: Int,
+                          keyword:String) : LiveData<FolderWordList> {
+        return liveData {
+            val response = safeApiCall(errorBlock = {code, errorMsg ->
+                TipsToast.showTips(errorMsg)
+            }) {
+                searchRepository.getFolderWords(folderId, currentPage, pageSize, keyword)
+            }
+            response?.let{
+                emit(it)
+            }
+        }
+    }
+
+    fun deleteWordInFolder(folderId : Int, wordId : Int, success: (Void?) -> Unit) : LiveData<Void> {
+        return liveData {
+            val response = launchUIWithResult({
+                searchRepository.deleteWordsInFolder(folderId, wordId)
+            }, errorCall = object : IApiErrorCallback {
+
+            }) {
+                success.invoke(it)
+            }
+        }
+    }
+
 
 
 

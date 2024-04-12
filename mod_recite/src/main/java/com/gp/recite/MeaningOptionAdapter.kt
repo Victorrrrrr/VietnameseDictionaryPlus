@@ -8,7 +8,7 @@ import com.gp.common.model.Option
 import com.gp.framework.adapter.BaseBindViewHolder
 import com.gp.framework.adapter.BaseRecyclerViewAdapter
 import com.gp.framework.ext.onClick
-import com.gp.framework.utils.getDrawable
+import com.gp.framework.utils.getDrawableFromResource
 import com.gp.mod_recite.R
 import com.gp.mod_recite.databinding.ItemMeaningOptionBinding
 import com.gp.recite.controller.WordController
@@ -41,14 +41,14 @@ class MeaningOptionAdapter : BaseRecyclerViewAdapter<Option, ItemMeaningOptionBi
             tvOptionMeaning.onClick {
                 if (item.isRight) {
                     onOptionListener?.onRight()
-                    llMeaningBg.background = getDrawable(com.gp.lib_widget.R.drawable.shape_bg_tick_radius_12)
+                    llMeaningBg.background = getDrawableFromResource(com.gp.lib_widget.R.drawable.shape_bg_tick_radius_12)
                     ivChooseResult.visibility = View.VISIBLE
-                    ivChooseResult.setImageDrawable(getDrawable(com.gp.lib_widget.R.drawable.ic_tick_green))
+                    ivChooseResult.setImageDrawable(getDrawableFromResource(com.gp.lib_widget.R.drawable.ic_tick_green))
                 } else {
                     onOptionListener?.onFalse()
-                    llMeaningBg.background = getDrawable(com.gp.lib_widget.R.drawable.shape_bg_wrong_radius_12)
+                    llMeaningBg.background = getDrawableFromResource(com.gp.lib_widget.R.drawable.shape_bg_wrong_radius_12)
                     ivChooseResult.visibility = View.VISIBLE
-                    ivChooseResult.setImageDrawable(getDrawable(com.gp.lib_widget.R.drawable.ic_chacha_red))
+                    ivChooseResult.setImageDrawable(getDrawableFromResource(com.gp.lib_widget.R.drawable.ic_chacha_red))
                 }
             }
         }

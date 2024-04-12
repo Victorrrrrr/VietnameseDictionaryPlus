@@ -1,12 +1,14 @@
 package com.gp.search.ui.word
 
 import android.view.LayoutInflater
+import android.view.View
 import android.view.ViewGroup
 import com.gp.common.model.FolderListBean
 import com.gp.framework.adapter.BaseBindViewHolder
 import com.gp.framework.adapter.BaseRecyclerViewAdapter
 import com.gp.framework.ext.onClick
 import com.gp.mod_search.databinding.ItemFolderBinding
+import com.gp.network.manager.WordBookIdManager
 
 class FolderDialogAdapter : BaseRecyclerViewAdapter<FolderListBean,ItemFolderBinding>() {
 
@@ -32,6 +34,8 @@ class FolderDialogAdapter : BaseRecyclerViewAdapter<FolderListBean,ItemFolderBin
             cbChoose.isChecked = item.isSelected
         }
     }
+
+
 
 
     private fun changeStatus(position: Int) {

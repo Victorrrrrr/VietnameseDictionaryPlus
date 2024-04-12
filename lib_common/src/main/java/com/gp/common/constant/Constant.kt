@@ -9,6 +9,7 @@ const val HTTP_BAIDU_TOKEN_INFO = "http_baidu_token_info"
 const val WORD_BOOK_ID = "word_book_id"
 const val WORD_BOOK_COUNT = "word_book_count"
 const val RECITE_NUM = "recite_num"
+const val FAV_FOLDER_ID = "fav_folder_id"
 
 /**
  * token请求参数

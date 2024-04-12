@@ -2,7 +2,10 @@ package com.gp.search.repo
 
 import com.gp.common.model.AddWordToFolderRequest
 import com.gp.common.model.FolderList
+import com.gp.common.model.FolderWordList
 import com.gp.common.model.SearchWordBean
+import com.gp.common.model.SuggestList
+import com.gp.common.model.SuggestListItem
 import com.gp.common.model.WordBeanItem
 import com.gp.network.manager.ApiManager
 import com.gp.network.repository.BaseRepository
@@ -16,9 +19,6 @@ class SearchRepository : BaseRepository() {
                 ApiManager.api.getWordList(currentPage, pageSize, keyword)
         }
     }
-
-
-    private var isLocalDataGet = false
 
     suspend fun getWordDetail(id: String): WordBeanItem? {
         return requestResponse {
@@ -38,5 +38,36 @@ class SearchRepository : BaseRepository() {
             ApiManager.api.addWordToFolder(addWordToFolderRequest)
         }
     }
+
+
+    suspend fun getFolderWords(folderId: Int,
+                               currentPage: Int,
+                               pageSize: Int,
+                               keyword:String) : FolderWordList? {
+        return requestResponse {
+            ApiManager.api.getFolderWords(folderId, currentPage, pageSize, keyword)
+        }
+    }
+
+    suspend fun deleteWordsInFolder(folderId: Int, wordId: Int) : BaseResponse<Void>? {
+        return requestBaseDataResponse {
+            ApiManager.api.deleteWordInFolder(folderId, wordId)
+        }
+    }
+
+    suspend fun suggest(suggestListItem: SuggestListItem) : BaseResponse<Void>? {
+        return requestBaseDataResponse {
+            ApiManager.api.suggest(suggestListItem)
+        }
+    }
+
+
+    suspend fun getSuggestList(id: Int, currentPage: Int, pageSize: Int): SuggestList? {
+        return requestResponse {
+            ApiManager.api.getSuggestList(id, currentPage, pageSize)
+        }
+    }
+
+
 
 }

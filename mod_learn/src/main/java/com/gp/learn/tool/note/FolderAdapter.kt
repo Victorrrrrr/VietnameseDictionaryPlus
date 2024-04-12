@@ -3,20 +3,20 @@ package com.gp.learn.tool.note
 import android.content.Context
 import android.content.Intent
 import android.view.LayoutInflater
+import android.view.View
 import android.view.ViewGroup
 import android.widget.LinearLayout
 import androidx.databinding.DataBindingUtil
-import com.gp.common.model.FolderAddRequest
 import com.gp.common.model.FolderListBean
 import com.gp.framework.adapter.BaseBindViewHolder
 import com.gp.framework.adapter.BaseRecyclerViewAdapter
 import com.gp.framework.ext.dp2px
 import com.gp.framework.ext.onClick
 import com.gp.learn.tool.notedetail.FolderWordsActivity
-import com.gp.lib_widget.databinding.DialogEditBinding
 import com.gp.lib_widget.databinding.DialogTipBinding
 import com.gp.mod_learn.databinding.ItemNoteBinding
 import com.gp.network.constant.KEY_FOLDER_ID
+import com.gp.network.manager.WordBookIdManager
 import com.gp.widget.AlertDialog
 
 
@@ -55,8 +55,8 @@ class FolderAdapter : BaseRecyclerViewAdapter<FolderListBean, ItemNoteBinding>()
                 showDeleteDialog(it.context, item?.id)
             }
         }
-
     }
+
 
     override fun getViewBinding(
         layoutInflater: LayoutInflater,

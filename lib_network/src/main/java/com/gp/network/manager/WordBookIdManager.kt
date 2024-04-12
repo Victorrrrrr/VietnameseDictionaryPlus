@@ -1,5 +1,6 @@
 package com.gp.network.manager
 
+import com.gp.common.constant.FAV_FOLDER_ID
 import com.gp.common.constant.RECITE_NUM
 import com.gp.common.constant.WORD_BOOK_COUNT
 import com.gp.common.constant.WORD_BOOK_ID
@@ -76,6 +77,20 @@ object WordBookIdManager {
         val mmkv = MMKV.defaultMMKV()
         return mmkv.decodeInt(RECITE_NUM, 10)
     }
+
+
+    fun saveFavFolderId(id : Int) {
+        val mmkv = MMKV.defaultMMKV()
+        LogUtil.d(id.toString(), tag = "favFolderId")
+        mmkv.encode(FAV_FOLDER_ID, id)
+    }
+
+    fun getFavFolderId() :Int {
+        val mmkv = MMKV.defaultMMKV()
+        return mmkv.decodeInt(FAV_FOLDER_ID, -1)
+    }
+
+
 
 
 }

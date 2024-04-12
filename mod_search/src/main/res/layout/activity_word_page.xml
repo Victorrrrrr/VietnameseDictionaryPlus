@@ -8,6 +8,14 @@
             name="word"
             type="com.gp.common.model.WordBeanItem" />
 
+        <variable
+            name="source"
+            type="String" />
+
+        <variable
+            name="lexicon"
+            type="String" />
+
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -182,10 +190,51 @@
                 android:layout_weight="1"
                 android:layout_marginHorizontal="@dimen/dp_15"
                 android:layout_marginBottom="@dimen/dp_20"
-                tools:listitem="@layout/layout_sentence_item"/>
+                tools:listitem="@layout/layout_sentence_item"
+                tools:itemCount="2"/>
 
 
         </LinearLayout>
+
+        <com.google.android.flexbox.FlexboxLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:flexWrap="wrap"
+            android:layout_marginTop="@dimen/dp_15"
+            app:layout_constraintTop_toBottomOf="@id/ll_sentence"
+            app:layout_constraintStart_toStartOf="parent"
+            android:layout_marginStart="@dimen/dp_10"
+            >
+
+            <TextView
+                android:id="@+id/tv_source"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/shape_light_theme_bg"
+                android:textColor="@color/text_light_grey"
+                android:textSize="@dimen/sp_14"
+                android:paddingVertical="@dimen/dp_5"
+                android:paddingHorizontal="@dimen/dp_10"
+                android:layout_marginTop="@dimen/dp_10"
+                android:layout_marginHorizontal="@dimen/dp_5"
+                android:text="@{`来源：` + source}"/>
+
+            <TextView
+                android:id="@+id/tv_lexicon"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/shape_light_theme_bg"
+                android:textColor="@color/text_light_grey"
+                android:textSize="@dimen/sp_14"
+                android:paddingVertical="@dimen/dp_5"
+                android:paddingHorizontal="@dimen/dp_10"
+                android:layout_marginTop="@dimen/dp_10"
+                android:layout_marginHorizontal="@dimen/dp_5"
+                android:text="@{`词书：` + lexicon}"/>
+        </com.google.android.flexbox.FlexboxLayout>
+
+
+
 
 
         <FrameLayout
@@ -199,18 +248,20 @@
 
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
+                android:layout_height="wrap_content"
                 android:weightSum="3"
                 android:orientation="horizontal">
+
 
                 <ImageView
                     android:id="@+id/iv_like"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:background="@drawable/shape_light_theme_bg"
-                    android:paddingHorizontal="@dimen/dp_28"
-                    android:layout_margin="@dimen/dp_15"
-                    android:paddingVertical="@dimen/dp_13"
+                    android:paddingHorizontal="@dimen/dp_24"
+                    android:layout_marginHorizontal="@dimen/dp_15"
+                    android:layout_marginVertical="@dimen/dp_5"
+                    android:paddingVertical="@dimen/dp_10"
                     android:layout_weight="1"
                     android:src="@drawable/ic_like"/>
 
@@ -220,9 +271,10 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:background="@drawable/shape_light_theme_bg"
-                    android:paddingHorizontal="@dimen/dp_28"
-                    android:layout_margin="@dimen/dp_15"
-                    android:paddingVertical="@dimen/dp_13"
+                    android:paddingHorizontal="@dimen/dp_24"
+                    android:layout_marginHorizontal="@dimen/dp_15"
+                    android:layout_marginVertical="@dimen/dp_5"
+                    android:paddingVertical="@dimen/dp_10"
                     android:layout_weight="1"
                     android:src="@drawable/ic_comment"/>
 
@@ -232,9 +284,10 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:background="@drawable/shape_light_theme_bg"
-                    android:paddingHorizontal="@dimen/dp_28"
-                    android:layout_margin="@dimen/dp_15"
-                    android:paddingVertical="@dimen/dp_13"
+                    android:paddingHorizontal="@dimen/dp_24"
+                    android:layout_marginHorizontal="@dimen/dp_15"
+                    android:layout_marginVertical="@dimen/dp_5"
+                    android:paddingVertical="@dimen/dp_10"
                     android:layout_weight="1"
                     android:src="@drawable/ic_back_page"/>
 

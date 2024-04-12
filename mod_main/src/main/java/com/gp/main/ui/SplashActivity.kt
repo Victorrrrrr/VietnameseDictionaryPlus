@@ -8,10 +8,13 @@ import android.os.Bundle
 import android.util.Log
 import androidx.lifecycle.lifecycleScope
 import com.gp.common.constant.*
+import com.gp.common.model.FolderAddRequest
 import com.gp.common.provider.MainServiceProvider
 import com.gp.framework.base.BaseMvvmActivity
 import com.gp.framework.ext.countDownCoroutines
 import com.gp.framework.ext.onClick
+import com.gp.framework.toast.TipsToast
+import com.gp.framework.utils.LogUtil
 import com.gp.framework.utils.DarkThemeChangeUtils
 import com.gp.framework.utils.MMKVUtil
 import com.gp.framework.utils.MMKV_TYPE
@@ -38,7 +41,7 @@ class SplashActivity : BaseMvvmActivity<ActivitySplashBinding, MainViewModel>() 
         // 设置隐藏导航栏
         StatusBarSettingHelper.setStatusBarTranslucent(this)
 
-        if (TokenManager.getToken().isNullOrEmpty()) {
+        if(TokenManager.getToken().isNullOrEmpty()) {
             oauthToken()
         }
 

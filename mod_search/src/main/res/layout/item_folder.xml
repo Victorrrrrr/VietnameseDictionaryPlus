@@ -6,6 +6,7 @@
     </data>
 
     <LinearLayout
+        android:id="@+id/ll_folder_choice"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal">

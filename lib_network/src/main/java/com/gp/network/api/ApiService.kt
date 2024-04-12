@@ -192,6 +192,13 @@ interface ApiService {
     ) : BaseResponse<Void>
 
 
+    @DELETE("app-dict/word/folder/{folderId}/word/{wordId}")
+    suspend fun deleteWordInFolder(
+        @Path("folderId") folderId : Int,
+        @Path("wordId") wordId: Int
+    ) : BaseResponse<Void>
+
+
     @GET("app-dict/feedback")
     suspend fun getSuggest() : BaseResponse<SuggestList>
 
@@ -206,11 +213,5 @@ interface ApiService {
         @Query("currentPage") currentPage: Int,
         @Query("pageSize") pageSize: Int
     ) : BaseResponse<SuggestList>
-
-    @DELETE("app-dict/word/folder/{folderId}/word/{wordId}")
-    suspend fun deleteWordInFolder(
-        @Path("folderId") folderId : Int,
-        @Path("wordId") wordId: Int
-    ) : BaseResponse<Void>
 
 }
