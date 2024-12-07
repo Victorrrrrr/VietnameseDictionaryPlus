@@ -5,21 +5,20 @@ import com.gp.common.model.FolderList
 import com.gp.common.model.FolderWordList
 import com.gp.common.model.SearchWordBean
 import com.gp.common.model.SuggestList
-import com.gp.common.model.SuggestListItem
 import com.gp.common.model.SuggestRequest
 import com.gp.common.model.WordBeanItem
 import com.gp.network.manager.ApiManager
 import com.gp.network.repository.BaseRepository
 import com.gp.network.response.BaseResponse
-import com.gp.room.manager.WordManager
 
 class SearchRepository : BaseRepository() {
 
     suspend fun getWordList(currentPage: Int, pageSize: Int, keyword: String): SearchWordBean? {
         return requestResponse {
-                ApiManager.api.getWordList(currentPage, pageSize, keyword)
+            ApiManager.api.getWordList(currentPage, pageSize, keyword)
         }
     }
+
 
     suspend fun getWordDetail(id: String): WordBeanItem? {
         return requestResponse {
